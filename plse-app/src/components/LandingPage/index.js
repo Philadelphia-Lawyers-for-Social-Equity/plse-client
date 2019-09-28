@@ -18,18 +18,18 @@ class LandingPage extends Component {
                     <Col>
                         Please select the attorney that you will be filing for:
                     <ButtonGroup vertical >
-                            <Button>Carl Oxholm III</Button>
-                            <Button>Rachel Miller</Button>
-                            <Button>Taylor Pacheco</Button>
-                            <Button>Sarah Coyle</Button>
-                            <Button>Executive Director</Button>
+                            <Button id="attorneyNames">Carl Oxholm III</Button>
+                            <Button id="attorneyNames">Rachel Miller</Button>
+                            <Button id="attorneyNames">Taylor Pacheco</Button>
+                            <Button id="attorneyNames">Sarah Coyle</Button>
+                            <Button id="attorneyNames">Executive Director</Button>
                         </ButtonGroup>
                     </Col>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary">Cancel</Button>
-                    <Button variant="primary">Select</Button>
+                    <Button id="cancelButton">Cancel</Button>
+                    <Button id="attorneyNames">Select</Button>
                 </Modal.Footer>
             </Modal.Dialog>
 
