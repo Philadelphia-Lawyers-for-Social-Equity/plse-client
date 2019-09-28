@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
+import LoginForm from "../src/components/LoginForm";
+//import LandingPage from "../src/components/LandingPage";
+import BodyBackgroundColor from 'react-body-backgroundcolor';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      username: null
+    }
+    this.updateUser = this.updateUser.bind(this)
+  }
+  updateUser(User) {
+    this.setState(User)
+  }
+  render() {
+    return (
+      <Router>
+        <BodyBackgroundColor backgroundColor='#fadadd'>
+      <Route path="/" component={LoginForm} />
+      </BodyBackgroundColor>
+    </Router> 
+    );
+  }
+ }
+ export default App;
 
-export default App;
