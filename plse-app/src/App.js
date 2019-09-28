@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
 import LoginForm from "../src/components/LoginForm";
+import LandingPage from "../src/components/LandingPage";
 //import LandingPage from "../src/components/LandingPage";
 import BodyBackgroundColor from 'react-body-backgroundcolor';
 
@@ -21,11 +22,15 @@ class App extends Component {
     return (
       <Router>
         <BodyBackgroundColor backgroundColor='#fadadd'>
-      <Route path="/" component={LoginForm} />
-      </BodyBackgroundColor>
-    </Router> 
+          <Route path="/" component={LoginForm} />
+        </BodyBackgroundColor>
+
+        <BodyBackgroundColor backgroundColor='gray'>
+          <Route path="/landing" component={LandingPage} />
+        </BodyBackgroundColor>
+      </Router>
     );
   }
- }
- export default App;
+}
+export default App;
 
