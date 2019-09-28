@@ -1,3 +1,16 @@
+PLSE-Philly Expungement App
+
+npm used:
+    "bootstrap": "^4.3.1",
+    "react": "^16.9.0",
+    "react-body-backgroundcolor": "^1.2.1",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.1.1",
+    "react-scripts": "3.1.1"
+    
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
