@@ -1,5 +1,12 @@
-.attorneyButton {
+#attorneyNames {
     background-color : #A17EC5;
     margin-top : 10px;
     border-color : #A17EC5;
+}
+
+#cancelButton {
+    background-color : white;
+    color: #A17EC5;
+    margin-top : 10px;
+    border-color : #A17EC5; 
 }

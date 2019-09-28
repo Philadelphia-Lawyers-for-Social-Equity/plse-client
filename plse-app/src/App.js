@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
-//import LandingPage from "../src/components/LandingPage";
+import InputForm from "../src/components/InputForm";
 import BodyBackgroundColor from 'react-body-backgroundcolor';
 
 class App extends Component {
@@ -27,6 +27,10 @@ class App extends Component {
 
         <BodyBackgroundColor backgroundColor='gray'>
           <Route path="/landing" component={LandingPage} />
+        </BodyBackgroundColor>
+
+        <BodyBackgroundColor backgroundColor='gray'>
+          <Route path="/InputForm" component={InputForm} />
         </BodyBackgroundColor>
       </Router>
     );
