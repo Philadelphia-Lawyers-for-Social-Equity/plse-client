@@ -2,6 +2,8 @@
     background-color : #A17EC5;
     margin-top : 10px;
     border-color : #A17EC5;
+    padding-left : 30px;
+    padding-right: 30px;
 }
 
 #cancelButton {
