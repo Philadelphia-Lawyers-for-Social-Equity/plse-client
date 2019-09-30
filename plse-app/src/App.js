@@ -21,16 +21,19 @@ class App extends Component {
   render() {
     return (
       <Router>
+
+        
+
         <BodyBackgroundColor backgroundColor='#fadadd'>
-          <Route path="/" component={LoginForm} />
+          <Route path="/login" component={LoginForm} />
         </BodyBackgroundColor>
 
         <BodyBackgroundColor backgroundColor='gray'>
           <Route path="/landing" component={LandingPage} />
         </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor='gray'>
-          <Route path="/InputForm" component={InputForm} />
+        <BodyBackgroundColor backgroundColor='#fadadd'>
+          <Route path="/inputform" component={InputForm} />
         </BodyBackgroundColor>
       </Router>
     );
