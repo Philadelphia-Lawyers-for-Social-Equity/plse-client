@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; // removed Switch
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
 import InputForm from "../src/components/InputForm";
@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-
+        <Switch>
         
 
         <BodyBackgroundColor backgroundColor='#fadadd'>
@@ -35,6 +35,7 @@ class App extends Component {
         <BodyBackgroundColor backgroundColor='#fadadd'>
           <Route path="/inputform" component={InputForm} />
         </BodyBackgroundColor>
+        </Switch>
       </Router>
     );
   }
