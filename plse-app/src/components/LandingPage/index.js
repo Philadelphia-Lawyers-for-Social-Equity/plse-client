@@ -2,28 +2,11 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 // import {withRouter} from 'react-router-dom';
 import "./style.css";
-import { Button, ButtonGroup, Navbar, Modal, Col } from 'react-bootstrap';
+import { Button, ButtonGroup, Modal, Col } from 'react-bootstrap';
 
 class LandingPage extends Component {
     render() {
         return <div className="text-center">
-            <Navbar bg="light">
-                <Navbar.Brand href="#home">
-                    <img
-                        src="http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png"
-                        width="90"
-                        height="30"
-                        className="d-inline-block align-top"
-                        alt="PLSE logo"
-                    />
-                </Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text>
-                        Signed in as: <a href="#login">John Doe</a>
-                    </Navbar.Text>
-                </Navbar.Collapse>
-            </Navbar>
 
             <Modal.Dialog>
                 <Modal.Header closeButton>
