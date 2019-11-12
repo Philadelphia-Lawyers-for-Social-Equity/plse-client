@@ -1,14 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 //import axios from 'axios';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"; // removed Switch
+import PrivateRoute from './PrivateRoute';
+import { AuthContext } from "./context/auth";
 import Header from "../src/components/Header";
+import AdminPage from "../src/components/AdminPage";
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
 import InputForm from "../src/components/InputForm";
 import BodyBackgroundColor from 'react-body-backgroundcolor';
 
-class App extends Component {
+function App(props) {
+
+  const [authTokens, setAuthTokens] = useState();
+
+  const setTokens = (data) => {
+    localStorage.setItem("tokens", JSON.stringify(data));
+    setAuthTokens(data);
+  }
 
   // constructor() {
   //   super()
@@ -24,69 +34,56 @@ class App extends Component {
 
   // api = `http://testbed.pablovirgo.com/api/v0.1.0/`
 
-  getUser = (e) => {
-    e.preventDefault();
-    const username = e.target.elements.username.value;
-
-    console.log(username);
-    // axios.post(`http://testbed.pablovirgo.com/api/v0.1.0/auth/token/`, {
-    //   "username": "izeimai", 
-    //   "Password" : "testingwiithizeimai"})
-    // .then(res => {
-    //   console.log(res.data);
-    //   // this.setState({
-    //   //   token: res.data,
-    //   // })
-    // })
-    // .catch(err => {
-    //   if (err.response.status === 401) {
-    //     dispatch(loginFailure(err));
-    //   }
-    // });
-  }
+// // Get request to API endpoint, then parse output to JSON, 
+// // then set the value of the state, and catches errors to console
+// componentDidMount() {
+//   fetch('http://testbed.pablovirgo.com/api/v0.1.0/expunger/attorneys')
+//   .then(res => res.json())
+//   .then((data => {
+//     this.setState({ attorneys : data })
+//   }))
+//   .catch(console.log)
+// }
 
 
-  
 
 
-  // state = {
-  //   attorneys:[] 
-  // }
+// render() {
+return (
+  <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+    <Router>
 
-  // // Get request to API endpoint, then parse output to JSON, 
-  // // then set the value of the state, and catches errors to console
-  // componentDidMount() {
-  //   fetch('http://testbed.pablovirgo.com/api/v0.1.0/expunger/attorneys')
-  //   .then(res => res.json())
-  //   .then((data => {
-  //     this.setState({ attorneys : data })
-  //   }))
-  //   .catch(console.log)
-  // }
+      <Header />
 
- 
-  
+      <div>
+        <ul>
+          <li>
+            <Link to="/login">Home Page</Link>
+          </li>
+          <li>
+            <Link to="/admin">Admin Page</Link>
+          </li>
+        </ul>
+      </div>
 
-  render() {
-    return (
-      <Router>
-        
-        <Header />
+      <PrivateRoute path="/admin" component={AdminPage} />
 
-        <BodyBackgroundColor backgroundColor='#fadadd'>
-          <Route path="/login" render={LoginForm} />
-        </BodyBackgroundColor>
+      <BodyBackgroundColor backgroundColor='#fadadd'>
+        <Route path="/login" render={(props) => <LoginForm {...props} isAuthed={true} />} />
+      </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor='gray'>
-          <Route path="/landing" component={LandingPage} />
-        </BodyBackgroundColor>
+      <BodyBackgroundColor backgroundColor='gray'>
+        <Route path="/landing" component={LandingPage} />
+      </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor='#fadadd'>
-          <Route path="/inputform" component={InputForm} />
-        </BodyBackgroundColor>
-      </Router>
-    );
-  }
+      <BodyBackgroundColor backgroundColor='#fadadd'>
+        <Route path="/inputform" component={InputForm} />
+      </BodyBackgroundColor>
+    </Router>
+  </AuthContext.Provider>
+);
+
 }
+
 export default App;
 
