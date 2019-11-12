@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 // import {withRouter} from 'react-router-dom';
 import "./style.css";
-import { Button, Form, Navbar, Col, Row } from 'react-bootstrap';
+import { Button, Form, Col, Row } from 'react-bootstrap';
 
 class InputForm extends Component {
   render() {
     return <div className="text-center">
-      <Row>
-        <Col>
-          <Navbar bg="light">
-            <Navbar.Brand href="#home">
-              <img
-                src="http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png"
-                width="90"
-                height="30"
-                className="d-inline-block align-top"
-                alt="PLSE logo"
-              />
-            </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                Signed in as: <a href="#login">John Doe</a>
-              </Navbar.Text>
-            </Navbar.Collapse>
-          </Navbar>
-        </Col>
-      </Row>
       <Row style={{margin:`80px`}}>
 
         <Col></Col>

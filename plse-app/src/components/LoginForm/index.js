@@ -1,13 +1,47 @@
-import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
-// import {withRouter} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import "./style.css";
-//import Header from "../Header"; 
+import axios from 'axios';
 import { Button, Form, Row, Col } from 'react-bootstrap';
+import { useAuth } from '../../context/auth';
 
-class LoginForm extends Component {
-    render() {
-        return <div>
+
+export default function LoginForm() {
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const { setAuthTokens } = useAuth();
+
+    function postLogin() {
+
+        
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "http://testbed.pablovirgo.com/api/v0.1.0/auth/token/";
+        axios.post(proxyurl + url, {
+            "username" : userName,
+            "password" : password
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    setAuthTokens(res.data);
+                    setLoggedIn(true);
+                } else {
+                    setIsError(true);
+                }
+            })
+            .catch(err => {
+                setIsError(true);
+            });
+    }
+
+
+    if (isLoggedIn) {
+        return <Redirect to="/landing" />;
+    }
+
+    return (
+        <div>
             <Form style={{ margin: `80px` }}>
                 <Row>
                     <Col md={4}>
@@ -16,12 +50,14 @@ class LoginForm extends Component {
                         <p>Username</p>
                     </Col>
                     <Col md={3}>
-                        <input 
+                        <input
                             type="text"
                             name="username"
                             id="username"
-                        //value={this.state.username}
-                        //onChange={this.handleChange}
+                            value={userName}
+                            onChange={e => {
+                                setUserName(e.target.value);
+                            }}
                         >
                         </input>
                     </Col>
@@ -40,8 +76,10 @@ class LoginForm extends Component {
                             type="password"
                             name="password"
                             id="password"
-                        // value={this.state.password}
-                        // onChange={this.handleChange}
+                            value={password}
+                            onChange={e => {
+                                setPassword(e.target.value);
+                            }}
                         >
                         </input>
                     </Col>
@@ -54,16 +92,79 @@ class LoginForm extends Component {
                     <Col md={2}>
                         <Button id='SubmitButton'
                             variant="info"
-                            // onClick={this.handleSubmit}
+                            onClick={postLogin}
                             name="action">Submit
-                                       </Button>
+                    </Button>
+                    {isError && <div>The username or password provided were incorrect</div>}
                     </Col>
                     <Col md={5}></Col>
                 </Row>
             </Form>
         </div>
-
-    }
+    );
 }
 
-export default LoginForm;
+
+
+// class LoginForm extends Component {
+//     render() {
+        // return <div>
+        //     <Form style={{ margin: `80px` }}>
+        //         <Row>
+        //             <Col md={4}>
+        //             </Col>
+        //             <Col md={1}>
+        //                 <p>Username</p>
+        //             </Col>
+        //             <Col md={3}>
+        //                 <input
+        //                     type="text"
+        //                     name="username"
+        //                     id="username"
+        //                 //value={this.state.username}
+        //                 //onChange={this.handleChange}
+        //                 >
+        //                 </input>
+        //             </Col>
+        //             <Col md={4}>
+        //             </Col>
+        //         </Row>
+
+        //         <Row>
+        //             <Col md={4}>
+        //             </Col>
+        //             <Col md={1}>
+        //                 <p>Password</p>
+        //             </Col>
+        //             <Col md={3}>
+        //                 <input
+        //                     type="password"
+        //                     name="password"
+        //                     id="password"
+        //                 // value={this.state.password}
+        //                 // onChange={this.handleChange}
+        //                 >
+        //                 </input>
+        //             </Col>
+        //             <Col md={4}>
+        //             </Col>
+        //         </Row>
+        //         <Row><Col></Col></Row>
+        //         <Row>
+        //             <Col md={5}></Col>
+        //             <Col md={2}>
+        //                 <Button id='SubmitButton'
+        //                     variant="info"
+        //                     onClick={this.getUser}
+        //                     name="action">Submit
+        //             </Button>
+        //             </Col>
+        //             <Col md={5}></Col>
+        //         </Row>
+        //     </Form>
+        // </div>
+
+//     }
+// }
+
+// export default LoginForm;
