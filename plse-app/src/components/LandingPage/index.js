@@ -7,7 +7,10 @@ import { Button, ButtonGroup, Modal, Col } from 'react-bootstrap';
 
 
 export default function LandingPage() {
-    const [attorney, setAttorney] = useState(""); // onclick to set attorney
+    const [attorneyData, setAttorneyData] = useState([]);
+    const [attorneyKey, setAttorneyKey] = useState("");
+    const [attorneyName, setAttorneyName] = useState("");
+    const [attorneyBar, setAttorneyBar] = useState("");
     const [isAttorneyChosen, setAttorneyChosen] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -27,8 +30,8 @@ export default function LandingPage() {
             .then(
                 res => {
                     if (res.status === 200) {
-                        // return data should be rendered to the buttons
-                        console.log(res.data[0]);
+                        // return data
+                        setAttorneyData(res.data);
                     }
                 }
             )
@@ -37,12 +40,15 @@ export default function LandingPage() {
     // On click to store the attorney information to local storage
     function choseAttorney() {
 
-        if (attorney === "") {
+        // No attorney chosen if blank
+        if (attorneyKey === "") {
             setIsError(true);
         }
         else {
             // store everything to localstorage
-            localStorage.setItem('attorney', attorney);
+            localStorage.setItem('attorneyKey', attorneyKey);
+            localStorage.setItem('attorneyName', attorneyName);
+            localStorage.setItem('attorneyBar', attorneyBar);
             setAttorneyChosen(true);
         }
     }
@@ -61,22 +67,12 @@ export default function LandingPage() {
                 <Modal.Body>
                     <Col>
                         Please select the attorney that you will be filing for:
-                        <ButtonGroup vertical >
-                            <Button id="attorneyNames" value={attorney} onClick={e => {
-                                setAttorney(e.target.value);
-                            }}>Carl Oxholm III</Button>
-                            <Button id="attorneyNames" value={attorney} onClick={e => {
-                                setAttorney(e.target.value);
-                            }}>Rachel Miller</Button>
-                            <Button id="attorneyNames" value={attorney} onClick={e => {
-                                setAttorney(e.target.value);
-                            }}>Taylor Pacheco</Button>
-                            <Button id="attorneyNames" value={attorney} onClick={e => {
-                                setAttorney(e.target.value);
-                            }}>Sarah Coyle</Button>
-                            <Button id="attorneyNames" value={attorney} onClick={e => {
-                                setAttorney(e.target.value);
-                            }}>Executive Director</Button>
+                        <ButtonGroup vertical >                          
+                            {attorneyData.map(item => (<Button id="attorneyNames" key={item.pk} onClick={e => {
+                                setAttorneyKey(item.pk);
+                                setAttorneyName(item.name);
+                                setAttorneyBar(item.bar);
+                            }}>{item.name}</Button>))}
                         </ButtonGroup>
                     </Col>
                 </Modal.Body>
