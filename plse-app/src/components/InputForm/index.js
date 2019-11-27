@@ -43,28 +43,63 @@ export default function InputForm() {
   }
 
   if (isGenerateReady) {
-    console.log("Generate!!!!!");
-
 
     // make a text version of the JSON
-    var text = '{ "petitioner" : [' +
-      '{ "name": "' + localStorage.getItem("clientFirstName") + " " + localStorage.getItem("clientFirstName") + '"}, ' +
-      '{ "aliases": "' + localStorage.getItem("clientAliases") + '" }, ' +
-      '{ "dob": "' + localStorage.getItem("clientDOB") + '" }, ' +
-      '{ "ssn": "' + localStorage.getItem("clientSSN") + '" }, ' +
-      '{ "address": "' + localStorage.getItem("clientAddress") + '" }' +
 
-      ']}';
+    const text = '{ "petitioner": {' +
+      ' "name": "' + localStorage.getItem("clientFirstName") + " " + localStorage.getItem("clientLastName") + '", ' +
+      ' "aliases": "' + localStorage.getItem("clientAliases") + '", ' +
+      ' "dob": "' + localStorage.getItem("clientDOB") + '", ' +
+      ' "ssn": "' + localStorage.getItem("clientSSN") + '", ';
 
-    console.log(text);
-    // convert text to JSON
-    //var obj = JSON.parse(text);
+    var addressText = ' "address": {' +
+      ' "street1": "' + localStorage.getItem("clientAddress") + '", ' +
+      ' "street2": "' + localStorage.getItem("clientAddressTwo") + '", ' +
+      ' "city": "' + localStorage.getItem("clientCity") + '", ' +
+      ' "state": "' + localStorage.getItem("clientState") + '", ' +
+      ' "zipcode": "' + localStorage.getItem("clientZipcode") + '" }}, ';
 
-    //console.log(obj);
+    // I don't know whether they're going to use the database for petition info so hardcoding for now:
+    var petition = ' "petition" : {' +
+      ' "date" : "2019-11-2019",' +
+      ' "petition_type" : "expungement",' +
+      ' "otn" : "otnNumberHardcoded",' +
+      ' "dc" : "dcNumberHardcoded",' +
+      ' "arrest_date" : "2009-01-20",' +
+      ' "arrest_officer" : "Arrest Officer HardCoded",' +
+      ' "disposition" : "Dismissed",' +
+      ' "judge" : "Judy Sheindlin" }, ';
 
+    var docket = ' "docket" : "MC-51-CR-1234567-2009",';
+
+    var restitution = ' "restitution" : {' +
+      ' "total" : "123.45",' +
+      ' "paid" : "100.45" } } ';
+
+
+    var postData = text + addressText + petition + docket + restitution;
+
+    console.log(postData);
+    
     // Make an axios POST call to api/v0.1.0/petition/generate/
-    // access token header, properly formated JSON object
 
+    const bearer = "Bearer ";
+    const token = bearer.concat(localStorage.getItem("access_token"));
+    var config = {
+        'headers': { 'Authorization': token }
+    };
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
+    axios.post(proxyurl + url, JSON.parse(postData), config)
+      .then(
+        res => {
+          if (res.status === 200) {
+            // return data
+            console.log(res.data);
+          }
+        }
+      )
 
   }
 
