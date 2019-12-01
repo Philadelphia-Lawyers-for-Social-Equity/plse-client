@@ -48,7 +48,7 @@ export default function InputForm() {
 
     const text = '{ "petitioner": {' +
       ' "name": "' + localStorage.getItem("clientFirstName") + " " + localStorage.getItem("clientLastName") + '", ' +
-      ' "aliases": "' + localStorage.getItem("clientAliases") + '", ' +
+      ' "aliases": "[' + localStorage.getItem("clientAliases") + ']", ' +
       ' "dob": "' + localStorage.getItem("clientDOB") + '", ' +
       ' "ssn": "' + localStorage.getItem("clientSSN") + '", ';
 
@@ -59,7 +59,7 @@ export default function InputForm() {
       ' "state": "' + localStorage.getItem("clientState") + '", ' +
       ' "zipcode": "' + localStorage.getItem("clientZipcode") + '" }}, ';
 
-    // I don't know whether they're going to use the database for petition info so hardcoding for now:
+    // I don't know whether we're going to use the database for petition info so hardcoding for now:
     var petition = ' "petition" : {' +
       ' "date" : "2019-11-2019",' +
       ' "petition_type" : "expungement",' +
@@ -79,26 +79,61 @@ export default function InputForm() {
 
     var postData = text + addressText + petition + docket + restitution;
 
-    console.log(postData);
-    
+    // console.log(postData);
+
+    // Mock data from Pablo:
+    const mockData = {
+      "petitioner": {
+        "name": "Bob Bee",
+        "aliases": ["Total Gym"],
+        "dob": "2001-11-7",
+        "ssn": "224-44-5555",
+        "address": {
+          "street1": "1617 Jfk",
+          "city": "Philadelphia",
+          "state": "PA",
+          "zipcode": "21711"
+        }
+      },
+      "petition": {
+        "date": "2019-11-27",
+        "petition_type": "expungement",
+        "otn": "some otn detail",
+        "dc": "wat is this",
+        "arrest_date": "2017-04-16",
+        "arrest_officer": "Gerry Mander",
+        "disposition": "Dismissed",
+        "judge": "Jury And Executioner"
+      },
+      "docket": "MC-51-CR-1234135-2001",
+      "restitution": {
+        "total": 20000,
+        "paid": 36
+      }
+    }
+
+
+
     // Make an axios POST call to api/v0.1.0/petition/generate/
 
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
-        'headers': { 'Authorization': token }
+      'headers': { 'Authorization': token }
     };
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
-    axios.post(proxyurl + url, JSON.parse(postData), config)
+    // axios.post(proxyurl + url, JSON.parse(postData), config)
+    axios.post(proxyurl + url, postData, config)
       .then(
-        res => {
-          if (res.status === 200) {
-            // return data
-            console.log(res.data);
-          }
-        }
+        console.log("Posted")
+        // res => {
+        //   if (res.status === 200) {
+        //     // return data
+        //     console.log(res.status);
+        //   }
+        // }
       )
 
   }
