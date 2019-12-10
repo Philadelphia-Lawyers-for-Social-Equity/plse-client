@@ -9,6 +9,7 @@ import AdminPage from "../src/components/AdminPage";
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
 import InputForm from "../src/components/InputForm";
+import ProfilePage from "../src/components/ProfilePage";
 import BodyBackgroundColor from 'react-body-backgroundcolor';
 
 function App(props) {
@@ -35,6 +36,9 @@ return (
           <li>
             <Link to="/admin">Admin Page</Link>
           </li>
+          <li>
+            <Link to="/profile">Profile Page</Link>
+          </li>
         </ul>
       </div>
 
@@ -51,6 +55,11 @@ return (
       <BodyBackgroundColor backgroundColor='#fadadd'>
         <Route path="/inputform" component={InputForm} />
       </BodyBackgroundColor>
+
+      <BodyBackgroundColor backgroundColor='#fadadd'>
+        <Route path="/profile" component={ProfilePage} />
+      </BodyBackgroundColor>
+
     </Router>
   </AuthContext.Provider>
 );

@@ -125,7 +125,7 @@ export default function InputForm() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
     // axios.post(proxyurl + url, JSON.parse(postData), config)
-    axios.post(proxyurl + url, postData, config)
+    axios.post(proxyurl + url, mockData, config)
       .then(
         console.log("Posted")
         // res => {
@@ -224,7 +224,7 @@ export default function InputForm() {
                 }} />
               </Col>
               <Col sm={2}>
-                <Form.Control placeholder="PA" onChange={e => {
+                <Form.Control placeholder="State (2-Letter)" onChange={e => {
                   setTwoLetterState(e.target.value);
                 }} />
               </Col>
