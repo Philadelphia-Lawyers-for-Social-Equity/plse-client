@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react';
 // import { Redirect } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
 
 export default function ProfilePage() {
   const [myUsername, setMyUsername] = useState("");
   const [myFirstName, setMyFirstName] = useState("");
   const [myLastName, setMyLastName] = useState("");
   const [myEmail, setMyEmail] = useState("");
+  const [attorneypk, setAttorneypk] = useState(0);
   const [attorneyName, setAttorneyName] = useState("");
   const [attorneyBar, setAttorneyBar] = useState("");
+  const [attorneyURL, setAttorneyURL] = useState("");
+  const [orgpk, setOrgpk] = useState(0);
+  const [addresspk, setAddresspk] = useState(0);
   const [orgName, setOrgName] = useState("");
   const [orgStreet, setOrgStreet] = useState("");
   const [orgCity, setOrgCity] = useState("");
   const [orgState, setOrgState] = useState("");
   const [orgZipcode, setOrgZipcode] = useState("");
   const [orgPhone, setOrgPhone] = useState("");
+  const [orgURL, setOrgURL] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
   // useEffect is the React Hook equivalent to ComponentDidMount
@@ -36,20 +41,25 @@ export default function ProfilePage() {
         res => {
           if (res.status === 200) {
             // return data
-            console.log(res.data);
             setMyUsername(res.data.user.username);
             setMyFirstName(res.data.user.first_name);
             setMyLastName(res.data.user.last_name);
             setMyEmail(res.data.user.email);
 
+            setAttorneypk(res.data.attorney.pk);
             setAttorneyName(res.data.attorney.name);
             setAttorneyBar(res.data.attorney.bar);
+            setAttorneyURL(res.data.attorney.url);
+
+            setOrgpk(res.data.organization.pk);
+            setAddresspk(res.data.organization.address.pk);
             setOrgName(res.data.organization.name);
             setOrgStreet(res.data.organization.address.street1);
             setOrgCity(res.data.organization.address.city);
             setOrgState(res.data.organization.address.state);
             setOrgZipcode(res.data.organization.address.zipcode);
             setOrgPhone(res.data.organization.phone);
+            setOrgURL(res.data.organization.url);
           }
         }
       )
@@ -68,8 +78,35 @@ export default function ProfilePage() {
 
     console.log("Submit button clicked");
 
-    // This is where we'll put the post
-
+    const mockData = {
+      "attorney": {
+        "bar": attorneyBar,
+        "name": attorneyName,
+        "pk": attorneypk,
+        "url": attorneyURL
+      },
+      "organization": {
+        "address": {
+          "city": orgCity,
+          "pk": addresspk,
+          "state": orgState,
+          "street1": orgStreet,
+          "street2": null,
+          "zipcode": orgZipcode
+        },
+        "name": orgName,
+        "phone": orgPhone,
+        "pk": orgpk,
+        "url": orgURL
+      },
+      "user": {
+        "email": myEmail,
+        "first_name": myFirstName,
+        "last_name": myLastName,
+        "username": myUsername
+      }
+    }
+    console.log(mockData);
   }
 
   return (
@@ -95,12 +132,12 @@ export default function ProfilePage() {
           </Col>
             <Col>
               {!isEdit && myFirstName} {!isEdit && myLastName}
-              {isEdit && <Form.Control placeholder="First Name" onChange={e => {
+              {isEdit && <input type="text" value="" onChange={e => {
                 setMyFirstName(e.target.value);
-              }} />}
-              {isEdit && <Form.Control placeholder="Last Name" onChange={e => {
+              }} placeholder="First Name"  />}
+              {isEdit && <input type="text" value="" onChange={e => {
                 setMyLastName(e.target.value);
-              }} />}
+              }} placeholder="Last Name"  />}
             </Col>
           </Row>
           <Row>
@@ -109,9 +146,9 @@ export default function ProfilePage() {
           </Col>
             <Col>
               {!isEdit && myEmail}
-              {isEdit && <Form.Control placeholder="Email" onChange={e => {
+              {isEdit && <input type="text" value="" onChange={e => {
                 setMyEmail(e.target.value);
-              }} />}
+              }} placeholder="Email"  />}
             </Col>
           </Row>
           <Row>
