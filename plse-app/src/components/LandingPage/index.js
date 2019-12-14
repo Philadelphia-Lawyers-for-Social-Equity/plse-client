@@ -35,7 +35,7 @@ export default function LandingPage() {
                     }
                 }
             )
-    });
+    }, []); // empty array as the second argument will limit to one get call
 
     // On click to store the attorney information to local storage
     function choseAttorney() {

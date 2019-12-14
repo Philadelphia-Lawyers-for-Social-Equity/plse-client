@@ -63,7 +63,7 @@ export default function ProfilePage() {
           }
         }
       )
-  });
+  }, []); // empty array as the second argument will limit to one get call
 
   // onclick for Edit button
   function editProfile() {
