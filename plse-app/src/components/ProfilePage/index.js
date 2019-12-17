@@ -73,12 +73,12 @@ export default function ProfilePage() {
 
   }
 
-  // POST for profile editing
+  // PUT for profile editing
   function postProfile() {
 
     console.log("Submit button clicked");
 
-    const mockData = {
+    const sendData = {
       "attorney": {
         "bar": attorneyBar,
         "name": attorneyName,
@@ -106,7 +106,39 @@ export default function ProfilePage() {
         "username": myUsername
       }
     }
-    console.log(mockData);
+
+
+    const shortData = {
+      "attorney": attorneypk,
+      "organization": orgpk,
+      "user": {
+        "email": myEmail,
+        "first_name": myFirstName,
+        "last_name": myLastName,
+        "username": myUsername
+      }
+    }
+
+    console.log(sendData);
+    console.log(shortData);
+
+    const bearer = "Bearer ";
+    const token = bearer.concat(localStorage.getItem("access_token"));
+    var config = {
+      'headers': { 'Authorization': token }
+    };
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://testbed.pablovirgo.com/api/v0.1.0/expunger/my-profile/";
+    // axios.post(proxyurl + url, JSON.parse(postData), config)
+    axios.put(proxyurl + url, shortData, config)
+      .then(
+        console.log("Posted")
+      )
+      .catch(err => {
+        console.log(err);
+      })
+
   }
 
   return (
@@ -132,10 +164,10 @@ export default function ProfilePage() {
           </Col>
             <Col>
               {!isEdit && myFirstName} {!isEdit && myLastName}
-              {isEdit && <input type="text" value="" onChange={e => {
+              {isEdit && <input type="text" onChange={e => {
                 setMyFirstName(e.target.value);
               }} placeholder="First Name"  />}
-              {isEdit && <input type="text" value="" onChange={e => {
+              {isEdit && <input type="text" onChange={e => {
                 setMyLastName(e.target.value);
               }} placeholder="Last Name"  />}
             </Col>
@@ -146,7 +178,7 @@ export default function ProfilePage() {
           </Col>
             <Col>
               {!isEdit && myEmail}
-              {isEdit && <input type="text" value="" onChange={e => {
+              {isEdit && <input type="text" onChange={e => {
                 setMyEmail(e.target.value);
               }} placeholder="Email"  />}
             </Col>
