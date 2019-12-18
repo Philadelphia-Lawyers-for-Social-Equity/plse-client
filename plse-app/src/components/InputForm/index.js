@@ -16,6 +16,18 @@ export default function InputForm() {
   const [twoLetterState, setTwoLetterState] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [SSN, setSSN] = useState("");
+
+  const [otn, setOTN] = useState("");
+  const [dc, setDC] = useState("");
+  const [arrestDate, setArrestDate] = useState("");
+  const [arrestOfficer, setArrestOfficer] = useState("");
+  const [disposition, setDisposition] = useState("");
+  const [judge, setJudge] = useState("");
+  const [docket, setDocket] = useState("");
+  const [restitutionTotal, setRestitutionTotal] = useState(0.0);
+  const [restitutionPaid, setRestitutionPaid] = useState(0.0);
+
+
   const [isGenerateReady, setGenerateReady] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -70,16 +82,14 @@ export default function InputForm() {
       ' "disposition" : "Dismissed",' +
       ' "judge" : "Judy Sheindlin" }, ';
 
-    var docket = ' "docket" : "MC-51-CR-1234567-2009",';
+    var docketPortion = ' "docket" : "MC-51-CR-1234567-2009",';
 
     var restitution = ' "restitution" : {' +
       ' "total" : "123.45",' +
       ' "paid" : "100.45" } } ';
 
 
-    var postData = text + addressText + petition + docket + restitution;
-
-    // console.log(postData);
+    var postData = text + addressText + petition + docketPortion + restitution;
 
     // Mock data from Pablo:
     const mockData = {
@@ -98,7 +108,7 @@ export default function InputForm() {
       "petition": {
         "date": "2019-11-27",
         "petition_type": "expungement",
-        "otn": "some otn detail",
+        "otn": "Offense Tracking Number",
         "dc": "wat is this",
         "arrest_date": "2017-04-16",
         "arrest_officer": "Gerry Mander",
@@ -112,10 +122,7 @@ export default function InputForm() {
       }
     }
 
-
-
     // Make an axios POST call to api/v0.1.0/petition/generate/
-
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
@@ -127,15 +134,14 @@ export default function InputForm() {
     // axios.post(proxyurl + url, JSON.parse(postData), config)
     axios.post(proxyurl + url, mockData, config)
       .then(
-        console.log("Posted")
-        // res => {
-        //   if (res.status === 200) {
-        //     // return data
-        //     console.log(res.status);
-        //   }
-        // }
+        res => {
+          if (res.status === 200) {
+            // return data
+            console.log("Posted");
+            console.log(res.data);
+          }
+        }
       )
-
   }
 
   return (
@@ -143,7 +149,6 @@ export default function InputForm() {
       <Row style={{ margin: `80px` }}>
 
         <Col></Col>
-
         <Col md={6}>
 
           <Form>
@@ -191,7 +196,7 @@ export default function InputForm() {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextEmail">
+            <Form.Group as={Row} controlId="formPlaintextAddress">
               <Col sm={3}>
                 <Form.Label>
                   Address
@@ -213,7 +218,7 @@ export default function InputForm() {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextEmail">
+            <Form.Group as={Row} controlId="formPlaintextCityStateZip">
               <Col sm={3}>
                 <Form.Label>
                 </Form.Label>
@@ -235,18 +240,128 @@ export default function InputForm() {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextEmail">
+            <Form.Group as={Row} controlId="formPlaintextSSNum">
               <Col sm={3}>
                 <Form.Label>
                   Social Security
           </Form.Label>
               </Col>
-              <Col sm="4">
+              <Col sm="6">
                 <Form.Control placeholder="###-##-####" onChange={e => {
                   setSSN(e.target.value);
                 }} />
               </Col>
             </Form.Group>
+
+            <Form.Group as={Row}>
+              <Col sm={3}>
+                <Form.Label>
+                  OTN Number
+          </Form.Label>
+              </Col>
+              <Col md={{ span: 8 }}>
+                <Form.Control placeholder="########" onChange={e => {
+                  setOTN(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row}>
+              <Col sm={3}>
+                <Form.Label>
+                  DC
+          </Form.Label>
+              </Col>
+              <Col md={{ span: 8 }}>
+                <Form.Control placeholder="########" onChange={e => {
+                  setDC(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row}>
+              <Col sm={3}>
+                <Form.Label>
+                  Arrest Date
+          </Form.Label>
+              </Col>
+              <Col md={{ span: 8 }}>
+                <Form.Control placeholder="yyyy-mm-dd" onChange={e => {
+                  setArrestDate(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} >
+              <Col sm={3}>
+                <Form.Label>
+                  Arrest Officer
+          </Form.Label>
+              </Col>
+              <Col sm="8">
+                <Form.Control placeholder="First Last" onChange={e => {
+                  setArrestOfficer(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} >
+              <Col sm={3}>
+                <Form.Label>
+                  Disposition
+          </Form.Label>
+              </Col>
+              <Col sm="8">
+                <Form.Control placeholder="Convicted" onChange={e => {
+                  setDisposition(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} >
+              <Col sm={3}>
+                <Form.Label>
+                  Full Name of Judge
+          </Form.Label>
+              </Col>
+              <Col sm="8">
+                <Form.Control placeholder="First Last" onChange={e => {
+                  setJudge(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} >
+              <Col sm={3}>
+                <Form.Label>
+                  Docket ID number
+          </Form.Label>
+              </Col>
+              <Col sm="8">
+                <Form.Control placeholder="AA-##-AA-#######-YYYY" onChange={e => {
+                  setDocket(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} controlId="formPlaintextRestitution">
+              <Col sm={3}>
+                <Form.Label>
+                  Restitution Amount
+                </Form.Label>
+              </Col>
+              <Col sm={4}>
+                <Form.Control placeholder="Total" onChange={e => {
+                  setRestitutionTotal(e.target.value);
+                }} />
+              </Col>
+              <Col sm={4}>
+                <Form.Control placeholder="Paid" onChange={e => {
+                  setRestitutionPaid(e.target.value);
+                }} />
+              </Col>
+            </Form.Group>
+
 
             <Row>
 
