@@ -71,22 +71,31 @@ export default function InputForm() {
       ' "state": "' + localStorage.getItem("clientState") + '", ' +
       ' "zipcode": "' + localStorage.getItem("clientZipcode") + '" }}, ';
 
-    // I don't know whether we're going to use the database for petition info so hardcoding for now:
-    var petition = ' "petition" : {' +
-      ' "date" : "2019-11-2019",' +
-      ' "petition_type" : "expungement",' +
-      ' "otn" : "otnNumberHardcoded",' +
-      ' "dc" : "dcNumberHardcoded",' +
-      ' "arrest_date" : "2009-01-20",' +
-      ' "arrest_officer" : "Arrest Officer HardCoded",' +
-      ' "disposition" : "Dismissed",' +
-      ' "judge" : "Judy Sheindlin" }, ';
 
-    var docketPortion = ' "docket" : "MC-51-CR-1234567-2009",';
+    // Current date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    // In Phase 2 the petition information will be available from database
+    var petition = ' "petition" : {' +
+      ' "date" : ' + today + ',' +
+      ' "petition_type" : "expungement",' +
+      ' "otn" : ' + otn + ',' +
+      ' "dc" : ' + dc + ',' +
+      ' "arrest_date" : ' + arrestDate + ',' +
+      ' "arrest_officer" : ' + arrestOfficer + ',' +
+      ' "disposition" : ' + disposition + ',' +
+      ' "judge" : ' + judge + ' }, ';
+
+    var docketPortion = ' "docket" : ' + docket + ',';
 
     var restitution = ' "restitution" : {' +
-      ' "total" : "123.45",' +
-      ' "paid" : "100.45" } } ';
+      ' "total" : ' + restitutionTotal + ',' +
+      ' "paid" : ' + restitutionPaid + ' } } ';
 
 
     var postData = text + addressText + petition + docketPortion + restitution;
