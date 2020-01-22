@@ -16,7 +16,6 @@ export default function InputForm() {
   const [twoLetterState, setTwoLetterState] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [SSN, setSSN] = useState("");
-
   const [otn, setOTN] = useState("");
   const [dc, setDC] = useState("");
   const [arrestDate, setArrestDate] = useState("");
@@ -97,10 +96,9 @@ export default function InputForm() {
       ' "total" : ' + restitutionTotal + ',' +
       ' "paid" : ' + restitutionPaid + ' } } ';
 
-
     var postData = text + addressText + petition + docketPortion + restitution;
 
-    // Mock data from Pablo:
+    // Mock data from Pablo until the post is working
     const mockData = {
       "petitioner": {
         "name": "Bob Bee",
@@ -140,6 +138,7 @@ export default function InputForm() {
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
+    
     // axios.post(proxyurl + url, JSON.parse(postData), config)
     axios.post(proxyurl + url, mockData, config)
       .then(
@@ -148,10 +147,33 @@ export default function InputForm() {
             // return data
             console.log("Posted");
             console.log(res.data);
-          }
-        }
+            let blob = new Blob([res.data], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
+              downloadUrl = window.URL.createObjectURL(blob),
+              filename = "",
+              disposition = res.headers["content-disposition"];
+
+            if (disposition && disposition.indexOf("attachment") !== -1) {
+              let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+                matches = filenameRegex.exec(disposition);
+
+              if (matches != null && matches[1]) {
+                filename = matches[1].replace(/['"]/g, "");
+              }
+            }
+
+            let a = document.createElement("a");
+            if (typeof a.download === "undefined") {
+              window.location.href = downloadUrl;
+            } else {
+              a.href = downloadUrl;
+              a.download = filename;
+              document.body.appendChild(a);
+              a.click();
+            }
+          } // res status 200
+        } //res
       )
-  }
+  } //close isGenerateReady
 
   return (
     <div className="text-center">
@@ -353,19 +375,19 @@ export default function InputForm() {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextRestitution">
+            <Form.Group as={Row}>
               <Col sm={3}>
                 <Form.Label>
                   Restitution Amount
                 </Form.Label>
               </Col>
               <Col sm={4}>
-                <Form.Control placeholder="Total" onChange={e => {
+                <Form.Control placeholder="Total" id="totalRestitution" onChange={e => {
                   setRestitutionTotal(e.target.value);
                 }} />
               </Col>
               <Col sm={4}>
-                <Form.Control placeholder="Paid" onChange={e => {
+                <Form.Control placeholder="Paid" id="paidRestitution" onChange={e => {
                   setRestitutionPaid(e.target.value);
                 }} />
               </Col>
