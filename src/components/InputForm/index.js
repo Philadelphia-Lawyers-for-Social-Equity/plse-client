@@ -60,12 +60,12 @@ export default function InputForm() {
     const text = '{ "petitioner": {' +
       ' "name": "' + localStorage.getItem("clientFirstName") + " " + localStorage.getItem("clientLastName") + '", ' +
       ' "aliases": "[' + localStorage.getItem("clientAliases") + ']", ' +
-      ' "dob": "' + localStorage.getItem("clientDOB") + '", ' +
+      ' "dob": " ' + localStorage.getItem("clientDOB") + ' ", ' +
       ' "ssn": "' + localStorage.getItem("clientSSN") + '", ';
 
     var addressText = ' "address": {' +
       ' "street1": "' + localStorage.getItem("clientAddress") + '", ' +
-      ' "street2": "' + localStorage.getItem("clientAddressTwo") + '", ' +
+ //     ' "street2": "' + localStorage.getItem("clientAddressTwo") + '", ' +
       ' "city": "' + localStorage.getItem("clientCity") + '", ' +
       ' "state": "' + localStorage.getItem("clientState") + '", ' +
       ' "zipcode": "' + localStorage.getItem("clientZipcode") + '" }}, ';
@@ -97,6 +97,10 @@ export default function InputForm() {
       ' "paid" : ' + restitutionPaid + ' } } ';
 
     var postData = text + addressText + petition + docketPortion + restitution;
+
+    //var postDataJSON = JSON.parse(postData);
+
+    //console.log(postDataJSON);
 
     // Mock data from Pablo until the post is working
     const mockData = {
@@ -133,13 +137,13 @@ export default function InputForm() {
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
+      'responseType' : 'arraybuffer', 
       'headers': { 'Authorization': token }
     };
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
     
-    // axios.post(proxyurl + url, JSON.parse(postData), config)
     axios.post(proxyurl + url, mockData, config)
       .then(
         res => {
@@ -151,6 +155,9 @@ export default function InputForm() {
               downloadUrl = window.URL.createObjectURL(blob),
               filename = "",
               disposition = res.headers["content-disposition"];
+
+              console.log(blob);
+              console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
 
             if (disposition && disposition.indexOf("attachment") !== -1) {
               let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
@@ -170,9 +177,12 @@ export default function InputForm() {
               document.body.appendChild(a);
               a.click();
             }
-          } // res status 200
-        } //res
-      )
+
+            setGenerateReady(false); 
+
+          } //close res status 200
+        } //close res
+      ); //close then
   } //close isGenerateReady
 
   return (
