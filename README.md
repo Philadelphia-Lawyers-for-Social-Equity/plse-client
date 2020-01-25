@@ -1,6 +1,9 @@
-PLSE-Philly Expungement App
+#PLSE-Philly Expungement App
 
-npm used:
+![PLSE Logo](http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png)
+
+
+npm packages used:
     "bootstrap": "^4.3.1",
     "react": "^16.9.0",
     "react-body-backgroundcolor": "^1.2.1",
@@ -9,7 +12,6 @@ npm used:
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.1"
     
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -9,14 +9,13 @@ export default function InputForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [aliases, setAliases] = useState("");
-  const [DOB, setDOB] = useState("");
+  const [dob, setDOB] = useState("");
   const [address, setAddress] = useState("");
   const [addressTwo, setAddressTwo] = useState("");
   const [city, setCity] = useState("");
   const [twoLetterState, setTwoLetterState] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [SSN, setSSN] = useState("");
-
+  const [ssn, setSSN] = useState("");
   const [otn, setOTN] = useState("");
   const [dc, setDC] = useState("");
   const [arrestDate, setArrestDate] = useState("");
@@ -27,80 +26,67 @@ export default function InputForm() {
   const [restitutionTotal, setRestitutionTotal] = useState(0.0);
   const [restitutionPaid, setRestitutionPaid] = useState(0.0);
 
-
-  const [isGenerateReady, setGenerateReady] = useState(false);
+  // const [isGenerateReady, setGenerateReady] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // On click to store the attorney information to local storage
-  function storeInfo() {
+  // On click to store the client information to local storage
+  function checkInfo() {
 
     // No attorney chosen if blank
-    if (firstName === "" || lastName === "" || DOB === "" || address === "" || city === "" || twoLetterState === "" || zipcode === "" || SSN === "") {
+    if (firstName === "" || lastName === "" || dob === "" || address === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
       setIsError(true);
     }
     else {
-      // store everything to localstorage
-      localStorage.setItem('clientFirstName', firstName);
-      localStorage.setItem('clientLastName', lastName);
-      localStorage.setItem('clientAliases', aliases);
-      localStorage.setItem('clientDOB', DOB);
-      localStorage.setItem('clientAddress', address);
-      localStorage.setItem('clientAddressTwo', addressTwo);
-      localStorage.setItem('clientCity', city);
-      localStorage.setItem('clientState', twoLetterState);
-      localStorage.setItem('clientZipcode', zipcode);
-      localStorage.setItem('clientSSN', SSN);
-      setGenerateReady(true);
+      // Make the Post call
+      getDocFile();
     }
   }
 
-  if (isGenerateReady) {
+  function getDocFile() {
 
-    // make a text version of the JSON
-
-    const text = '{ "petitioner": {' +
-      ' "name": "' + localStorage.getItem("clientFirstName") + " " + localStorage.getItem("clientLastName") + '", ' +
-      ' "aliases": "[' + localStorage.getItem("clientAliases") + ']", ' +
-      ' "dob": "' + localStorage.getItem("clientDOB") + '", ' +
-      ' "ssn": "' + localStorage.getItem("clientSSN") + '", ';
-
-    var addressText = ' "address": {' +
-      ' "street1": "' + localStorage.getItem("clientAddress") + '", ' +
-      ' "street2": "' + localStorage.getItem("clientAddressTwo") + '", ' +
-      ' "city": "' + localStorage.getItem("clientCity") + '", ' +
-      ' "state": "' + localStorage.getItem("clientState") + '", ' +
-      ' "zipcode": "' + localStorage.getItem("clientZipcode") + '" }}, ';
-
+    var fullName = firstName + " " + lastName;
+    var aliasArray = aliases.split(',');
 
     // Current date
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-
     today = yyyy + '-' + mm + '-' + dd;
 
-    // In Phase 2 the petition information will be available from database
-    var petition = ' "petition" : {' +
-      ' "date" : ' + today + ',' +
-      ' "petition_type" : "expungement",' +
-      ' "otn" : ' + otn + ',' +
-      ' "dc" : ' + dc + ',' +
-      ' "arrest_date" : ' + arrestDate + ',' +
-      ' "arrest_officer" : ' + arrestOfficer + ',' +
-      ' "disposition" : ' + disposition + ',' +
-      ' "judge" : ' + judge + ' }, ';
+    const realData = {
+      "petitioner": {
+        "name": fullName,
+        "aliases": aliasArray,
+        "dob": dob,
+        "ssn": ssn,
+        "address": {
+          "street1": address,
+          "city": city,
+          "state": twoLetterState,
+          "zipcode": zipcode
+        }
+      },
+      "petition": {
+        "date": today,
+        "petition_type": "expungement",
+        "otn": otn,
+        "dc": dc,
+        "arrest_date": arrestDate,
+        "arrest_officer": arrestOfficer,
+        "disposition": disposition,
+        "judge": judge
+      },
+      "docket": docket,
+      "restitution": {
+        "total": parseFloat(restitutionTotal),
+        "paid": parseFloat(restitutionPaid)
+      }
+    }
 
-    var docketPortion = ' "docket" : ' + docket + ',';
-
-    var restitution = ' "restitution" : {' +
-      ' "total" : ' + restitutionTotal + ',' +
-      ' "paid" : ' + restitutionPaid + ' } } ';
-
-
-    var postData = text + addressText + petition + docketPortion + restitution;
-
-    // Mock data from Pablo:
+    console.log(realData);
+    
+    // Mock data from Pablo that we know will work
     const mockData = {
       "petitioner": {
         "name": "Bob Bee",
@@ -135,23 +121,49 @@ export default function InputForm() {
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
+      'responseType': 'arraybuffer',
       'headers': { 'Authorization': token }
     };
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
-    // axios.post(proxyurl + url, JSON.parse(postData), config)
-    axios.post(proxyurl + url, mockData, config)
+
+    axios.post(proxyurl + url, realData, config)
       .then(
         res => {
           if (res.status === 200) {
             // return data
             console.log("Posted");
-            console.log(res.data);
-          }
-        }
-      )
-  }
+            let blob = new Blob([res.data], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
+              downloadUrl = window.URL.createObjectURL(blob),
+              filename = "",
+              disposition = res.headers["content-disposition"];
+
+            console.log(blob);
+            console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
+
+            if (disposition && disposition.indexOf("attachment") !== -1) {
+              let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+                matches = filenameRegex.exec(disposition);
+
+              if (matches != null && matches[1]) {
+                filename = matches[1].replace(/['"]/g, "");
+              }
+            }
+
+            let a = document.createElement("a");
+            if (typeof a.download === "undefined") {
+              window.location.href = downloadUrl;
+            } else {
+              a.href = downloadUrl;
+              a.download = filename;
+              document.body.appendChild(a);
+              a.click();
+            }
+          } //close res status 200
+        } //close res
+      ); //close then
+  } //close isGenerateReady
 
   return (
     <div className="text-center">
@@ -321,7 +333,7 @@ export default function InputForm() {
           </Form.Label>
               </Col>
               <Col sm="8">
-                <Form.Control placeholder="Convicted" onChange={e => {
+                <Form.Control placeholder="Dismissed" onChange={e => {
                   setDisposition(e.target.value);
                 }} />
               </Col>
@@ -353,19 +365,19 @@ export default function InputForm() {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextRestitution">
+            <Form.Group as={Row}>
               <Col sm={3}>
                 <Form.Label>
                   Restitution Amount
                 </Form.Label>
               </Col>
               <Col sm={4}>
-                <Form.Control placeholder="Total" onChange={e => {
+                <Form.Control placeholder="Total" id="totalRestitution" onChange={e => {
                   setRestitutionTotal(e.target.value);
                 }} />
               </Col>
               <Col sm={4}>
-                <Form.Control placeholder="Paid" onChange={e => {
+                <Form.Control placeholder="Paid" id="paidRestitution" onChange={e => {
                   setRestitutionPaid(e.target.value);
                 }} />
               </Col>
@@ -379,7 +391,7 @@ export default function InputForm() {
                 </Form.Label>
               </Col>
               <Col sm="4">
-                <Button id="ExpungeButton" onClick={storeInfo}>Expunge</Button>
+                <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
                 {isError && <div>Empty Fields</div>}
               </Col>
             </Row>
