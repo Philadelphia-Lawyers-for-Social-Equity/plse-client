@@ -15,9 +15,8 @@ export default function LoginForm() {
 
     function postLogin() {
       
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "http://testbed.pablovirgo.com/api/v0.1.0/auth/token/";
-        axios.post(proxyurl + url, {
+        const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/auth/token/";
+        axios.post(url, {
             "username" : userName,
             "password" : password
         })

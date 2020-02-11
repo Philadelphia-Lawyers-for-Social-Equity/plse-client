@@ -34,9 +34,8 @@ export default function ProfilePage() {
     };
 
     // Get to return user data
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://testbed.pablovirgo.com/api/v0.1.0/expunger/my-profile/";
-    axios.get(proxyurl + url, config)
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    axios.get(url, config)
       .then(
         res => {
           if (res.status === 200) {
@@ -128,10 +127,9 @@ export default function ProfilePage() {
       'headers': { 'Authorization': token }
     };
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://testbed.pablovirgo.com/api/v0.1.0/expunger/my-profile/";
-    // axios.post(proxyurl + url, JSON.parse(postData), config)
-    axios.put(proxyurl + url, shortData, config)
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    // axios.post(url, JSON.parse(postData), config)
+    axios.put(url, shortData, config)
       .then(
         console.log("Posted")
       )

@@ -125,10 +125,9 @@ export default function InputForm() {
       'headers': { 'Authorization': token }
     };
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://testbed.pablovirgo.com/api/v0.1.0/petition/generate/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/generate/";
 
-    axios.post(proxyurl + url, realData, config)
+    axios.post(url, realData, config)
       .then(
         res => {
           if (res.status === 200) {

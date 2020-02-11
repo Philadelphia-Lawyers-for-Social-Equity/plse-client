@@ -24,9 +24,8 @@ export default function LandingPage() {
         };
 
         // Get to return all attorneys (PKs are integers)
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "http://testbed.pablovirgo.com/api/v0.1.0/expunger/attorneys/";
-        axios.get(proxyurl + url, config)
+        const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/attorneys/";
+        axios.get(url, config)
             .then(
                 res => {
                     if (res.status === 200) {
