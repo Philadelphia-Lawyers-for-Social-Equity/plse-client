@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 const nav = () => (
   <Navbar collapseOnSelect expand="lg" bg="light" variant="light" inverse fluid>
-    <Navbar.Brand href="#home">
+    <Navbar.Brand href="/login">
       <img
         src="http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png"
         width="90"
@@ -16,20 +16,13 @@ const nav = () => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
+        {/** Default Nav */}
         <Nav.Link>
-          <Link to="/login">Home Page</Link>
+          <Link to="/signup">Sign up</Link>
         </Nav.Link>
 
         <Nav.Link>
-          <Link to="/admin">Admin Page</Link>
-        </Nav.Link>
-
-        <Nav.Link>
-          <Link to="/profile">Profile Page</Link>
-        </Nav.Link>
-
-        <Nav.Link>
-          <Link to="/signout">Sign Out</Link>
+          <Link to="/login">log in </Link>
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>
