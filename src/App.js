@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 //import axios from 'axios';
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"; // removed Switch
+import { BrowserRouter as Router, Route } from "react-router-dom"; // removed Switch
 import PrivateRoute from "./PrivateRoute";
 import { AuthContext } from "./context/auth";
 import AdminPage from "../src/components/AdminPage";
@@ -10,6 +10,9 @@ import LandingPage from "../src/components/LandingPage";
 import InputForm from "../src/components/InputForm";
 import ProfilePage from "../src/components/ProfilePage";
 import BodyBackgroundColor from "react-body-backgroundcolor";
+
+// Ian's changes
+import SignUp from "./components/main_Ian/signUp";
 import Nav from "./components/nav";
 
 function App(props) {
@@ -25,7 +28,7 @@ function App(props) {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <Nav />
-        <PrivateRoute path="/admin" component={AdminPage} />
+        {/* <PrivateRoute path="/admin" component={AdminPage} /> */}
 
         <BodyBackgroundColor backgroundColor="#fadadd">
           <Route
@@ -33,6 +36,14 @@ function App(props) {
             render={props => <LoginForm {...props} isAuthed={true} />}
           />
         </BodyBackgroundColor>
+
+        {/**------------------------------------------------------------------ */}
+
+        <BodyBackgroundColor backgroundColor="#fadadd">
+          <Route path="/signup" component={SignUp} />
+        </BodyBackgroundColor>
+
+        {/*------------------------------------------------------------------ */}
 
         <BodyBackgroundColor backgroundColor="gray">
           <Route path="/landing" component={LandingPage} />
