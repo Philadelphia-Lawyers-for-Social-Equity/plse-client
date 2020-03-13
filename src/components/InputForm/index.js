@@ -358,7 +358,7 @@ export default function InputForm() {
           </Form.Label>
               </Col>
               <Col sm="8">
-                <Form.Control placeholder="AA-##-AA-#######-YYYY" onChange={e => {
+                <Form.Control placeholder="MC-##-CR-#######-YYYY" onChange={e => {
                   setDocket(e.target.value);
                 }} />
               </Col>
