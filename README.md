@@ -1,5 +1,7 @@
 #PLSE-Philly Expungement App
 
+small change
+
 ![PLSE Logo](http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png)
 
 
