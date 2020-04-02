@@ -22,7 +22,7 @@ const nav = () => (
         </Nav.Link>
 
         <Nav.Link>
-          <Link to="/login">log in </Link>
+          <Link to="/login">Log in</Link>
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>
