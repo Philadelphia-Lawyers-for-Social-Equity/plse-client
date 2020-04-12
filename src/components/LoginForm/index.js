@@ -23,7 +23,6 @@ export default function LoginForm() {
         if (res.status === 200) {
           setAuthTokens(res.data);
           localStorage.setItem("access_token", res.data.access);
-          console.log(setAuthTokens);
           setLoggedIn(true);
         } else {
           setIsError(true);
@@ -42,7 +41,10 @@ export default function LoginForm() {
     var config = {
       'headers': { 'Authorization': token }
     };
-    
+
+    console.log("url is " + url);
+    console.log("config is " + config);
+
     axios.get(url, config)
       .then(
         res => {
