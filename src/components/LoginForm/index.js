@@ -34,15 +34,12 @@ export default function LoginForm() {
   }
 
   if (isLoggedIn) {
-    // get the profile
     const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
       'headers': { 'Authorization': token }
     };
-    console.log("access token is" + localStorage.getItem("access_token"));
-    console.log(config);
 
     axios.get(url, config)
       .then(
@@ -50,10 +47,18 @@ export default function LoginForm() {
           if (res.status === 200) {
             // return data
             console.log(res.data);
+
+            // since we're not going to pick an attorney through this route, need to retrieve attorney info
+            // then store to local storage
+
+          }
+          else if (res.status === 404) {
+            // no profile exists so move to profile page
+            return <Redirect to="/signup" />;
           }
         });
 
-    //return <Redirect to="/landing" />;
+    
   }
 
   return (
