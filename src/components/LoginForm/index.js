@@ -52,7 +52,7 @@ export default function LoginForm() {
             // then store to local storage
 
           }
-          else if (res.status === 404) {
+          else {
             // no profile exists so move to profile page
             return <Redirect to="/signup" />;
           }

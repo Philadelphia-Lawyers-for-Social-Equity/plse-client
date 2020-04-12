@@ -87,35 +87,35 @@ export default function InputForm() {
     console.log(realData);
     
     // Mock data from Pablo that we know will work
-    const mockData = {
-      "petitioner": {
-        "name": "Bob Bee",
-        "aliases": ["Total Gym"],
-        "dob": "2001-11-7",
-        "ssn": "224-44-5555",
-        "address": {
-          "street1": "1617 Jfk",
-          "city": "Philadelphia",
-          "state": "PA",
-          "zipcode": "21711"
-        }
-      },
-      "petition": {
-        "date": "2019-11-27",
-        "petition_type": "expungement",
-        "otn": "Offense Tracking Number",
-        "dc": "wat is this",
-        "arrest_date": "2017-04-16",
-        "arrest_officer": "Gerry Mander",
-        "disposition": "Dismissed",
-        "judge": "Jury And Executioner"
-      },
-      "docket": "MC-51-CR-1234135-2001",
-      "restitution": {
-        "total": 20000,
-        "paid": 36
-      }
-    }
+    // const mockData = {
+    //   "petitioner": {
+    //     "name": "Bob Bee",
+    //     "aliases": ["Total Gym"],
+    //     "dob": "2001-11-7",
+    //     "ssn": "224-44-5555",
+    //     "address": {
+    //       "street1": "1617 Jfk",
+    //       "city": "Philadelphia",
+    //       "state": "PA",
+    //       "zipcode": "21711"
+    //     }
+    //   },
+    //   "petition": {
+    //     "date": "2019-11-27",
+    //     "petition_type": "expungement",
+    //     "otn": "Offense Tracking Number",
+    //     "dc": "wat is this",
+    //     "arrest_date": "2017-04-16",
+    //     "arrest_officer": "Gerry Mander",
+    //     "disposition": "Dismissed",
+    //     "judge": "Jury And Executioner"
+    //   },
+    //   "docket": "MC-51-CR-1234135-2001",
+    //   "restitution": {
+    //     "total": 20000,
+    //     "paid": 36
+    //   }
+    // }
 
     // Make an axios POST call to api/v0.1.0/petition/generate/
     const bearer = "Bearer ";
