@@ -21,6 +21,7 @@ export default function LoginForm() {
       })
       .then(res => {
         if (res.status === 200) {
+          console.log(res.data);
           setAuthTokens(res.data);
           localStorage.setItem("access_token", res.data.access);
           setLoggedIn(true);
