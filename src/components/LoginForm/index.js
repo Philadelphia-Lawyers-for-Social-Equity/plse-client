@@ -41,9 +41,8 @@ export default function LoginForm() {
     var config = {
       'headers': { 'Authorization': token }
     };
-
-    console.log("url is " + url);
-    console.log("config is " + config);
+    console.log("access token is" + localStorage.getItem("access_token"));
+    console.log(config);
 
     axios.get(url, config)
       .then(
