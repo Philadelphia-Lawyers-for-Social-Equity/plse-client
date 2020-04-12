@@ -59,7 +59,6 @@ export default function LoginForm() {
         })      
         .catch(err => {
           console.log(err);
-          setIsError(true);
         });
 
     
