@@ -21,7 +21,6 @@ export default function LoginForm() {
       })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data);
           setAuthTokens(res.data);
           localStorage.setItem("access_token", res.data.access);
           setLoggedIn(true);
@@ -45,9 +44,9 @@ export default function LoginForm() {
     axios.get(url, config)
       .then(
         res => {
+          console.log(res);
           if (res.status === 200) {
             // return data
-            console.log(res.data);
 
             // since we're not going to pick an attorney through this route, need to retrieve attorney info
             // then store to local storage
