@@ -52,10 +52,14 @@ export default function LoginForm() {
             // then store to local storage
 
           }
-          else {
-            // no profile exists so move to profile page
-            return <Redirect to="/signup" />;
-          }
+          // else {
+          //   // no profile exists so move to profile page
+          //   return <Redirect to="/signup" />;
+          // }
+        })      
+        .catch(err => {
+          console.log(err);
+          setIsError(true);
         });
 
     
