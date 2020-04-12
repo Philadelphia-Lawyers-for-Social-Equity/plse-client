@@ -35,7 +35,18 @@ export default function LoginForm() {
   }
 
   if (isLoggedIn) {
-    return <Redirect to="/landing" />;
+    // get the profile
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    axios.get(url, config)
+      .then(
+        res => {
+          if (res.status === 200) {
+            // return data
+            console.log(res.data);
+          }
+        });
+
+    //return <Redirect to="/landing" />;
   }
 
   return (
