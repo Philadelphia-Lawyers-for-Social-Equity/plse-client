@@ -57,10 +57,14 @@ export default function LoginForm() {
           //   return <Redirect to="/signup" />;
           // }
         })      
-        .catch(err => {
-          console.log(err);
-          console.log(err.detail);
-        });
+        .catch(
+          err => {
+            return <Redirect to="/signup" />;
+            //   console.log(err);
+        //   console.log(err.detail);
+        }
+        
+        );
 
     
   }
