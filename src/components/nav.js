@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+//import { BrowserRouter as Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 
 const nav = () => (
@@ -16,13 +16,12 @@ const nav = () => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
-        {/** Default Nav */}
-        <Nav.Link>
-          <Link to="/signup">Sign up</Link>
+        <Nav.Link href="/signup">
+          Sign up
         </Nav.Link>
 
-        <Nav.Link>
-          <Link to="/login">Log in</Link>
+        <Nav.Link href="/login">
+          Log in
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>
