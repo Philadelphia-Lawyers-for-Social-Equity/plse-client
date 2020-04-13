@@ -34,14 +34,14 @@ export default function LoginForm() {
   }
 
   if (isLoggedIn) {
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
       'headers': { 'Authorization': token }
     };
 
-    axios.get(url, config)
+    axios.get(profileurl, config)
       .then(
         res => {
           console.log(res);
@@ -59,6 +59,7 @@ export default function LoginForm() {
         })      
         .catch(err => {
           console.log(err);
+          console.log(err.detail);
         });
 
     
