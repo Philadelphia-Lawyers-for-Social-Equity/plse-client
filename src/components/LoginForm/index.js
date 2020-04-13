@@ -59,8 +59,8 @@ export default function LoginForm() {
         })      
         .catch(
           err => {
-            return <Redirect to="/signup" />;
-            //   console.log(err);
+            console.log(err.response.status);
+            return <Redirect to="/signup" />;  
         //   console.log(err.detail);
         }
         
