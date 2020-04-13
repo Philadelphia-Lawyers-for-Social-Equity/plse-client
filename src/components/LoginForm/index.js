@@ -8,6 +8,7 @@ import { useAuth } from "../../context/auth";
 export default function LoginForm() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [is404, setIs404] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
@@ -60,11 +61,14 @@ export default function LoginForm() {
         .catch(
           err => {
             if (err.response.status === 404) {
-              return <Redirect to="/signup" />;
+              console.log("404 conditional");
+              setIs404(true);
             }
         });
+  }
 
-    
+  if (is404) {
+    return <Redirect to="/signup" />;
   }
 
   return (
