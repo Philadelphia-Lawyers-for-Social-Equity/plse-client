@@ -59,12 +59,10 @@ export default function LoginForm() {
         })      
         .catch(
           err => {
-            console.log(err.response.status);
-            return <Redirect to="/signup" />;  
-        //   console.log(err.detail);
-        }
-        
-        );
+            if (err.response.status === 404) {
+              return <Redirect to="/signup" />;
+            }
+        });
 
     
   }
