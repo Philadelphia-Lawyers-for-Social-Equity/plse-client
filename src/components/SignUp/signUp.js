@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-const signUp = () => (
+const SignUp = () => (
   <Container>
     <Row>
       {" "}
@@ -26,9 +26,9 @@ const signUp = () => (
           <Form.Control type="email" placeholder="Enter email" />
         </Form.Group>
 
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId="formBasic">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control type="username" placeholder="Enter username" />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
@@ -44,4 +44,4 @@ const signUp = () => (
   </Container>
 );
 
-export default signUp;
+export default SignUp;
