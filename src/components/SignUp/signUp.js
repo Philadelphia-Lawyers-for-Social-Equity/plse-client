@@ -20,6 +20,7 @@ export default function SignUp() {
       setIsError(true);
     }
     else {
+      // store profile because we can't post without attorney info
       localStorage.setItem('firstName', firstName);
       localStorage.setItem('lastName', lastName);
       localStorage.setItem('email', email);
@@ -45,13 +46,13 @@ export default function SignUp() {
           <Form.Row>
             <Col>
               <Form.Label>First name</Form.Label>
-              <Form.Control id="firstname" value={firstName} onChange={e => {
+              <Form.Control value={firstName} onChange={e => {
                 setFirstName(e.target.value);
               }} placeholder="First name" />
             </Col>
             <Col>
               <Form.Label>Last name</Form.Label>
-              <Form.Control id="lastname" value={lastName} onChange={e => {
+              <Form.Control value={lastName} onChange={e => {
                 setLastName(e.target.value);
               }} placeholder="Last name" />
             </Col>
@@ -59,21 +60,21 @@ export default function SignUp() {
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" id="email" value={email} onChange={e => {
+            <Form.Control type="email" value={email} onChange={e => {
                 setEmail(e.target.value);
               }} placeholder="Enter email" />
           </Form.Group>
 
           <Form.Group controlId="formBasic">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="username" id="username" value={username} onChange={e => {
+            <Form.Control type="username" value={username} onChange={e => {
                 setUsername(e.target.value);
               }} placeholder="Enter username" />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" id="password" value={password} onChange={e => {
+            <Form.Control type="password" value={password} onChange={e => {
                 setPassword(e.target.value);
               }} placeholder="Password" />
           </Form.Group>
