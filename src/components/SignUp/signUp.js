@@ -1,47 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-const SignUp = () => (
-  <Container>
-    <Row>
-      {" "}
-      <h1>Sign up</h1>
-    </Row>
+export default function SignUp() {
 
-    <Row>
-      <Form>
-        <Form.Row>
-          <Col>
-            <Form.Label>First name</Form.Label>
-            <Form.Control placeholder="First name" />
-          </Col>
-          <Col>
-            <Form.Label>Last name</Form.Label>
-            <Form.Control placeholder="Last name" />
-          </Col>
-        </Form.Row>
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isProfileReady, setIsProfileReady] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
+  // On click to check that all fields are entered
+  function saveProfile() {
 
-        <Form.Group controlId="formBasic">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="username" placeholder="Enter username" />
-        </Form.Group>
+    // check that 
+    if (firstName === "" || lastName === "" || email === "" || username === "" || password === "") {
+      setIsError(true);
+    }
+    else {
+      localStorage.setItem('firstName', firstName);
+      localStorage.setItem('lastName', lastName);
+      localStorage.setItem('email', email);
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+      setIsProfileReady(true);
+    }
+  }
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
+  if (isProfileReady) {
+    return <Redirect to="/landing" />;
+  }
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Row>
-  </Container>
-);
+  return (
+    <Container>
+      <Row>
+        {" "}
+        <h1>Sign up</h1>
+      </Row>
 
-export default SignUp;
+      <Row>
+        <Form>
+          <Form.Row>
+            <Col>
+              <Form.Label>First name</Form.Label>
+              <Form.Control id="firstname" value={firstName} onChange={e => {
+                setFirstName(e.target.value);
+              }} placeholder="First name" />
+            </Col>
+            <Col>
+              <Form.Label>Last name</Form.Label>
+              <Form.Control id="lastname" value={lastName} onChange={e => {
+                setLastName(e.target.value);
+              }} placeholder="Last name" />
+            </Col>
+          </Form.Row>
+
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" id="email" value={email} onChange={e => {
+                setEmail(e.target.value);
+              }} placeholder="Enter email" />
+          </Form.Group>
+
+          <Form.Group controlId="formBasic">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="username" id="username" value={username} onChange={e => {
+                setUsername(e.target.value);
+              }} placeholder="Enter username" />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" id="password" value={password} onChange={e => {
+                setPassword(e.target.value);
+              }} placeholder="Password" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" onClick={saveProfile}>Submit</Button>
+          {isError && <div>Please fill missing information</div>}
+        </Form>
+      </Row>
+    </Container>
+  )
+}

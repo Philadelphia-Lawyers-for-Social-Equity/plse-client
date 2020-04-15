@@ -47,21 +47,13 @@ export default function LoginForm() {
         res => {
           console.log(res);
           if (res.status === 200) {
-            // return data
-
-            // since we're not going to pick an attorney through this route, need to retrieve attorney info
-            // then store to local storage
-
+            //profile found so redirect to input form
+            return <Redirect to="/inputform" />;
           }
-          // else {
-          //   // no profile exists so move to profile page
-          //   return <Redirect to="/signup" />;
-          // }
         })      
         .catch(
           err => {
             if (err.response.status === 404) {
-              console.log("404 conditional");
               setIs404(true);
             }
         });

@@ -84,7 +84,7 @@ export default function InputForm() {
       }
     }
 
-    console.log(realData);
+    // console.log(realData);
     
     // Mock data from Pablo that we know will work
     // const mockData = {
@@ -132,14 +132,14 @@ export default function InputForm() {
         res => {
           if (res.status === 200) {
             // return data
-            console.log("Posted");
+            // console.log("Posted");
             let blob = new Blob([res.data], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
               downloadUrl = window.URL.createObjectURL(blob),
               filename = "",
               disposition = res.headers["content-disposition"];
 
-            console.log(blob);
-            console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
+            // console.log(blob);
+            // console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
 
             if (disposition && disposition.indexOf("attachment") !== -1) {
               let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
