@@ -79,7 +79,7 @@ export default function SignUp() {
               }} placeholder="Password" />
           </Form.Group>
 
-          <Button variant="primary" type="submit" onClick={saveProfile}>Submit</Button>
+          <Button variant="primary" onClick={saveProfile}>Submit</Button>
           {isError && <div>Please fill missing information</div>}
         </Form>
       </Row>
