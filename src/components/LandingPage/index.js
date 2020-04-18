@@ -8,7 +8,7 @@ import { Button, ButtonGroup, Modal, Col } from 'react-bootstrap';
 
 export default function LandingPage() {
     const [attorneyData, setAttorneyData] = useState([]);
-    const [attorneyKey, setAttorneyKey] = useState("");
+    const [attorneyKey, setAttorneyKey] = useState(0);
     const [attorneyName, setAttorneyName] = useState("");
     const [attorneyBar, setAttorneyBar] = useState("");
     const [attorneyURL, setAttorneyURL] = useState("");
@@ -52,24 +52,8 @@ export default function LandingPage() {
     if (isAttorneyChosen) {
 
         const profiledata = {
-            "attorney" : {
-                "url" : attorneyURL,
-                "pk" : attorneyKey,
-                "bar" : attorneyBar,
-                "name" : attorneyName   
-            },
-            "organization" : {
-                "url" : "",
-                "pk" : "",
-                "name" : "",
-                "phone" : "",
-                "address" : {
-                    "street1" : "",
-                    "city" : "",
-                    "state" : "",
-                    "zipcode" : ""
-                }
-            },
+            "attorney" : attorneyKey,
+            "organization" : 1,
             "user" : {
                 "first_name" : localStorage.getItem("firstName"),
                 "last_name" : localStorage.getItem("lastName"),
@@ -96,8 +80,9 @@ export default function LandingPage() {
                     return <Redirect to="/inputform" />;
                 }
             })
-            .catch(
-                err => { console.log(err); });
+            .catch(err => { 
+                console.log(err); 
+            });
     }
 
     return (
