@@ -9,6 +9,7 @@ export default function LoginForm() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
   const [is404, setIs404] = useState(false);
+  const [hasProfile, setHasProfile] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
@@ -16,7 +17,7 @@ export default function LoginForm() {
   function postLogin() {
 
     localStorage.clear();
-    
+
     const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/auth/token/";
     axios
       .post(url, {
@@ -50,8 +51,8 @@ export default function LoginForm() {
         res => {
           console.log(res);
           if (res.status === 200) {
-            //profile found so redirect to input form
-            return <Redirect to="/inputform" />;
+            console.log(200);
+            setHasProfile(true);
           }
         })      
         .catch(
@@ -60,6 +61,10 @@ export default function LoginForm() {
               setIs404(true);
             }
         });
+  }
+
+  if (hasProfile) {
+    return <Redirect to="/inputform" />;
   }
 
   if (is404) {
