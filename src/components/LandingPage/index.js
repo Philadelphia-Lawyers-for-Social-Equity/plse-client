@@ -11,6 +11,7 @@ export default function LandingPage() {
     const [attorneyKey, setAttorneyKey] = useState("");
     const [attorneyName, setAttorneyName] = useState("");
     const [attorneyBar, setAttorneyBar] = useState("");
+    const [attorneyURL, setAttorneyURL] = useState("");
     const [isAttorneyChosen, setAttorneyChosen] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -44,16 +45,59 @@ export default function LandingPage() {
             setIsError(true);
         }
         else {
-            // store everything to localstorage
-            localStorage.setItem('attorneyKey', attorneyKey);
-            localStorage.setItem('attorneyName', attorneyName);
-            localStorage.setItem('attorneyBar', attorneyBar);
             setAttorneyChosen(true);
         }
     }
 
     if (isAttorneyChosen) {
-        return <Redirect to="/inputform" />;
+
+        const profiledata = {
+            "attorney" : {
+                "url" : attorneyURL,
+                "pk" : attorneyKey,
+                "bar" : attorneyBar,
+                "name" : attorneyName   
+            },
+            "organization" : {
+                "url" : "",
+                "pk" : "",
+                "name" : "",
+                "phone" : "",
+                "address" : {
+                    "street1" : "",
+                    "city" : "",
+                    "state" : "",
+                    "zipcode" : ""
+                }
+            },
+            "user" : {
+                "first_name" : localStorage.getItem("firstName"),
+                "last_name" : localStorage.getItem("lastName"),
+                "email" : localStorage.getItem("email"),
+                "username" : localStorage.getItem("username")            
+            }
+        };
+
+        console.log(profiledata);
+
+        // post to generate profile
+        const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+        const bearer = "Bearer ";
+        const token = bearer.concat(localStorage.getItem("access_token"));
+        var config = {
+            'headers': { 'Authorization': token }
+        };
+
+        axios.post(profileurl, profiledata, config)
+            .then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    //redirect to input form
+                    return <Redirect to="/inputform" />;
+                }
+            })
+            .catch(
+                err => { console.log(err); });
     }
 
     return (
@@ -66,11 +110,12 @@ export default function LandingPage() {
                 <Modal.Body>
                     <Col>
                         Please select the attorney that you will be filing for:
-                        <ButtonGroup vertical >                          
+                        <ButtonGroup vertical >
                             {attorneyData.map(item => (<Button id="attorneyNames" key={item.pk} onClick={e => {
                                 setAttorneyKey(item.pk);
                                 setAttorneyName(item.name);
                                 setAttorneyBar(item.bar);
+                                setAttorneyURL(item.url);
                             }}>{item.name}</Button>))}
                         </ButtonGroup>
                     </Col>
