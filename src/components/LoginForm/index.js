@@ -14,6 +14,9 @@ export default function LoginForm() {
   const { setAuthTokens } = useAuth();
 
   function postLogin() {
+
+    localStorage.clear();
+    
     const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/auth/token/";
     axios
       .post(url, {
