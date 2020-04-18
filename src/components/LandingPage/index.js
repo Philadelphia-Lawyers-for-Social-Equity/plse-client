@@ -74,8 +74,7 @@ export default function LandingPage() {
 
         axios.post(profileurl, profiledata, config)
             .then(res => {
-                console.log(res);
-                if (res.status === 200) {
+                if (res.status === 201) {
                     //redirect to input form
                     return <Redirect to="/inputform" />;
                 }
