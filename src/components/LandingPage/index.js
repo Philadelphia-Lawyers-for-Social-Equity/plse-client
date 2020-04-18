@@ -13,6 +13,7 @@ export default function LandingPage() {
     const [attorneyBar, setAttorneyBar] = useState("");
     const [attorneyURL, setAttorneyURL] = useState("");
     const [isAttorneyChosen, setAttorneyChosen] = useState(false);
+    const [profileGenerated, setProfileGenerated] = useState(false);
     const [isError, setIsError] = useState(false);
 
     // useEffect is the React Hook equivalent to ComponentDidMount
@@ -62,8 +63,6 @@ export default function LandingPage() {
             }
         };
 
-        console.log(profiledata);
-
         // post to generate profile
         const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
         const bearer = "Bearer ";
@@ -75,13 +74,17 @@ export default function LandingPage() {
         axios.post(profileurl, profiledata, config)
             .then(res => {
                 if (res.status === 201) {
-                    //redirect to input form
-                    return <Redirect to="/inputform" />;
+                    setProfileGenerated(true);
                 }
             })
             .catch(err => { 
                 console.log(err); 
             });
+    }
+
+    if (profileGenerated) {
+        // redirect to input form
+        return <Redirect to="/inputform" />;
     }
 
     return (
