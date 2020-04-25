@@ -22,9 +22,8 @@ const nav = () => (
 
         {localStorage.getItem("access_token") && <Nav.Link href="/login">Log out</Nav.Link>}
 
-        <Nav.Link href="/login">
-          Log in
-        </Nav.Link>
+        {!localStorage.getItem("access_token") && <Nav.Link href="/login">Log in</Nav.Link>}
+
       </Nav>
     </Navbar.Collapse>
   </Navbar>
