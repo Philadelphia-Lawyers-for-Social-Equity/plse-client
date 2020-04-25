@@ -20,9 +20,9 @@ const nav = () => (
           Sign up
         </Nav.Link>
 
-        {localStorage.getItem("access_token") && <Nav.Link href="/login">Log out</Nav.Link>}
+        {localStorage.getItem("access_token") && <Nav.Link href="/login">Log in</Nav.Link>}
 
-        {!localStorage.getItem("access_token") && <Nav.Link href="/login">Log in</Nav.Link>}
+        {!localStorage.getItem("access_token") && <Nav.Link href="/login">Log out</Nav.Link>}
 
       </Nav>
     </Navbar.Collapse>

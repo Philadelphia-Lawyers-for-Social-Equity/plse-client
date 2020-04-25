@@ -38,6 +38,12 @@ export default function LandingPage() {
             )
     }, []); // empty array as the second argument will limit to one get call
 
+
+    // On click for the cancel button
+    function returnLogin() {
+        return <Redirect to="/login" />;
+    }
+
     // On click to store the attorney information to local storage
     function choseAttorney() {
 
@@ -109,7 +115,7 @@ export default function LandingPage() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button id="cancelButton">Cancel</Button>
+                    <Button id="cancelButton" onClick={returnLogin}>Cancel</Button>
                     <Button id="attorneyNames" onClick={choseAttorney}>Select</Button>
                     {isError && <div>Please select an attorney</div>}
                 </Modal.Footer>
