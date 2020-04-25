@@ -28,11 +28,11 @@ function App(props) {
       <Router>
         <Nav />
 
-        <BodyBackgroundColor backgroundColor="#fadadd">
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/login" render={props => <LoginForm {...props} isAuthed={true} />} />
         </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor="#fadadd">
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/signup" component={SignUp} />
         </BodyBackgroundColor>
 
@@ -40,11 +40,11 @@ function App(props) {
           <Route path="/landing" component={LandingPage} />
         </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor="#fadadd">
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/inputform" component={InputForm} />
         </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor="#fadadd">
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/profile" component={ProfilePage} />
         </BodyBackgroundColor>
       </Router>
