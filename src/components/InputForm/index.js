@@ -175,30 +175,33 @@ export default function InputForm() {
   return (
     <div className="text-center">
       <Row style={{ margin: `80px` }}>
-        <Form>
-          <Form.Group>
+
+        <Col></Col>
+        <Col md={6}>
+
+          <Form>
+          <Form.Group as= {Row}>
+          <Col sm={3}>
+                <Form.Label>
+                  Client's Name
+                </Form.Label>
+              </Col>
+              <Col md={{ span: 3 }}>
             <Form.File className="position-relative" required
               name="file"
               label="File"
               id="validationFile"
               feedbackTooltip
             />
+            </Col>
             </Form.Group>
-          </Form>
-      </Row>
 
 
-      <Row style={{ margin: `80px` }}>
-
-        <Col></Col>
-        <Col md={6}>
-
-          <Form>
             <Form.Group as={Row}>
               <Col sm={3}>
                 <Form.Label>
                   Client's Name
-          </Form.Label>
+                </Form.Label>
               </Col>
               <Col md={{ span: 3 }}>
                 <Form.Control placeholder="First Name" onChange={e => {
