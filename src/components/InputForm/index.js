@@ -180,9 +180,6 @@ export default function InputForm() {
             <Form.File className="position-relative" required
               name="file"
               label="File"
-              onChange={handleChange}
-              isInvalid={!!errors.file}
-              feedback={errors.file}
               id="validationFile"
               feedbackTooltip
             />
