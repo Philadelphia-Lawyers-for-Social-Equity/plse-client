@@ -181,17 +181,16 @@ export default function InputForm() {
 
           <Form>
           <Form.Group as= {Row}>
-          <Col sm={3}>
+            <Col sm={3}>
                 <Form.Label>
-                  Client's Name
+                  File
                 </Form.Label>
               </Col>
-              <Col md={{ span: 3 }}>
-            <Form.File className="position-relative" required
+            <Col md={{ span: 3 }}>
+            <Form.File
               name="file"
               label="File"
               id="validationFile"
-              feedbackTooltip
             />
             </Col>
             </Form.Group>
