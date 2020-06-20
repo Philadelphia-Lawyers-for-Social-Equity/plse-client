@@ -1,7 +1,5 @@
 #PLSE-Philly Expungement App
 
-SMALLISH CHANGE BUT WITH MOAR
-
 ![PLSE Logo](http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png)
 
 
