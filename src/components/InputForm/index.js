@@ -111,13 +111,21 @@ export default function InputForm() {
     //     "judge": "Jury And Executioner"
     //   },
     //   "docket": "MC-51-CR-1234135-2001",
+//       "charges" : {
+//          "statute" : "",
+//          "description" : "description of charges",
+//          "grade" : "",
+//          "date" : "2010-10-10",
+//          "disposition" : "Withdrawn"
+//        }
+
     //   "restitution": {
     //     "total": 20000,
     //     "paid": 36
     //   }
     // }
 
-    // Make an axios POST call to api/v0.1.0/petition/generate/
+    // Make an axios POST call to api/v0.2.0/petition/generate/
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
@@ -125,7 +133,7 @@ export default function InputForm() {
       'headers': { 'Authorization': token }
     };
 
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/generate/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/generate/";
 
     axios.post(url, realData, config)
       .then(
@@ -166,6 +174,23 @@ export default function InputForm() {
 
   return (
     <div className="text-center">
+      <Row style={{ margin: `80px` }}>
+        <Form>
+          <Form.Group>
+            <Form.File className="position-relative" required
+              name="file"
+              label="File"
+              onChange={handleChange}
+              isInvalid={!!errors.file}
+              feedback={errors.file}
+              id="validationFile"
+              feedbackTooltip
+            />
+            </Form.Group>
+          </Form>
+      </Row>
+
+
       <Row style={{ margin: `80px` }}>
 
         <Col></Col>
