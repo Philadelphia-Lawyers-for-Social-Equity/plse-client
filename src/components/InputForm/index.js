@@ -10,8 +10,8 @@ export default function InputForm() {
   const [lastName, setLastName] = useState("");
   const [aliases, setAliases] = useState("");
   const [dob, setDOB] = useState("");
-  const [address, setAddress] = useState("");
-  const [addressTwo, setAddressTwo] = useState("");
+  const [street1, setStreet] = useState("");
+  const [street2, setStreetTwo] = useState("");
   const [city, setCity] = useState("");
   const [twoLetterState, setTwoLetterState] = useState("");
   const [zipcode, setZipcode] = useState("");
@@ -33,7 +33,7 @@ export default function InputForm() {
   function checkInfo() {
 
     // No attorney chosen if blank
-    if (firstName === "" || lastName === "" || dob === "" || address === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
+    if (firstName === "" || lastName === "" || dob === "" || street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
       setIsError(true);
     }
     else {
@@ -61,7 +61,8 @@ export default function InputForm() {
         "dob": dob,
         "ssn": ssn,
         "address": {
-          "street1": address,
+          "street1": street1,
+          "street2": street2,
           "city": city,
           "state": twoLetterState,
           "zipcode": zipcode
@@ -224,7 +225,7 @@ export default function InputForm() {
               </Col>
               <Col sm="8">
                 <Form.Control placeholder="Street Name" onChange={e => {
-                  setAddress(e.target.value);
+                  setStreet(e.target.value);
                 }} />
               </Col>
               <Col sm={3}>
@@ -233,7 +234,7 @@ export default function InputForm() {
               </Col>
               <Col sm="8">
                 <Form.Control onChange={e => {
-                  setAddressTwo(e.target.value);
+                  setStreetTwo(e.target.value);
                 }} />
               </Col>
             </Form.Group>
