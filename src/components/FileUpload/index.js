@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 //import "./style.css";
 import axios from 'axios';
-import { Button, Form, Modal, Col } from 'react-bootstrap';
+import { Button, Modal, Col } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
 
 
@@ -98,11 +98,7 @@ export default function FileUpload() {
 
                 <Modal.Body>
                     <Col>
-                        <Form>
-                            <Form.Group>
-                                <Form.File id="uploadfile" label="Example file input" onChange={e => { setFileName(e.target.file[0]); }} />
-                            </Form.Group>
-                        </Form>
+                        <input type="file" onChange={e => { setFileName(e.target.file[0]); }} /> 
                     </Col>
                 </Modal.Body>
 
