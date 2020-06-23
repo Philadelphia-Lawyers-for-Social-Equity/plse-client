@@ -100,7 +100,7 @@ export default function FileUpload() {
 
                 <Modal.Body>
                     <Col>
-                        <input type="file" onChange={e => { setFileName(e.target.file[0]); }} /> 
+                        <input type="file" onChange={e => { setFileName(e.target); }} /> 
                     </Col>
                 </Modal.Body>
 
