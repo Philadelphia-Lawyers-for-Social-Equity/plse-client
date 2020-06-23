@@ -162,7 +162,7 @@ export default function InputForm() {
           } //close res status 200
         } //close res
       ); //close then
-  } //close isGenerateReady
+  } //close getDocFile function
 
   return (
     <div className="text-center">

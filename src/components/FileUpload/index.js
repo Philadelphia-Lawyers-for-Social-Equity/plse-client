@@ -56,37 +56,37 @@ export default function FileUpload() {
         else {
             setFileChosen(true);
         }
-    }
 
-    if (isFileChosen) {
+        if (isFileChosen) {
 
-        const pdffile = {
-            "docket_file": fileName
-        };
+            const pdffile = {
+                "docket_file": fileName
+            };
 
-        // post to generate profile
-        const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
-        const bearer = "Bearer ";
-        const token = bearer.concat(localStorage.getItem("access_token"));
-        var config = {
-            'headers': { 'Authorization': token }
-        };
+            // post to generate profile
+            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
+            const bearer = "Bearer ";
+            const token = bearer.concat(localStorage.getItem("access_token"));
+            var config = {
+                'headers': { 'Authorization': token }
+            };
 
-        axios.post(url, pdffile, config)
-            .then(res => {
-                console.log(res);
-                if (res.status === 201) {
-                    setFilePassed(true);
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+            axios.post(url, pdffile, config)
+                .then(res => {
+                    console.log(res);
+                    if (res.status === 201) {
+                        setFilePassed(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
 
-    if (filePassed) {
-        // redirect to input form
-        return <Redirect to="/inputform" />;
+        if (filePassed) {
+            // redirect to input form
+            return <Redirect to="/inputform" />;
+        }
     }
 
     return (
@@ -100,7 +100,7 @@ export default function FileUpload() {
                     <Col>
                         <Form>
                             <Form.Group>
-                                <Form.File id="uploadfile" label="Example file input" onChange={e => {setFileName(e.target.file);}} />
+                                <Form.File id="uploadfile" label="Example file input" onChange={e => { setFileName(e.target.file[0]); }} />
                             </Form.Group>
                         </Form>
                     </Col>
