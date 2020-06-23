@@ -7,6 +7,7 @@ import { AuthContext } from "./context/auth";
 //import AdminPage from "../src/components/AdminPage";
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
+import FileUpload from "../src/components/FileUpload";
 import InputForm from "../src/components/InputForm";
 import ProfilePage from "../src/components/ProfilePage";
 import BodyBackgroundColor from "react-body-backgroundcolor";
@@ -38,6 +39,10 @@ function App(props) {
 
         <BodyBackgroundColor backgroundColor="gray">
           <Route path="/landing" component={LandingPage} />
+        </BodyBackgroundColor>
+
+        <BodyBackgroundColor backgroundColor="gray">
+          <Route path="/upload" component={FileUpload} />
         </BodyBackgroundColor>
 
         <BodyBackgroundColor backgroundColor="#d9ecf9">

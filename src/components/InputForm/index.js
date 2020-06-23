@@ -111,21 +111,13 @@ export default function InputForm() {
     //     "judge": "Jury And Executioner"
     //   },
     //   "docket": "MC-51-CR-1234135-2001",
-//       "charges" : {
-//          "statute" : "",
-//          "description" : "description of charges",
-//          "grade" : "",
-//          "date" : "2010-10-10",
-//          "disposition" : "Withdrawn"
-//        }
-
     //   "restitution": {
     //     "total": 20000,
     //     "paid": 36
     //   }
     // }
 
-    // Make an axios POST call to api/v0.2.0/petition/generate/
+    // Make an axios POST call to api/v0.1.0/petition/generate/
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
@@ -133,7 +125,7 @@ export default function InputForm() {
       'headers': { 'Authorization': token }
     };
 
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/generate/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/generate/";
 
     axios.post(url, realData, config)
       .then(
@@ -180,27 +172,11 @@ export default function InputForm() {
         <Col md={6}>
 
           <Form>
-          <Form.Group as= {Row}>
-            <Col sm={3}>
-                <Form.Label>
-                  File
-                </Form.Label>
-              </Col>
-            <Col md={{ span: 3 }}>
-            <Form.File
-              name="file"
-              label="File"
-              id="validationFile"
-            />
-            </Col>
-            </Form.Group>
-
-
             <Form.Group as={Row}>
               <Col sm={3}>
                 <Form.Label>
                   Client's Name
-                </Form.Label>
+          </Form.Label>
               </Col>
               <Col md={{ span: 3 }}>
                 <Form.Control placeholder="First Name" onChange={e => {
