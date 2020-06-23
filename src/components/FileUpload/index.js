@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-//import "./style.css";
-import axios from 'axios';
+import "./style.css";
+//import axios from 'axios';
 import { Button, Modal, Col } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
 
@@ -63,24 +63,26 @@ export default function FileUpload() {
                 "docket_file": fileName
             };
 
-            // post to generate profile
-            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
-            const bearer = "Bearer ";
-            const token = bearer.concat(localStorage.getItem("access_token"));
-            var config = {
-                'headers': { 'Authorization': token }
-            };
+            console.log(pdffile);
 
-            axios.post(url, pdffile, config)
-                .then(res => {
-                    console.log(res);
-                    if (res.status === 201) {
-                        setFilePassed(true);
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            // post to generate profile
+            // const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
+            // const bearer = "Bearer ";
+            // const token = bearer.concat(localStorage.getItem("access_token"));
+            // var config = {
+            //     'headers': { 'Authorization': token }
+            // };
+
+            // axios.post(url, pdffile, config)
+            //     .then(res => {
+            //         console.log(res);
+            //         if (res.status === 201) {
+            //             setFilePassed(true);
+            //         }
+            //     })
+            //     .catch(err => {
+            //         console.log(err);
+            //     });
         }
 
         if (filePassed) {
@@ -104,7 +106,7 @@ export default function FileUpload() {
 
                 <Modal.Footer>
                     <Button id="cancelButton" onClick={returnLogin}>Cancel</Button>
-                    <Button id="file" onClick={choseFile}>Submit File</Button>
+                    <Button id="fileButton" onClick={choseFile}>Submit</Button>
                     {isError && <div>Please select a file</div>}
                 </Modal.Footer>
             </Modal.Dialog>
