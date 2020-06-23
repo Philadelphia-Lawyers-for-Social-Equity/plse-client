@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import "./style.css";
+//import "./style.css";
 import axios from 'axios';
 import { Button, Form, Modal, Col } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
@@ -103,15 +103,6 @@ export default function FileUpload() {
                                 <Form.File id="uploadfile" label="Example file input" onChange={e => {setFileName(e.target.file);}} />
                             </Form.Group>
                         </Form>
-
-                        {/* <ButtonGroup vertical >
-                            {attorneyData.map(item => (<Button id="attorneyNames" key={item.pk} onClick={e => {
-                                setAttorneyKey(item.pk);
-                                setAttorneyName(item.name);
-                                setAttorneyBar(item.bar);
-                                setAttorneyURL(item.url);
-                            }}>{item.name}</Button>))}
-                        </ButtonGroup> */}
                     </Col>
                 </Modal.Body>
 
