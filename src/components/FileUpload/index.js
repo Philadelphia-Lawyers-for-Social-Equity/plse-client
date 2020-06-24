@@ -60,6 +60,7 @@ export default function FileUpload() {
         }
         else {
             setFileChosen(true);
+            choseFile();
         }
 
         if (isFileChosen) {
@@ -71,7 +72,7 @@ export default function FileUpload() {
             console.log(pdffile);
 
             // post to generate profile
-            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
+            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/parse-docket/";
             const bearer = "Bearer ";
             const token = bearer.concat(localStorage.getItem("access_token"));
             var config = {
