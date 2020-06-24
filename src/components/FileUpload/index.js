@@ -8,7 +8,7 @@ import { Button, Modal, Col } from 'react-bootstrap';
 
 export default function FileUpload() {
     // const [attorneyData, setAttorneyData] = useState([]);
-    const [fileName, setFileName] = useState([]);
+    const [fileName, setFileName] = useState(undefined);
     // const [attorneyName, setAttorneyName] = useState("");
     // const [attorneyBar, setAttorneyBar] = useState("");
     // const [attorneyURL, setAttorneyURL] = useState("");
@@ -16,7 +16,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    // useEffect is the React Hook equivalent to ComponentDidMount
+    // useEffect is the React Hook equivalent to Component Did Mount
     // useEffect(() => {
 
     //     const bearer = "Bearer ";
@@ -42,6 +42,11 @@ export default function FileUpload() {
     // On click for the cancel button
     function returnLogin() {
         return <Redirect to="/login" />;
+    }
+
+    // On change for getting file
+    function getFile() {
+        console.log(event.target.files);
     }
 
     // On click to store the attorney information to local storage
@@ -100,7 +105,7 @@ export default function FileUpload() {
 
                 <Modal.Body>
                     <Col>
-                        <input type="file" onChange={e => { setFileName(e.target); }} /> 
+                        <input type="file" onChange={getFile} /> 
                     </Col>
                 </Modal.Body>
 
