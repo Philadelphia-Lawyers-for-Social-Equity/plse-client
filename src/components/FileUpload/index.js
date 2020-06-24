@@ -47,6 +47,7 @@ export default function FileUpload() {
     // On change for getting file
     function getFile(files) {
         console.log(files[0]);
+        setFileName(files[0]);
     }
 
     // On click to store the attorney information to local storage
@@ -55,7 +56,7 @@ export default function FileUpload() {
         console.log(fileName);
 
         // Need to check if a file is chosen
-        if (fileName === "") {
+        if (fileName === undefined) {
             setIsError(true);
         }
         else {
