@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./style.css";
-//import axios from 'axios';
+import axios from 'axios';
 import { Button, Modal, Col } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
 
