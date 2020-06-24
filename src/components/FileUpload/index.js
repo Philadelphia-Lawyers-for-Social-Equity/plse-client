@@ -104,7 +104,7 @@ export default function FileUpload() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button id="cancelButton" onClick={returnLogin}>Cancel</Button>
+                    <Button id="returnToLoginButton" onClick={returnLogin}>Cancel</Button>
                     <Button id="fileButton" onClick={choseFile}>Submit</Button>
                     {isError && <div>Please select a file</div>}
                 </Modal.Footer>
