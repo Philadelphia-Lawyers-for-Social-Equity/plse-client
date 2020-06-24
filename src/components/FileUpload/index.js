@@ -45,8 +45,8 @@ export default function FileUpload() {
     }
 
     // On change for getting file
-    function getFile() {
-        console.log(event.target.files);
+    function getFile(files) {
+        console.log(files);
     }
 
     // On click to store the attorney information to local storage
@@ -105,7 +105,7 @@ export default function FileUpload() {
 
                 <Modal.Body>
                     <Col>
-                        <input type="file" onChange={getFile} /> 
+                        <input type="file" onChange={e => {getFile(e.target.files);}} /> 
                     </Col>
                 </Modal.Body>
 
