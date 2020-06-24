@@ -46,7 +46,7 @@ export default function FileUpload() {
 
     // On change for getting file
     function getFile(files) {
-        console.log(files);
+        console.log(files[0]);
     }
 
     // On click to store the attorney information to local storage
