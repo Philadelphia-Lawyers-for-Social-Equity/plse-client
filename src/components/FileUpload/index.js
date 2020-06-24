@@ -12,7 +12,6 @@ export default function FileUpload() {
     // const [attorneyName, setAttorneyName] = useState("");
     // const [attorneyBar, setAttorneyBar] = useState("");
     // const [attorneyURL, setAttorneyURL] = useState("");
-    const [isFileChosen, setFileChosen] = useState(false);
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
 
@@ -59,12 +58,6 @@ export default function FileUpload() {
             setIsError(true);
         }
         else {
-            setFileChosen(true);
-            choseFile();
-        }
-
-        if (isFileChosen) {
-
             const pdffile = {
                 "docket_file": fileName
             };
