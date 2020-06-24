@@ -14,6 +14,12 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
 
+  function onKeyUp(e) {
+    if (e.charCode = 13) {
+      postLogin()
+    }
+  }
+
   function postLogin() {
 
     localStorage.clear();
@@ -104,6 +110,7 @@ export default function LoginForm() {
               name="password"
               id="password"
               value={password}
+              onKeyDown={e => {onKeyUp(e)}}
               onChange={e => {
                 setPassword(e.target.value);
               }}
