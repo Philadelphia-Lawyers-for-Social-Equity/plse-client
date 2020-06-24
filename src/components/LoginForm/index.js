@@ -16,7 +16,7 @@ export default function LoginForm() {
 
   function onKeyUp(keycharcode) {
     console.log(keycharcode);
-    if (keycharcode = 13) {
+    if (keycharcode === 13) {
       postLogin();
     }
   }
