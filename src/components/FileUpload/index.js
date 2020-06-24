@@ -46,7 +46,6 @@ export default function FileUpload() {
 
     // On change for getting file
     function getFile(files) {
-        console.log(files[0]);
         setFileName(files[0]);
     }
 
@@ -72,23 +71,23 @@ export default function FileUpload() {
             console.log(pdffile);
 
             // post to generate profile
-            // const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
-            // const bearer = "Bearer ";
-            // const token = bearer.concat(localStorage.getItem("access_token"));
-            // var config = {
-            //     'headers': { 'Authorization': token }
-            // };
+            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
+            const bearer = "Bearer ";
+            const token = bearer.concat(localStorage.getItem("access_token"));
+            var config = {
+                'headers': { 'Authorization': token }
+            };
 
-            // axios.post(url, pdffile, config)
-            //     .then(res => {
-            //         console.log(res);
-            //         if (res.status === 201) {
-            //             setFilePassed(true);
-            //         }
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //     });
+            axios.post(url, pdffile, config)
+                .then(res => {
+                    console.log(res);
+                    if (res.status === 201) {
+                        setFilePassed(true);
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
         }
 
         if (filePassed) {
