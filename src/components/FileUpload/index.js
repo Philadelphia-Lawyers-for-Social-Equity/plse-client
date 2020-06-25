@@ -7,36 +7,10 @@ import { Button, Modal, Col } from 'react-bootstrap';
 
 
 export default function FileUpload() {
-    // const [attorneyData, setAttorneyData] = useState([]);
+
     const [fileName, setFileName] = useState(undefined);
-    // const [attorneyName, setAttorneyName] = useState("");
-    // const [attorneyBar, setAttorneyBar] = useState("");
-    // const [attorneyURL, setAttorneyURL] = useState("");
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
-
-    // useEffect is the React Hook equivalent to Component Did Mount
-    // useEffect(() => {
-
-    //     const bearer = "Bearer ";
-    //     const token = bearer.concat(localStorage.getItem("access_token"));
-    //     var config = {
-    //         'headers': { 'Authorization': token }
-    //     };
-
-    //     // Get to return all attorneys (PKs are integers)
-    //     const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/attorneys/";
-    //     axios.get(url, config)
-    //         .then(
-    //             res => {
-    //                 if (res.status === 200) {
-    //                     // return data
-    //                     setAttorneyData(res.data);
-    //                 }
-    //             }
-    //         )
-    // }, []); // empty array as the second argument will limit to one get call
-
 
     // On click for the cancel button
     function returnLogin() {
@@ -59,7 +33,7 @@ export default function FileUpload() {
         }
         else {
             const pdffile = {
-                "docket_file": fileName
+                'docket_file': fileName
             };
 
             console.log(pdffile);
@@ -75,19 +49,19 @@ export default function FileUpload() {
             axios.post(url, pdffile, config)
                 .then(res => {
                     console.log(res);
-                    if (res.status === 201) {
-                        setFilePassed(true);
-                    }
+                    // if (res.status === 201) {
+                    //     setFilePassed(true);
+                    // }
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }
 
-        if (filePassed) {
-            // redirect to input form
-            return <Redirect to="/inputform" />;
-        }
+        // if (filePassed) {
+        //     // redirect to input form
+        //     return <Redirect to="/inputform" />;
+        // }
     }
 
     return (
