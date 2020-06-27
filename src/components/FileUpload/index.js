@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
 
 
@@ -364,7 +364,7 @@ export default function FileUpload() {
                         </Form.Group>
 
 
-                        <Row>
+                        {/* <Row>
 
                         <Col sm={3}>
                             <Form.Label>
@@ -374,7 +374,7 @@ export default function FileUpload() {
                             <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
                             {isError && <div>Empty Fields</div>}
                         </Col>
-                        </Row>
+                        </Row> */}
                     </Form>
 
                     </Col>
