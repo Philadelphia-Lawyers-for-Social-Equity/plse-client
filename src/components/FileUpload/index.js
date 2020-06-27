@@ -12,6 +12,28 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
 
+    const [docketData, setDocketData] = useState([]);
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [aliases, setAliases] = useState("");
+    const [dob, setDOB] = useState("");
+    const [address, setAddress] = useState("");
+    const [addressTwo, setAddressTwo] = useState("");
+    const [city, setCity] = useState("");
+    const [twoLetterState, setTwoLetterState] = useState("");
+    const [zipcode, setZipcode] = useState("");
+    const [ssn, setSSN] = useState("");
+    const [otn, setOTN] = useState("");
+    const [dc, setDC] = useState("");
+    const [arrestDate, setArrestDate] = useState("");
+    const [arrestOfficer, setArrestOfficer] = useState("");
+    const [disposition, setDisposition] = useState("");
+    const [judge, setJudge] = useState("");
+    const [docket, setDocket] = useState("");
+    const [restitutionTotal, setRestitutionTotal] = useState(0.0);
+    const [restitutionPaid, setRestitutionPaid] = useState(0.0);
+
     // On click for the cancel button
     function returnLogin() {
         return <Redirect to="/login" />;
@@ -49,8 +71,10 @@ export default function FileUpload() {
             axios.post(url, pdffile, config)
                 .then(res => {
                     console.log(res);
-                    // if (res.status === 201) {
+                    setFilePassed(true);
+                    // if (res.status === 200) {
                     //     setFilePassed(true);
+                    //     setDocketData(res.data);
                     // }
                 })
                 .catch(err => {
@@ -58,10 +82,46 @@ export default function FileUpload() {
                 });
         }
 
-        // if (filePassed) {
-        //     // redirect to input form
-        //     return <Redirect to="/inputform" />;
-        // }
+        if (filePassed) {
+            // redirect to input form
+            //return <Redirect to="/inputform" />;
+
+            const mockData = {
+                "petitioner": {
+                    "name": "Bob Bee",
+                    "aliases": ["Total Gym"],
+                    "dob": "2001-11-7",
+                    "ssn": "224-44-5555",
+                    "address": {
+                    "street1": "1617 Jfk",
+                    "city": "Philadelphia",
+                    "state": "PA",
+                    "zipcode": "21711"
+                    }
+                },
+                "petition": {
+                    "date": "2019-11-27",
+                    "petition_type": "expungement",
+                    "otn": "Offense Tracking Number",
+                    "dc": "wat is this",
+                    "arrest_date": "2017-04-16",
+                    "arrest_officer": "Gerry Mander",
+                    "disposition": "Dismissed",
+                    "judge": "Jury And Executioner"
+                },
+                "docket": "MC-51-CR-1234135-2001",
+                "restitution": {
+                    "total": 20000,
+                    "paid": 36
+                }
+            }
+
+            setDocketData(mockData);
+
+            console.log(mockData);
+            console.log(docketData);
+
+        }
     }
 
     return (
@@ -83,6 +143,246 @@ export default function FileUpload() {
                     {isError && <div>Please select a file</div>}
                 </Modal.Footer>
             </Modal.Dialog>
+
+
+            {filePassed && <div>
+                
+                <Row style={{ margin: `80px` }}>
+
+                    <Col></Col>
+                    <Col md={6}>
+
+                    <Form>
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            Client's Name
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 3 }}>
+                            <Form.Control placeholder="First Name" value={firstName} onChange={e => {
+                            setFirstName(e.target.value);
+                            }} />
+                        </Col>
+                        <Col sm="5">
+                            <Form.Control placeholder="Last Name" value={lastName} onChange={e => {
+                            setLastName(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            Aliases
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 8 }}>
+                            <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
+                            setAliases(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            Date of Birth
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 3 }}>
+                            <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
+                            setDOB(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="formPlaintextAddress">
+                        <Col sm={3}>
+                            <Form.Label>
+                            Address
+                    </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control placeholder="Street Name" value={address} onChange={e => {
+                            setAddress(e.target.value);
+                            }} />
+                        </Col>
+                        <Col sm={3}>
+                            <Form.Label>
+                            </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control onChange={e => {
+                            setAddressTwo(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="formPlaintextCityStateZip">
+                        <Col sm={3}>
+                            <Form.Label>
+                            </Form.Label>
+                        </Col>
+                        <Col sm={4}>
+                            <Form.Control placeholder="City" value={city} onChange={e => {
+                            setCity(e.target.value);
+                            }} />
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Control placeholder="State (2-Letter)" value={twoLetterState} onChange={e => {
+                            setTwoLetterState(e.target.value);
+                            }} />
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Control placeholder="Zip" onChange={e => {
+                            setZipcode(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="formPlaintextSSNum">
+                        <Col sm={3}>
+                            <Form.Label>
+                            Social Security
+                    </Form.Label>
+                        </Col>
+                        <Col sm="6">
+                            <Form.Control placeholder="###-##-####" onChange={e => {
+                            setSSN(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            OTN Number
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 8 }}>
+                            <Form.Control placeholder="########" onChange={e => {
+                            setOTN(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            DC
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 8 }}>
+                            <Form.Control placeholder="########" onChange={e => {
+                            setDC(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            Arrest Date
+                    </Form.Label>
+                        </Col>
+                        <Col md={{ span: 8 }}>
+                            <Form.Control placeholder="yyyy-mm-dd" onChange={e => {
+                            setArrestDate(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} >
+                        <Col sm={3}>
+                            <Form.Label>
+                            Arrest Officer
+                    </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control placeholder="First Last" onChange={e => {
+                            setArrestOfficer(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} >
+                        <Col sm={3}>
+                            <Form.Label>
+                            Disposition
+                    </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control placeholder="Dismissed" onChange={e => {
+                            setDisposition(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} >
+                        <Col sm={3}>
+                            <Form.Label>
+                            Full Name of Judge
+                    </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control placeholder="First Last" onChange={e => {
+                            setJudge(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} >
+                        <Col sm={3}>
+                            <Form.Label>
+                            Docket ID number
+                    </Form.Label>
+                        </Col>
+                        <Col sm="8">
+                            <Form.Control placeholder="MC-##-CR-#######-YYYY" onChange={e => {
+                            setDocket(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                        <Col sm={3}>
+                            <Form.Label>
+                            Restitution Amount
+                            </Form.Label>
+                        </Col>
+                        <Col sm={4}>
+                            <Form.Control placeholder="Total" id="totalRestitution" onChange={e => {
+                            setRestitutionTotal(e.target.value);
+                            }} />
+                        </Col>
+                        <Col sm={4}>
+                            <Form.Control placeholder="Paid" id="paidRestitution" onChange={e => {
+                            setRestitutionPaid(e.target.value);
+                            }} />
+                        </Col>
+                        </Form.Group>
+
+
+                        <Row>
+
+                        <Col sm={3}>
+                            <Form.Label>
+                            </Form.Label>
+                        </Col>
+                        <Col sm="4">
+                            <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
+                            {isError && <div>Empty Fields</div>}
+                        </Col>
+                        </Row>
+                    </Form>
+
+                    </Col>
+                    <Col></Col>
+                </Row>
+
+                </div>}
+
         </div>
     );
 }
