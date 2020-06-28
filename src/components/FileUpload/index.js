@@ -58,22 +58,25 @@ export default function FileUpload() {
             // let pdfdata = new FormData();
 		    // pdfdata.append('files', { "docket_file" : fileName });
 
-        //     const pdfdata = {
-        //         "files" :  { "docket_file" : fileName } 
-        //    };
+            //     const pdfdata = {
+            //         "files" :  { "docket_file" : fileName } 
+            //    };
 
             // const pdfdata = {
             //      "file" :  { "docket_file" : fileName } 
             // };
 
-        //     const pdfdata = {
-        //         "files": fileName
-        //    };
+            //     const pdfdata = {
+            //         "files": fileName
+            //    };
 
 
-        const pdfdata = {
-            "file": fileName
-       };
+            //     const pdfdata = {
+            //         "file": fileName
+            //    };
+
+            let pdfdata = new FormData();
+		    pdfdata.append({ "docket_file" : fileName });
 
             console.log(pdfdata);
 
