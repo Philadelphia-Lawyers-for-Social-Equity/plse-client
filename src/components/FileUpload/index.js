@@ -55,12 +55,12 @@ export default function FileUpload() {
         }
         else {
 
-            let pdfdata = new FormData();
-		    pdfdata.append('files', { "docket_file" : fileName });
+            // let pdfdata = new FormData();
+		    // pdfdata.append('files', { "docket_file" : fileName });
 
-            // const pdffile = {
-            //      "files" :  { "docket_file" : fileName } 
-            // };
+            const pdfdata = {
+                 "files" :  { "docket_file" : fileName } 
+            };
 
             console.log(pdfdata);
 
