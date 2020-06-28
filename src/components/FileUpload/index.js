@@ -70,13 +70,18 @@ export default function FileUpload() {
             //         "files": fileName
             //    };
 
-
+            
             //     const pdfdata = {
             //         "file": fileName
             //    };
 
+            // Type error with this one:
+            // let pdfdata = new FormData();
+		    // pdfdata.append({ "docket_file" : fileName });
+
             let pdfdata = new FormData();
-		    pdfdata.append({ "docket_file" : fileName });
+            pdfdata.append('name', 'docket_file');
+            pdfdata.append('file_attachment', fileName);
 
             console.log(pdfdata);
 
