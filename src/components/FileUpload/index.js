@@ -55,8 +55,10 @@ export default function FileUpload() {
         }
         else {
             const pdffile = {
-                'docket_file': fileName
+                 "files" :  { "docket_file" : fileName } 
             };
+
+            
 
             console.log(pdffile);
 
