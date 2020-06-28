@@ -138,7 +138,7 @@ export default function FileUpload() {
 
                 <Modal.Body>
                     <Col>
-                        <input type="file" onChange={e => {getFile(e.target.files);}} /> 
+                        <input type="file" name="docket_file" onChange={e => {getFile(e.target.files);}} /> 
                     </Col>
                 </Modal.Body>
 
