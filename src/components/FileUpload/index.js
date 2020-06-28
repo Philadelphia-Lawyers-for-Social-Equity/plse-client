@@ -18,8 +18,8 @@ export default function FileUpload() {
     const [lastName, setLastName] = useState("");
     const [aliases, setAliases] = useState("");
     const [dob, setDOB] = useState("");
-    const [address, setAddress] = useState("");
-    const [addressTwo, setAddressTwo] = useState("");
+    const [street1, setStreet1] = useState("");
+    const [street2, setStreet2] = useState("");
     const [city, setCity] = useState("");
     const [twoLetterState, setTwoLetterState] = useState("");
     const [zipcode, setZipcode] = useState("");
@@ -94,6 +94,7 @@ export default function FileUpload() {
                     "ssn": "224-44-5555",
                     "address": {
                     "street1": "1617 Jfk",
+                    "street2": "Apt 1",
                     "city": "Philadelphia",
                     "state": "PA",
                     "zipcode": "21711"
@@ -204,8 +205,8 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control placeholder="Street Name" value={address} onChange={e => {
-                            setAddress(e.target.value);
+                            <Form.Control placeholder="Street Name" value={street1} onChange={e => {
+                            setStreet1(e.target.value);
                             }} />
                         </Col>
                         <Col sm={3}>
@@ -214,7 +215,7 @@ export default function FileUpload() {
                         </Col>
                         <Col sm="8">
                             <Form.Control onChange={e => {
-                            setAddressTwo(e.target.value);
+                            setStreet2(e.target.value);
                             }} />
                         </Col>
                         </Form.Group>
