@@ -66,9 +66,14 @@ export default function FileUpload() {
             //      "file" :  { "docket_file" : fileName } 
             // };
 
-            const pdfdata = {
-                "files": fileName
-           };
+        //     const pdfdata = {
+        //         "files": fileName
+        //    };
+
+
+        const pdfdata = {
+            "file": fileName
+       };
 
             console.log(pdfdata);
 
