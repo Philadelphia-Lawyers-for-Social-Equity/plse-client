@@ -81,7 +81,7 @@ export default function FileUpload() {
 
             let pdfdata = new FormData();
             pdfdata.append('name', 'docket_file');
-            pdfdata.append('file_attachment', fileName);
+            pdfdata.append('docket_file', fileName);
 
             console.log(pdfdata);
 
