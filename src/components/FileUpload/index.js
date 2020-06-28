@@ -54,13 +54,15 @@ export default function FileUpload() {
             setIsError(true);
         }
         else {
-            const pdffile = {
-                 "files" :  { "docket_file" : fileName } 
-            };
 
-            
+            let pdfdata = new FormData();
+		    pdfdata.append('files', { "docket_file" : fileName });
 
-            console.log(pdffile);
+            // const pdffile = {
+            //      "files" :  { "docket_file" : fileName } 
+            // };
+
+            console.log(pdfdata);
 
             // post to generate profile
             const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/parse-docket/";
@@ -70,7 +72,7 @@ export default function FileUpload() {
                 'headers': { 'Authorization': token }
             };
 
-            axios.post(url, pdffile, config)
+            axios.post(url, pdfdata, config)
                 .then(res => {
                     console.log(res);
                     setFilePassed(true);
