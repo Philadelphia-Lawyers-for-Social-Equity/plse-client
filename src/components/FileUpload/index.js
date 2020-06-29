@@ -55,30 +55,6 @@ export default function FileUpload() {
         }
         else {
 
-            // let pdfdata = new FormData();
-		    // pdfdata.append('files', { "docket_file" : fileName });
-
-            //     const pdfdata = {
-            //         "files" :  { "docket_file" : fileName } 
-            //    };
-
-            // const pdfdata = {
-            //      "file" :  { "docket_file" : fileName } 
-            // };
-
-            //     const pdfdata = {
-            //         "files": fileName
-            //    };
-
-            
-            //     const pdfdata = {
-            //         "file": fileName
-            //    };
-
-            // Type error with this one:
-            // let pdfdata = new FormData();
-		    // pdfdata.append({ "docket_file" : fileName });
-
             let pdfdata = new FormData();
             pdfdata.append('name', 'docket_file');
             pdfdata.append('docket_file', fileName);
@@ -96,11 +72,11 @@ export default function FileUpload() {
             axios.post(url, pdfdata, config)
                 .then(res => {
                     console.log(res);
-                    setFilePassed(true);
-                    // if (res.status === 200) {
-                    //     setFilePassed(true);
-                    //     setDocketData(res.data);
-                    // }
+                    // setFilePassed(true);
+                    if (res.status === 200) {
+                        setFilePassed(true);
+                        setDocketData(res.data);
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -142,7 +118,7 @@ export default function FileUpload() {
                 }
             }
 
-            setDocketData(mockData);
+            //setDocketData(mockData);
 
             console.log(mockData);
             console.log(docketData);
