@@ -104,7 +104,7 @@ export default function FileUpload() {
                 },
                 "docket": "MC-51-CR-1234135-2001"
                 }
-            }
+            
 
             //setDocketData(mockData);
 
