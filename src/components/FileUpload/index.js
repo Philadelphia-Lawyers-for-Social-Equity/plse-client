@@ -12,7 +12,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    const [docketData, setDocketData] = useState([]);
+    const [docketData, setDocketData] = useState({});
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -72,11 +72,12 @@ export default function FileUpload() {
             axios.post(url, pdfdata, config)
                 .then(res => {
                     console.log(res);
-                    // setFilePassed(true);
                     if (res.status === 200) {
-                        setFilePassed(true);
-                        setDocketData(res.data);
+                        
                         console.log(res.data);
+                        setDocketData(res.data);
+                        consolelog(docketData);
+                        setFilePassed(true);
                     }
                 })
                 .catch(err => {
@@ -89,33 +90,19 @@ export default function FileUpload() {
             //return <Redirect to="/inputform" />;
 
             const mockData = {
+                "charges" : [{"date": "2010-10-10", "description" : "Burglary", "disposition" : "Held for Court", "grade" : "F2", "statute": "18 § 3502 §§ A4" }],
                 "petitioner": {
-                    "name": "Bob Bee",
-                    "aliases": ["Total Gym"],
-                    "dob": "2001-11-7",
-                    "ssn": "224-44-5555",
-                    "address": {
-                    "street1": "1617 Jfk",
-                    "street2": "Apt 1",
-                    "city": "Philadelphia",
-                    "state": "PA",
-                    "zipcode": "21711"
-                    }
-                },
+                    "name": "Bob B. Bee",
+                    "aliases": ["Total Gym", "Bobby Bee"],
+                    "dob": "1965-11-17"
+                    },
                 "petition": {
-                    "date": "2019-11-27",
-                    "petition_type": "expungement",
-                    "otn": "Offense Tracking Number",
-                    "dc": "wat is this",
-                    "arrest_date": "2017-04-16",
-                    "arrest_officer": "Gerry Mander",
-                    "disposition": "Dismissed",
+                    "otn": "N 999999-9",
+                    "arrest_agency": "Philadelphia Pd",
+                    "arrest_officer": "Affiant",
                     "judge": "Jury And Executioner"
                 },
-                "docket": "MC-51-CR-1234135-2001",
-                "restitution": {
-                    "total": 20000,
-                    "paid": 36
+                "docket": "MC-51-CR-1234135-2001"
                 }
             }
 
