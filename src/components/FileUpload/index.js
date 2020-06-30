@@ -76,7 +76,7 @@ export default function FileUpload() {
                     if (res.status === 200) {
                         setFilePassed(true);
                         setDocketData(res.data);
-                        console.log(docketData.petitioner);
+                        console.log(res.data);
                     }
                 })
                 .catch(err => {
