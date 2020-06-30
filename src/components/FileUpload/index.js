@@ -76,7 +76,7 @@ export default function FileUpload() {
                         
                         console.log(res.data);
                         setDocketData(res.data);
-                        consolelog(docketData);
+                        console.log(docketData);
                         setFilePassed(true);
                     }
                 })
