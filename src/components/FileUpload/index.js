@@ -75,8 +75,10 @@ export default function FileUpload() {
                     if (res.status === 200) {
                         
                         console.log(res.data);
-                        setDocketData(res.data);
-                        console.log(docketData);
+
+                        setDocket(res.data.docket);
+
+
                         setFilePassed(true);
                     }
                 })
@@ -109,7 +111,6 @@ export default function FileUpload() {
             //setDocketData(mockData);
 
             console.log(mockData);
-            console.log(docketData);
 
         }
     }
@@ -144,28 +145,41 @@ export default function FileUpload() {
 
                     <Form>
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                            Client's Name
-                    </Form.Label>
-                        </Col>
-                        <Col md={{ span: 3 }}>
-                            <Form.Control placeholder="First Name" value={firstName} onChange={e => {
-                            setFirstName(e.target.value);
-                            }} />
-                        </Col>
-                        <Col sm="5">
-                            <Form.Control placeholder="Last Name" value={lastName} onChange={e => {
-                            setLastName(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                    Docket Number
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="Docket Number" value={docket} onChange={e => {
+                                setDocket(e.target.value);
+                                }} />
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                            <Col sm={3}>
+                                <Form.Label>
+                                    Client's Name
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 3 }}>
+                                <Form.Control placeholder="First Name" value={firstName} onChange={e => {
+                                    setFirstName(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm="5">
+                                <Form.Control placeholder="Last Name" value={lastName} onChange={e => {
+                                setLastName(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
                         <Col sm={3}>
                             <Form.Label>
-                            Aliases
-                    </Form.Label>
+                                Aliases
+                            </Form.Label>
                         </Col>
                         <Col md={{ span: 8 }}>
                             <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
@@ -177,8 +191,8 @@ export default function FileUpload() {
                         <Form.Group as={Row}>
                         <Col sm={3}>
                             <Form.Label>
-                            Date of Birth
-                    </Form.Label>
+                                Date of Birth
+                            </Form.Label>
                         </Col>
                         <Col md={{ span: 3 }}>
                             <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
