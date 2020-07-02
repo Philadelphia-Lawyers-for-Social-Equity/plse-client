@@ -80,8 +80,24 @@ export default function FileUpload() {
                         setDocket(res.data.docket);
                         setFullName(res.data.petitioner.name);
                         var fullName = res.data.petitioner.name;
-                        console.log(fullName.split(" "));
-                        console.log(fullName.split(" ").length);
+                        var nameArray = fullName.split(" ");
+                        if (nameArray.length == 4) {
+                            setFirstName(nameArray[0]);
+                            setMiddleInitial(nameArray[1]);
+                            setLastName(nameArray[2]);
+                            setSuffix(nameArray[3]);
+                        }
+                        else if (nameArray.length == 3) {
+                            setFirstName(nameArray[0]);
+                            setMiddleInitial(nameArray[1]);
+                            setLastName(nameArray[2]);
+                        }
+                        else if (nameArray.length == 2) {
+                            setFirstName(nameArray[0]);
+                            setLastName(nameArray[1]);
+                        }
+
+                        console.log(res.data.charges);
 
                         setAliases(res.data.petitioner.aliases);
                         setDOB(res.data.petitioner.dob);
@@ -170,7 +186,7 @@ export default function FileUpload() {
                         <Form.Group as={Row}>
                             <Col sm={3}>
                                 <Form.Label>
-                                    Docket Number
+                                    Full Name
                                 </Form.Label>
                             </Col>
                             <Col md={{ span: 8 }}>
