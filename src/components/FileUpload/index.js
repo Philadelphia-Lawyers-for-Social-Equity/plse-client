@@ -16,7 +16,9 @@ export default function FileUpload() {
 
     const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
+    const [middleInitial, setMiddleInitial] = useState("");
     const [lastName, setLastName] = useState("");
+    const [suffix, setSuffix] = useState("");
     const [aliases, setAliases] = useState("");
     const [dob, setDOB] = useState("");
     const [street1, setStreet1] = useState("");
@@ -207,9 +209,19 @@ export default function FileUpload() {
                                     setFirstName(e.target.value);
                                 }} />
                             </Col>
-                            <Col sm="5">
+                            <Col sm="1">
+                                <Form.Control placeholder="Middle Initial" value={middleInitial} onChange={e => {
+                                setMiddleInitial(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm="3">
                                 <Form.Control placeholder="Last Name" value={lastName} onChange={e => {
                                 setLastName(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm="1">
+                                <Form.Control placeholder="Suffix" value={suffix} onChange={e => {
+                                setSuffix(e.target.value);
                                 }} />
                             </Col>
                         </Form.Group>
