@@ -14,6 +14,7 @@ export default function FileUpload() {
 
     const [docketData, setDocketData] = useState({});
 
+    const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [aliases, setAliases] = useState("");
@@ -77,7 +78,16 @@ export default function FileUpload() {
                         console.log(res.data);
 
                         setDocket(res.data.docket);
+                        setFullName(res.data.petitioner.name);
+                        var fullName = res.data.petitioner.name;
+                        console.log(fullName.split(" "));
+                        console.log(fullName.split(" ").length);
 
+                        setAliases(res.data.petitioner.aliases);
+                        setDOB(res.data.petitioner.dob);
+                        setOTN(res.data.petition.otn);
+                        setArrestOfficer(res.data.petition.arrest_officer);
+                        setJudge(res.data.petition.judge);
 
                         setFilePassed(true);
                     }
@@ -160,6 +170,19 @@ export default function FileUpload() {
                         <Form.Group as={Row}>
                             <Col sm={3}>
                                 <Form.Label>
+                                    Docket Number
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="Full Name" value={fullName} onChange={e => {
+                                setFullName(e.target.value);
+                                }} />
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row}>
+                            <Col sm={3}>
+                                <Form.Label>
                                     Client's Name
                                 </Form.Label>
                             </Col>
@@ -208,7 +231,7 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control placeholder="Street Name" value={street1} onChange={e => {
+                            <Form.Control placeholder="Street Address" value={street1} onChange={e => {
                             setStreet1(e.target.value);
                             }} />
                         </Col>
@@ -217,7 +240,7 @@ export default function FileUpload() {
                             </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control onChange={e => {
+                            <Form.Control placeholder="Optional Apt/Unit" value={street2} onChange={e => {
                             setStreet2(e.target.value);
                             }} />
                         </Col>
@@ -265,7 +288,7 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col md={{ span: 8 }}>
-                            <Form.Control placeholder="########" onChange={e => {
+                            <Form.Control placeholder="########" value={otn} onChange={e => {
                             setOTN(e.target.value);
                             }} />
                         </Col>
@@ -304,7 +327,7 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control placeholder="First Last" onChange={e => {
+                            <Form.Control placeholder="First Last" value={arrestOfficer} onChange={e => {
                             setArrestOfficer(e.target.value);
                             }} />
                         </Col>
@@ -330,7 +353,7 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control placeholder="First Last" onChange={e => {
+                            <Form.Control placeholder="First Last" value={judge} onChange={e => {
                             setJudge(e.target.value);
                             }} />
                         </Col>
@@ -343,7 +366,7 @@ export default function FileUpload() {
                     </Form.Label>
                         </Col>
                         <Col sm="8">
-                            <Form.Control placeholder="MC-##-CR-#######-YYYY" onChange={e => {
+                            <Form.Control placeholder="MC-##-CR-#######-YYYY" value={docket} onChange={e => {
                             setDocket(e.target.value);
                             }} />
                         </Col>
