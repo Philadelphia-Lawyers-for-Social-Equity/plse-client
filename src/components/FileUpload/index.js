@@ -85,7 +85,7 @@ export default function FileUpload() {
                         var nameArray = fullName.split(" ");
                         if (nameArray.length == 4) {
                             setFirstName(nameArray[0]);
-                            setMiddleInitial(nameArray[1]);
+                            setMiddleInitial(nameArray[1][0]);
                             setLastName(nameArray[2]);
                             setSuffix(nameArray[3]);
                         }
@@ -255,7 +255,7 @@ export default function FileUpload() {
                         <Form.Group as={Row} controlId="formPlaintextAddress">
                         <Col sm={3}>
                             <Form.Label>
-                            Address
+                            <strong>Address</strong>
                     </Form.Label>
                         </Col>
                         <Col sm="8">
