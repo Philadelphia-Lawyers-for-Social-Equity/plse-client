@@ -91,7 +91,7 @@ export default function FileUpload() {
                         }
                         else if (nameArray.length == 3) {
                             setFirstName(nameArray[0]);
-                            setMiddleInitial(nameArray[1]);
+                            setMiddleInitial(nameArray[1][0]);
                             setLastName(nameArray[2]);
                         }
                         else if (nameArray.length == 2) {
@@ -227,195 +227,195 @@ export default function FileUpload() {
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                                Aliases
-                            </Form.Label>
-                        </Col>
-                        <Col md={{ span: 8 }}>
-                            <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
-                            setAliases(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                    Aliases
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
+                                setAliases(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                                Date of Birth
-                            </Form.Label>
-                        </Col>
-                        <Col md={{ span: 3 }}>
-                            <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
-                            setDOB(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                    Date of Birth
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 3 }}>
+                                <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
+                                setDOB(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formPlaintextAddress">
-                        <Col sm={3}>
-                            <Form.Label>
-                            <strong>Address</strong>
-                    </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="Street Address" value={street1} onChange={e => {
-                            setStreet1(e.target.value);
-                            }} />
-                        </Col>
-                        <Col sm={3}>
-                            <Form.Label>
-                            </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="Optional Apt/Unit" value={street2} onChange={e => {
-                            setStreet2(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                <strong>Address</strong>
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="Street Address" value={street1} onChange={e => {
+                                setStreet1(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="Optional Apt/Unit" value={street2} onChange={e => {
+                                setStreet2(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formPlaintextCityStateZip">
-                        <Col sm={3}>
-                            <Form.Label>
-                            </Form.Label>
-                        </Col>
-                        <Col sm={4}>
-                            <Form.Control placeholder="City" value={city} onChange={e => {
-                            setCity(e.target.value);
-                            }} />
-                        </Col>
-                        <Col sm={2}>
-                            <Form.Control placeholder="State (2-Letter)" value={twoLetterState} onChange={e => {
-                            setTwoLetterState(e.target.value);
-                            }} />
-                        </Col>
-                        <Col sm={2}>
-                            <Form.Control placeholder="Zip" onChange={e => {
-                            setZipcode(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                </Form.Label>
+                            </Col>
+                            <Col sm={4}>
+                                <Form.Control placeholder="City" value={city} onChange={e => {
+                                setCity(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm={2}>
+                                <Form.Control placeholder="State (2-Letter)" value={twoLetterState} onChange={e => {
+                                setTwoLetterState(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm={2}>
+                                <Form.Control placeholder="Zip" onChange={e => {
+                                setZipcode(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formPlaintextSSNum">
-                        <Col sm={3}>
-                            <Form.Label>
-                            Social Security
-                    </Form.Label>
-                        </Col>
-                        <Col sm="6">
-                            <Form.Control placeholder="###-##-####" onChange={e => {
-                            setSSN(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                <strong>Social Security</strong>
+                                </Form.Label>
+                            </Col>
+                            <Col sm="6">
+                                <Form.Control placeholder="###-##-####" onChange={e => {
+                                setSSN(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                            OTN Number
-                    </Form.Label>
-                        </Col>
-                        <Col md={{ span: 8 }}>
-                            <Form.Control placeholder="########" value={otn} onChange={e => {
-                            setOTN(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                OTN Number
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="########" value={otn} onChange={e => {
+                                setOTN(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                            DC
-                    </Form.Label>
-                        </Col>
-                        <Col md={{ span: 8 }}>
-                            <Form.Control placeholder="########" onChange={e => {
-                            setDC(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                DC
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="########" onChange={e => {
+                                setDC(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                            Arrest Date
-                    </Form.Label>
-                        </Col>
-                        <Col md={{ span: 8 }}>
-                            <Form.Control placeholder="yyyy-mm-dd" onChange={e => {
-                            setArrestDate(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Arrest Date
+                                </Form.Label>
+                            </Col>
+                            <Col md={{ span: 8 }}>
+                                <Form.Control placeholder="yyyy-mm-dd" onChange={e => {
+                                setArrestDate(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} >
-                        <Col sm={3}>
-                            <Form.Label>
-                            Arrest Officer
-                    </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="First Last" value={arrestOfficer} onChange={e => {
-                            setArrestOfficer(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Arrest Officer
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="First Last" value={arrestOfficer} onChange={e => {
+                                setArrestOfficer(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} >
-                        <Col sm={3}>
-                            <Form.Label>
-                            Disposition
-                    </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="Dismissed" onChange={e => {
-                            setDisposition(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Disposition
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="Dismissed" onChange={e => {
+                                setDisposition(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} >
-                        <Col sm={3}>
-                            <Form.Label>
-                            Full Name of Judge
-                    </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="First Last" value={judge} onChange={e => {
-                            setJudge(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Full Name of Judge
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="First Last" value={judge} onChange={e => {
+                                setJudge(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} >
-                        <Col sm={3}>
-                            <Form.Label>
-                            Docket ID number
-                    </Form.Label>
-                        </Col>
-                        <Col sm="8">
-                            <Form.Control placeholder="MC-##-CR-#######-YYYY" value={docket} onChange={e => {
-                            setDocket(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Docket ID number
+                                </Form.Label>
+                            </Col>
+                            <Col sm="8">
+                                <Form.Control placeholder="MC-##-CR-#######-YYYY" value={docket} onChange={e => {
+                                setDocket(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
                         <Form.Group as={Row}>
-                        <Col sm={3}>
-                            <Form.Label>
-                            Restitution Amount
-                            </Form.Label>
-                        </Col>
-                        <Col sm={4}>
-                            <Form.Control placeholder="Total" id="totalRestitution" onChange={e => {
-                            setRestitutionTotal(e.target.value);
-                            }} />
-                        </Col>
-                        <Col sm={4}>
-                            <Form.Control placeholder="Paid" id="paidRestitution" onChange={e => {
-                            setRestitutionPaid(e.target.value);
-                            }} />
-                        </Col>
+                            <Col sm={3}>
+                                <Form.Label>
+                                Restitution Amount
+                                </Form.Label>
+                            </Col>
+                            <Col sm={4}>
+                                <Form.Control placeholder="Total" id="totalRestitution" onChange={e => {
+                                setRestitutionTotal(e.target.value);
+                                }} />
+                            </Col>
+                            <Col sm={4}>
+                                <Form.Control placeholder="Paid" id="paidRestitution" onChange={e => {
+                                setRestitutionPaid(e.target.value);
+                                }} />
+                            </Col>
                         </Form.Group>
 
 
