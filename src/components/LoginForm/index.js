@@ -15,8 +15,6 @@ export default function LoginForm() {
   const { setAuthTokens } = useAuth();
 
   function onKeyUp(e) {
-    console.log(e);
-    console.log(e.key);
     if (e.key == 'Enter') {
       postLogin();
     }
@@ -57,9 +55,7 @@ export default function LoginForm() {
     axios.get(profileurl, config)
       .then(
         res => {
-          console.log(res);
           if (res.status === 200) {
-            console.log(200);
             setHasProfile(true);
           }
         })      
