@@ -14,6 +14,8 @@ export default function FileUpload() {
 
     const [docketData, setDocketData] = useState({});
 
+    const [charges, setCharges] =useState({});
+
     const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [middleInitial, setMiddleInitial] = useState("");
@@ -83,23 +85,30 @@ export default function FileUpload() {
                         setFullName(res.data.petitioner.name);
                         var fullName = res.data.petitioner.name;
                         var nameArray = fullName.split(" ");
-                        if (nameArray.length == 4) {
+                        if (nameArray.length === 4) {
                             setFirstName(nameArray[0]);
                             setMiddleInitial(nameArray[1][0]);
                             setLastName(nameArray[2]);
                             setSuffix(nameArray[3]);
                         }
-                        else if (nameArray.length == 3) {
+                        else if (nameArray.length === 3 && nameArray[1][1] === "." || nameArray[1].length === 1) {
                             setFirstName(nameArray[0]);
                             setMiddleInitial(nameArray[1][0]);
                             setLastName(nameArray[2]);
                         }
-                        else if (nameArray.length == 2) {
+                        else if (nameArray.length === 3) {
+                            setFirstName(nameArray[0]);
+                            setLastName(nameArray[1]);
+                            setSuffix(nameArray[2]);
+                        }
+                        else if (nameArray.length === 2) {
                             setFirstName(nameArray[0]);
                             setLastName(nameArray[1]);
                         }
 
                         console.log(res.data.charges);
+
+                        setCharges(res.data.charges);
 
                         setAliases(res.data.petitioner.aliases);
                         setDOB(res.data.petitioner.dob);
