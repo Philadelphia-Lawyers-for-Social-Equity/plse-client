@@ -427,6 +427,12 @@ export default function FileUpload() {
                             </Col>
                         </Form.Group>
 
+                        <Form.Group as={Row}>
+                            <Col sm={3}>
+                            {charges.map(charge => (<Button id="charges">{charge.date}</Button>))}
+                            </Col>
+                        </Form.Group>
+
 
                         {/* <Row>
 
