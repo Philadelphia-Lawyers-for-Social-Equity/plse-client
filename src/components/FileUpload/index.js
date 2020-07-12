@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table, thead, tbody, tr, td, th } from 'react-bootstrap';
 // import { useAuth } from '../../context/auth';
 
 
@@ -430,17 +430,17 @@ export default function FileUpload() {
                             <Form.Group as={Row}>
                                 <Col sm={3}>
                                     <Table>
-                                        <Table.thead>
-                                            <Table.tr>
-                                                <Table.th></Table.th>
-                                                <Table.th>Table heading</Table.th>
-                                            </Table.tr>
-                                        </Table.thead>
-                                        <Table.tbody>
-                                            <Table.tr>
-                                                {charges.map(charge => (<Table.td id="charges"> { charge.statute }</Table.td>))}
-                                            </Table.tr>
-                                        </Table.tbody>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Table heading</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {charges.map(charge => (<td id="charges"> { charge.statute }</td>))}
+                                            </tr>
+                                        </tbody>
                                     </Table>
                                 </Col>
                             </Form.Group>
