@@ -12,8 +12,6 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    const [docketData, setDocketData] = useState({});
-
     const [charges, setCharges] = useState({});
 
     const [fullName, setFullName] = useState("");
@@ -78,10 +76,8 @@ export default function FileUpload() {
                 .then(res => {
                     console.log(res);
                     if (res.status === 200) {
-
-                        console.log(res.data);
-
                         setDocket(res.data.docket);
+
                         setFullName(res.data.petitioner.name);
                         var fullName = res.data.petitioner.name;
                         var nameArray = fullName.split(" ");
@@ -432,13 +428,22 @@ export default function FileUpload() {
                                     <Table>
                                         <thead>
                                             <tr>
-                                                <th></th>
-                                                <th>Table heading</th>
+                                                <th>Statute</th>
+                                                <th>Date</th>
+                                                <th>Grade</th>
+                                                <th>Description</th>
+                                                <th>Disposition</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {charges.map(charge => (<td id="charges"> { charge.statute }</td>))}
+                                                {charges.map(charge => (<tr>
+                                                    <td id="statute">{charge.statute}</td>
+                                                    <td id="date">{charge.date}</td>
+                                                    <td id="grade">{charge.grade}</td>
+                                                    <td id="description">{charge.description}</td>
+                                                    <td id="disposition">{charge.disposition}</td>
+                                                </tr>))}
                                             </tr>
                                         </tbody>
                                     </Table>
