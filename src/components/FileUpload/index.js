@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table, thead, tbody, tr, td, th } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
+// thead, tbody, tr, td, th
 // import { useAuth } from '../../context/auth';
 
 
@@ -436,15 +437,13 @@ export default function FileUpload() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
                                                 {charges.map(charge => (<tr>
-                                                    <td id="statute">{charge.statute}</td>
-                                                    <td id="date">{charge.date}</td>
-                                                    <td id="grade">{charge.grade}</td>
-                                                    <td id="description">{charge.description}</td>
-                                                    <td id="disposition">{charge.disposition}</td>
+                                                    <td key={charge.statute}>{charge.statute}</td>
+                                                    <td key={charge.date}>{charge.date}</td>
+                                                    <td key={charge.grade}>{charge.grade}</td>
+                                                    <td key={charge.description}>{charge.description}</td>
+                                                    <td key={charge.disposition}>{charge.disposition}</td>
                                                 </tr>))}
-                                            </tr>
                                         </tbody>
                                     </Table>
                                 </Col>
