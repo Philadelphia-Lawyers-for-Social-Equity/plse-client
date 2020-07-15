@@ -103,8 +103,6 @@ export default function FileUpload() {
                             setLastName(nameArray[1]);
                         }
 
-                        console.log(res.data.charges);
-
                         setCharges(res.data.charges);
 
                         setAliases(res.data.petitioner.aliases);
@@ -174,7 +172,7 @@ export default function FileUpload() {
 
                 <Row style={{ margin: `80px` }}>
 
-                    <Col></Col>
+
                     <Col md={6}>
 
                         <Form>
@@ -464,7 +462,7 @@ export default function FileUpload() {
                     </Form>
 
                     </Col>
-                <Col></Col>
+
                 </Row>
 
                 </div>}
