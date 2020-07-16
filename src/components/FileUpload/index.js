@@ -32,7 +32,7 @@ export default function FileUpload() {
     const [dc, setDC] = useState("");
     const [arrestDate, setArrestDate] = useState("");
     const [arrestOfficer, setArrestOfficer] = useState("");
-    const [disposition, setDisposition] = useState("");
+    //const [disposition, setDisposition] = useState("");
     const [judge, setJudge] = useState("");
     const [docket, setDocket] = useState("");
     const [restitutionTotal, setRestitutionTotal] = useState(0.0);
@@ -368,38 +368,12 @@ export default function FileUpload() {
                             <Form.Group as={Row} >
                                 <Col sm={3}>
                                     <Form.Label>
-                                        Disposition
-                                </Form.Label>
-                                </Col>
-                                <Col sm="8">
-                                    <Form.Control placeholder="Dismissed" onChange={e => {
-                                        setDisposition(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row} >
-                                <Col sm={3}>
-                                    <Form.Label>
                                         Full Name of Judge
                                 </Form.Label>
                                 </Col>
                                 <Col sm="8">
                                     <Form.Control placeholder="First Last" value={judge} onChange={e => {
                                         setJudge(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row} >
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Docket ID number
-                                </Form.Label>
-                                </Col>
-                                <Col sm="8">
-                                    <Form.Control placeholder="MC-##-CR-#######-YYYY" value={docket} onChange={e => {
-                                        setDocket(e.target.value);
                                     }} />
                                 </Col>
                             </Form.Group>
