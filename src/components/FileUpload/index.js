@@ -422,8 +422,8 @@ export default function FileUpload() {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
+                            <Row>
+                                <Col>
                                     <Table>
                                         <thead>
                                             <tr>
@@ -445,7 +445,7 @@ export default function FileUpload() {
                                         </tbody>
                                     </Table>
                                 </Col>
-                            </Form.Group>
+                            </Row>
 
 
                         {/* <Row>
