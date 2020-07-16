@@ -173,7 +173,7 @@ export default function FileUpload() {
                 <Row style={{ margin: `80px` }}>
 
 
-                    <Col md={6}>
+                    <Col md={{ span: 8, offset: 2 }}>
 
                         <Form>
                             <Form.Group as={Row}>
