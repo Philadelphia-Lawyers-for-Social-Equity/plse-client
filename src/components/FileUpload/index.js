@@ -144,7 +144,7 @@ export default function FileUpload() {
     var fullNameJoined = fullNameList.join(" ");
 
     // user changed the name, do we want to replace the name?
-    if (fullName != fullNameJoin) {
+    if (fullName != fullNameJoined) {
         console.log(fullName);
         console.log(fullNameJoined);
         //fullName = fullNameJoined;
