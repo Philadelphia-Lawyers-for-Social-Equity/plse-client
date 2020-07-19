@@ -15,6 +15,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
 
     const [charges, setCharges] = useState({});
+
     const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [middleInitial, setMiddleInitial] = useState("");
@@ -32,7 +33,6 @@ export default function FileUpload() {
     const [dc, setDC] = useState("");
     const [arrestDate, setArrestDate] = useState("");
     const [arrestOfficer, setArrestOfficer] = useState("");
-    const [disposition, setDisposition] = useState("");
     const [judge, setJudge] = useState("");
     const [docket, setDocket] = useState("");
     const [restitutionTotal, setRestitutionTotal] = useState(0.0);
@@ -114,6 +114,8 @@ export default function FileUpload() {
                         setArrestOfficer(res.data.petition.arrest_officer);
                         setJudge(res.data.petition.judge);
 
+                        //missing arrest date, DC number, restitution amounts (pending Pablo)
+
                         setFilePassed(true);
                     }
                 })
@@ -138,8 +140,15 @@ export default function FileUpload() {
 
   function getDocFile() {
 
-    // var fullName = firstName + " " + lastName;
-    // var aliasArray = aliases.split(',');
+    var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
+    var fullNameJoined = fullNameList.join(" ");
+
+    // user changed the name, do we want to replace the name?
+    if (fullName != fullNameJoin) {
+        console.log(fullName);
+        console.log(fullNameJoined);
+        //fullName = fullNameJoined;
+    }
 
     // Current date
     var today = new Date();
@@ -169,9 +178,9 @@ export default function FileUpload() {
         "dc": dc,
         "arrest_date": arrestDate,
         "arrest_officer": arrestOfficer,
-        "disposition": disposition,
         "judge": judge
       },
+      "charges" : charges,
       "docket": docket,
       "restitution": {
         "total": parseFloat(restitutionTotal),
@@ -179,7 +188,7 @@ export default function FileUpload() {
       }
     }
 
-    // console.log(realData);
+    console.log(realData);
     
     // Mock data from Pablo that we know will work
     // const mockData = {
@@ -213,7 +222,7 @@ export default function FileUpload() {
     //   }
     // }
 
-    // Make an axios POST call to api/v0.1.0/petition/generate/
+    // Make an axios POST call to api/v0.2.0/petition/generate/
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
@@ -543,7 +552,7 @@ export default function FileUpload() {
                         </Col>
                         <Col sm="4">
                             <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
-                            {isError2 && <div>Empty Fields</div>}
+                            {isError2 && <div>Please enter client's address and social security number</div>}
                         </Col>
                         </Row>
                     </Form>
