@@ -10,9 +10,8 @@ import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
 export default function FileUpload() {
 
     const [fileName, setFileName] = useState(undefined);
-    const [filePassed, setFilePassed] = useState(false);
     const [isError, setIsError] = useState(false);
-
+    const [isError2, setIsError2] = useState(false);
     const [charges, setCharges] = useState({});
 
     const [fullName, setFullName] = useState("");
@@ -32,7 +31,7 @@ export default function FileUpload() {
     const [dc, setDC] = useState("");
     const [arrestDate, setArrestDate] = useState("");
     const [arrestOfficer, setArrestOfficer] = useState("");
-    //const [disposition, setDisposition] = useState("");
+    // const [disposition, setDisposition] = useState("");
     const [judge, setJudge] = useState("");
     const [docket, setDocket] = useState("");
     const [restitutionTotal, setRestitutionTotal] = useState(0.0);
@@ -63,7 +62,7 @@ export default function FileUpload() {
             pdfdata.append('name', 'docket_file');
             pdfdata.append('docket_file', fileName);
 
-            console.log(pdfdata);
+            // console.log(pdfdata);
 
             // post to generate profile
             const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/parse-docket/";
@@ -75,8 +74,11 @@ export default function FileUpload() {
 
             axios.post(url, pdfdata, config)
                 .then(res => {
-                    console.log(res);
+                    
                     if (res.status === 200) {
+
+                        console.log(res.data);
+
                         setDocket(res.data.docket);
 
                         setFullName(res.data.petitioner.name);
@@ -111,41 +113,150 @@ export default function FileUpload() {
                         setArrestOfficer(res.data.petition.arrest_officer);
                         setJudge(res.data.petition.judge);
 
-                        setFilePassed(true);
                     }
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }
+    }
 
-        if (filePassed) {
-            // redirect to input form
-            //return <Redirect to="/inputform" />;
+     // On click to store the client information to local storage
+  function checkInfo() {
 
-            const mockData = {
-                "charges": [{ "date": "2010-10-10", "description": "Burglary", "disposition": "Held for Court", "grade": "F2", "statute": "18 § 3502 §§ A4" }],
-                "petitioner": {
-                    "name": "Bob B. Bee",
-                    "aliases": ["Total Gym", "Bobby Bee"],
-                    "dob": "1965-11-17"
-                },
-                "petition": {
-                    "otn": "N 999999-9",
-                    "arrest_agency": "Philadelphia Pd",
-                    "arrest_officer": "Affiant",
-                    "judge": "Jury And Executioner"
-                },
-                "docket": "MC-51-CR-1234135-2001"
+    // No attorney chosen if blank
+    if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
+      setIsError2(true);
+    }
+    else {
+      // Make the Post call
+      getDocFile();
+    }
+  }
+
+  function getDocFile() {
+
+    // var fullName = firstName + " " + lastName;
+    // var aliasArray = aliases.split(',');
+
+    // Current date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+
+    const realData = {
+      "petitioner": {
+        "name": fullName,
+        "aliases": aliases,
+        "dob": dob,
+        "ssn": ssn,
+        "address": {
+          "street1": street1,
+          "street2": street2,
+          "city": city,
+          "state": twoLetterState,
+          "zipcode": zipcode
+        }
+      },
+      "petition": {
+        "date": today,
+        "petition_type": "expungement",
+        "otn": otn,
+        "dc": dc,
+        "arrest_date": arrestDate,
+        "arrest_officer": arrestOfficer,
+        "disposition": disposition,
+        "judge": judge
+      },
+      "docket": docket,
+      "restitution": {
+        "total": parseFloat(restitutionTotal),
+        "paid": parseFloat(restitutionPaid)
+      }
+    }
+
+    // console.log(realData);
+    
+    // Mock data from Pablo that we know will work
+    // const mockData = {
+    //   "petitioner": {
+    //     "name": "Bob Bee",
+    //     "aliases": ["Total Gym"],
+    //     "dob": "2001-11-7",
+    //     "ssn": "224-44-5555",
+    //     "address": {
+    //       "street1": "1617 Jfk",
+    //       "street2": "Apt 1",
+    //       "city": "Philadelphia",
+    //       "state": "PA",
+    //       "zipcode": "21711"
+    //     }
+    //   },
+    //   "petition": {
+    //     "date": "2019-11-27",
+    //     "petition_type": "expungement",
+    //     "otn": "Offense Tracking Number",
+    //     "dc": "wat is this",
+    //     "arrest_date": "2017-04-16",
+    //     "arrest_officer": "Gerry Mander",
+    //     "disposition": "Dismissed",
+    //     "judge": "Jury And Executioner"
+    //   },
+    //   "docket": "MC-51-CR-1234135-2001",
+    //   "restitution": {
+    //     "total": 20000,
+    //     "paid": 36
+    //   }
+    // }
+
+    // Make an axios POST call to api/v0.1.0/petition/generate/
+    const bearer = "Bearer ";
+    const token = bearer.concat(localStorage.getItem("access_token"));
+    var config = {
+      'responseType': 'arraybuffer',
+      'headers': { 'Authorization': token }
+    };
+
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/generate/";
+
+    axios.post(url, realData, config)
+      .then(
+        res => {
+          if (res.status === 200) {
+            // return data
+            // console.log("Posted");
+            let blob = new Blob([res.data], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
+              downloadUrl = window.URL.createObjectURL(blob),
+              filename = "",
+              disposition = res.headers["content-disposition"];
+
+            // console.log(blob);
+            // console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
+
+            if (disposition && disposition.indexOf("attachment") !== -1) {
+              let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+                matches = filenameRegex.exec(disposition);
+
+              if (matches != null && matches[1]) {
+                filename = matches[1].replace(/['"]/g, "");
+              }
             }
 
-
-            //setDocketData(mockData);
-
-            console.log(mockData);
-
-        }
-    }
+            let a = document.createElement("a");
+            if (typeof a.download === "undefined") {
+              window.location.href = downloadUrl;
+            } else {
+              a.href = downloadUrl;
+              a.download = filename;
+              document.body.appendChild(a);
+              a.click();
+            }
+          } //close res status 200
+        } //close res
+      ); //close then
+  } //close getDocFile function
 
     return (
         <div className="text-center">
@@ -352,7 +463,7 @@ export default function FileUpload() {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} >
+                            <Form.Group as={Row}>
                                 <Col sm={3}>
                                     <Form.Label>
                                         Arrest Officer
@@ -365,7 +476,7 @@ export default function FileUpload() {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} >
+                            <Form.Group as={Row}>
                                 <Col sm={3}>
                                     <Form.Label>
                                         Full Name of Judge
@@ -422,7 +533,7 @@ export default function FileUpload() {
                             </Row>
 
 
-                        {/* <Row>
+                        <Row>
 
                         <Col sm={3}>
                             <Form.Label>
@@ -430,9 +541,9 @@ export default function FileUpload() {
                         </Col>
                         <Col sm="4">
                             <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
-                            {isError && <div>Empty Fields</div>}
+                            {isError2 && <div>Empty Fields</div>}
                         </Col>
-                        </Row> */}
+                        </Row>
                     </Form>
 
                     </Col>
