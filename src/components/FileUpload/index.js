@@ -12,8 +12,9 @@ export default function FileUpload() {
     const [fileName, setFileName] = useState(undefined);
     const [isError, setIsError] = useState(false);
     const [isError2, setIsError2] = useState(false);
-    const [charges, setCharges] = useState({});
+    const [filePassed, setFilePassed] = useState(false);
 
+    const [charges, setCharges] = useState({});
     const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [middleInitial, setMiddleInitial] = useState("");
@@ -31,7 +32,7 @@ export default function FileUpload() {
     const [dc, setDC] = useState("");
     const [arrestDate, setArrestDate] = useState("");
     const [arrestOfficer, setArrestOfficer] = useState("");
-    // const [disposition, setDisposition] = useState("");
+    const [disposition, setDisposition] = useState("");
     const [judge, setJudge] = useState("");
     const [docket, setDocket] = useState("");
     const [restitutionTotal, setRestitutionTotal] = useState(0.0);
@@ -113,6 +114,7 @@ export default function FileUpload() {
                         setArrestOfficer(res.data.petition.arrest_officer);
                         setJudge(res.data.petition.judge);
 
+                        setFilePassed(true);
                     }
                 })
                 .catch(err => {
