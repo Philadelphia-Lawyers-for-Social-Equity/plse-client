@@ -547,12 +547,12 @@ export default function FileUpload() {
                         <Row>
 
                         <Col sm={3}>
-                            <Form.Label>
-                            </Form.Label>
                         </Col>
-                        <Col sm="4">
+                        <Col sm={6}>
                             <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
-                            {isError2 && <div>Please enter client's address and social security number</div>}
+                            {isError2 && <div>Please enter client address and social security number</div>}
+                        </Col>
+                        <Col sm={3}>
                         </Col>
                         </Row>
                     </Form>
