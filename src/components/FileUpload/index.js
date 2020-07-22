@@ -31,6 +31,7 @@ export default function FileUpload() {
     const [ssn, setSSN] = useState("");
     const [otn, setOTN] = useState("");
     const [dc, setDC] = useState("");
+    const [arrestAgency, setArrestAgency] = useState("");
     const [arrestDate, setArrestDate] = useState("");
     const [arrestOfficer, setArrestOfficer] = useState("");
     const [judge, setJudge] = useState("");
@@ -66,7 +67,7 @@ export default function FileUpload() {
             // console.log(pdfdata);
 
             // post to generate profile
-            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/petition/parse-docket/";
+            const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
             const bearer = "Bearer ";
             const token = bearer.concat(localStorage.getItem("access_token"));
             var config = {
@@ -111,6 +112,8 @@ export default function FileUpload() {
                         setAliases(res.data.petitioner.aliases);
                         setDOB(res.data.petitioner.dob);
                         setOTN(res.data.petition.otn);
+                        setArrestAgency(res.data.petition.arrest_agency);
+                        setArrestDate(res.data.petition.arrest_date);
                         setArrestOfficer(res.data.petition.arrest_officer);
                         setJudge(res.data.petition.judge);
 
@@ -176,6 +179,7 @@ export default function FileUpload() {
         "petition_type": "expungement",
         "otn": otn,
         "dc": dc,
+        "arrest_agency": arrestAgency,
         "arrest_date": arrestDate,
         "arrest_officer": arrestOfficer,
         "judge": judge
@@ -468,8 +472,21 @@ export default function FileUpload() {
                                 </Form.Label>
                                 </Col>
                                 <Col md={{ span: 8 }}>
-                                    <Form.Control placeholder="yyyy-mm-dd" onChange={e => {
+                                    <Form.Control placeholder="yyyy-mm-dd" value={arrestDate} onChange={e => {
                                         setArrestDate(e.target.value);
+                                    }} />
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>
+                                        Arrest Agency
+                                </Form.Label>
+                                </Col>
+                                <Col md={{ span: 8 }}>
+                                    <Form.Control placeholder="Arresting Agency" value={arrestAgency} onChange={e => {
+                                        setArrestAgency(e.target.value);
                                     }} />
                                 </Col>
                             </Form.Group>

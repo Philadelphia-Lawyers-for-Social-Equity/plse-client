@@ -34,7 +34,7 @@ export default function ProfilePage() {
     };
 
     // Get to return user data
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/expunger/my-profile/";
     axios.get(url, config)
       .then(
         res => {
@@ -127,7 +127,7 @@ export default function ProfilePage() {
       'headers': { 'Authorization': token }
     };
 
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/expunger/my-profile/";
     // axios.post(url, JSON.parse(postData), config)
     axios.put(url, shortData, config)
       .then(
