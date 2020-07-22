@@ -24,7 +24,7 @@ export default function LoginForm() {
 
     localStorage.clear();
 
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/auth/token/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/auth/token/";
     axios
       .post(url, {
         username: userName,
@@ -45,7 +45,7 @@ export default function LoginForm() {
   }
 
   if (isLoggedIn) {
-    const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/expunger/my-profile/";
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
