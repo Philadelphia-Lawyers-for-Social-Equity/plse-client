@@ -143,15 +143,15 @@ export default function FileUpload() {
 
   function getDocFile() {
 
-    var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
-    var fullNameJoined = fullNameList.join(" ");
+    // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
+    // var fullNameJoined = fullNameList.join(" ");
 
-    // user changed the name, do we want to replace the name?
-    if (fullName != fullNameJoined) {
-        console.log(fullName);
-        console.log(fullNameJoined);
-        //fullName = fullNameJoined;
-    }
+    // // user changed the name, do we want to replace the name?
+    // if (fullName != fullNameJoined) {
+    //     console.log(fullName);
+    //     console.log(fullNameJoined);
+    //     //fullName = fullNameJoined;
+    // }
 
     // Current date
     var today = new Date();
@@ -301,88 +301,9 @@ export default function FileUpload() {
 
                     <Col md={{ span: 8, offset: 2 }}>
 
+                        <p>Please manually enter the client's Address and Social Security Number</p>
                         <Form>
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Docket Number
-                                </Form.Label>
-                                </Col>
-                                <Col md={{ span: 8 }}>
-                                    <Form.Control placeholder="Docket Number" value={docket} onChange={e => {
-                                        setDocket(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Full Name
-                                </Form.Label>
-                                </Col>
-                                <Col md={{ span: 8 }}>
-                                    <Form.Control placeholder="Full Name" value={fullName} onChange={e => {
-                                        setFullName(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Client's Name
-                                </Form.Label>
-                                </Col>
-                                <Col md={{ span: 3 }}>
-                                    <Form.Control placeholder="First Name" value={firstName} onChange={e => {
-                                        setFirstName(e.target.value);
-                                    }} />
-                                </Col>
-                                <Col sm="1">
-                                    <Form.Control placeholder="Middle Initial" value={middleInitial} onChange={e => {
-                                        setMiddleInitial(e.target.value);
-                                    }} />
-                                </Col>
-                                <Col sm="3">
-                                    <Form.Control placeholder="Last Name" value={lastName} onChange={e => {
-                                        setLastName(e.target.value);
-                                    }} />
-                                </Col>
-                                <Col sm="1">
-                                    <Form.Control placeholder="Suffix" value={suffix} onChange={e => {
-                                        setSuffix(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Aliases
-                                </Form.Label>
-                                </Col>
-                                <Col md={{ span: 8 }}>
-                                    <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
-                                        setAliases(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row}>
-                                <Col sm={3}>
-                                    <Form.Label>
-                                        Date of Birth
-                                </Form.Label>
-                                </Col>
-                                <Col md={{ span: 3 }}>
-                                    <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
-                                        setDOB(e.target.value);
-                                    }} />
-                                </Col>
-                            </Form.Group>
-
-                            <Form.Group as={Row} controlId="formPlaintextAddress">
+                        <Form.Group as={Row} controlId="formPlaintextAddress">
                                 <Col sm={3}>
                                     <Form.Label>
                                         <strong>Address</strong>
@@ -439,6 +360,62 @@ export default function FileUpload() {
                                 </Col>
                             </Form.Group>
 
+
+
+
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>
+                                        Docket Number
+                                </Form.Label>
+                                </Col>
+                                <Col md={{ span: 8 }}>
+                                    <Form.Control placeholder="Docket Number" value={docket} onChange={e => {
+                                        setDocket(e.target.value);
+                                    }} />
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>
+                                        Full Name
+                                </Form.Label>
+                                </Col>
+                                <Col md={{ span: 8 }}>
+                                    <Form.Control placeholder="Full Name" value={fullName} onChange={e => {
+                                        setFullName(e.target.value);
+                                    }} />
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>
+                                        Aliases
+                                </Form.Label>
+                                </Col>
+                                <Col md={{ span: 8 }}>
+                                    <Form.Control placeholder="Aliases (comma-separated)" value={aliases} onChange={e => {
+                                        setAliases(e.target.value);
+                                    }} />
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group as={Row}>
+                                <Col sm={3}>
+                                    <Form.Label>
+                                        Date of Birth
+                                </Form.Label>
+                                </Col>
+                                <Col md={{ span: 3 }}>
+                                    <Form.Control placeholder="yyyy-mm-dd" value={dob} onChange={e => {
+                                        setDOB(e.target.value);
+                                    }} />
+                                </Col>
+                            </Form.Group>
+
+                            
                             <Form.Group as={Row}>
                                 <Col sm={3}>
                                     <Form.Label>
