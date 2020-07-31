@@ -30,9 +30,9 @@ function App(props) {
         <Nav />
 
 
-        {/* <BodyBackgroundColor backgroundColor="#d9ecf9">
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/" render={props => <LoginForm {...props} isAuthed={true} />} />
-        </BodyBackgroundColor> */}
+        </BodyBackgroundColor>
 
         <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/login" render={props => <LoginForm {...props} isAuthed={true} />} />
