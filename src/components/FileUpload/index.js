@@ -278,7 +278,7 @@ export default function FileUpload() {
     return (
         <div className="text-center">
             <Modal.Dialog>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton href="/login">
                     <Modal.Title>Upload File</Modal.Title>
                 </Modal.Header>
 
