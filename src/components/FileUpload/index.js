@@ -43,9 +43,7 @@ export default function FileUpload() {
 
     // On click for the cancel button
     function returnLogin() {
-        console.log("return login clicked");
-        history.push("/");
-        // return <Redirect to="/login" />;
+        history.push("/login");
     }
 
     // On change for getting file
