@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
 import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
@@ -8,6 +8,8 @@ import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
 
 
 export default function FileUpload() {
+
+    const history = useHistory();
 
     const [fileName, setFileName] = useState(undefined);
     const [isError, setIsError] = useState(false);
@@ -288,7 +290,7 @@ export default function FileUpload() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button id="returnToLoginButton" onClick={returnLogin}>Cancel</Button>
+                    <Button id="returnToLoginButton" onClick={history.goBack()}>Cancel</Button>
                     <Button id="fileButton" onClick={choseFile}>Submit</Button>
                     {isError && <div>Please select a file</div>}
                 </Modal.Footer>
