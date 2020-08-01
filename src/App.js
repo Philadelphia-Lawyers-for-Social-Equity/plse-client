@@ -8,7 +8,7 @@ import { AuthContext } from "./context/auth";
 import LoginForm from "../src/components/LoginForm";
 import LandingPage from "../src/components/LandingPage";
 import FileUpload from "../src/components/FileUpload";
-import InputForm from "../src/components/InputForm";
+// import InputForm from "../src/components/InputForm";
 import ProfilePage from "../src/components/ProfilePage";
 import BodyBackgroundColor from "react-body-backgroundcolor";
 
@@ -29,6 +29,11 @@ function App(props) {
       <Router>
         <Nav />
 
+
+        <BodyBackgroundColor backgroundColor="#d9ecf9">
+          <Route path="/" render={props => <LoginForm {...props} isAuthed={true} />} />
+        </BodyBackgroundColor>
+
         <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/login" render={props => <LoginForm {...props} isAuthed={true} />} />
         </BodyBackgroundColor>
@@ -45,9 +50,9 @@ function App(props) {
           <Route path="/upload" component={FileUpload} />
         </BodyBackgroundColor>
 
-        <BodyBackgroundColor backgroundColor="#d9ecf9">
+        {/* <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/inputform" component={InputForm} />
-        </BodyBackgroundColor>
+        </BodyBackgroundColor> */}
 
         <BodyBackgroundColor backgroundColor="#d9ecf9">
           <Route path="/profile" component={ProfilePage} />

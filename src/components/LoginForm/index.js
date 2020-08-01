@@ -14,11 +14,17 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
 
+  function onKeyUp(e) {
+    if (e.key == 'Enter') {
+      postLogin();
+    }
+  }
+
   function postLogin() {
 
     localStorage.clear();
 
-    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/auth/token/";
+    const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/auth/token/";
     axios
       .post(url, {
         username: userName,
@@ -39,7 +45,7 @@ export default function LoginForm() {
   }
 
   if (isLoggedIn) {
-    const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.1.0/expunger/my-profile/";
+    const profileurl = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/expunger/my-profile/";
     const bearer = "Bearer ";
     const token = bearer.concat(localStorage.getItem("access_token"));
     var config = {
@@ -49,9 +55,7 @@ export default function LoginForm() {
     axios.get(profileurl, config)
       .then(
         res => {
-          console.log(res);
           if (res.status === 200) {
-            console.log(200);
             setHasProfile(true);
           }
         })      
@@ -64,7 +68,7 @@ export default function LoginForm() {
   }
 
   if (hasProfile) {
-    return <Redirect to="/inputform" />;
+    return <Redirect to="/upload" />;
   }
 
   if (is404) {
@@ -104,6 +108,7 @@ export default function LoginForm() {
               name="password"
               id="password"
               value={password}
+              onKeyDown={e => {onKeyUp(e)}}
               onChange={e => {
                 setPassword(e.target.value);
               }}

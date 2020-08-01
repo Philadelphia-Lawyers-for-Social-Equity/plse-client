@@ -1,7 +1,8 @@
-#PLSE-Philly Expungement App
+# PLSE-Philly Expungement App
 
 ![PLSE Logo](http://plsephilly.org/wp-content/uploads/2014/11/PLSE_logotype_320.png)
 
+Basic react frontend using hooks, react-bootstrap components library and API calls with axios. Pages to login, select a docket pdf file, display the contents of the docket, and send back with client's manually entered information to generate a expungement petition in print-ready and editable word format. 
 
 npm packages used:
     "bootstrap": "^4.3.1",
