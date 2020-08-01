@@ -41,6 +41,7 @@ export default function FileUpload() {
 
     // On click for the cancel button
     function returnLogin() {
+        console.log("return login clicked");
         return <Redirect to="/login" />;
     }
 
