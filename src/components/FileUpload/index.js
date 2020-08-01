@@ -44,7 +44,7 @@ export default function FileUpload() {
     // On click for the cancel button
     function returnLogin() {
         console.log("return login clicked");
-        history.goBack;
+        history.goBack();
         // return <Redirect to="/login" />;
     }
 
