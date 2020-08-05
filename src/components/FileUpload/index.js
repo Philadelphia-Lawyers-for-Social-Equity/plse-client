@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table, Checkbox } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table, ToggleButton } from 'react-bootstrap';
 // thead, tbody, tr, td, th
 // import { useAuth } from '../../context/auth';
 
@@ -527,7 +527,7 @@ export default function FileUpload() {
                                         </thead>
                                         <tbody>
                                                 {charges.map((charge, index) => (<tr>
-                                                    <td><Checkbox key={index} /></td>
+                                                    <td><ToggleButton type="checkbox" key={index} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
