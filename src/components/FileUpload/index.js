@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table, Checkbox } from 'react-bootstrap';
 // thead, tbody, tr, td, th
 // import { useAuth } from '../../context/auth';
 
