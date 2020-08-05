@@ -526,12 +526,13 @@ export default function FileUpload() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                {charges.map(charge => (<tr>
-                                                    <td key={charge.statute}>{charge.statute}</td>
-                                                    <td key={charge.date}>{charge.date}</td>
-                                                    <td key={charge.grade}>{charge.grade}</td>
-                                                    <td key={charge.description}>{charge.description}</td>
-                                                    <td key={charge.disposition}>{charge.disposition}</td>
+                                                {charges.map((charge, index) => (<tr>
+                                                    <td><Checkbox key={index} /></td>
+                                                    <td className="statute">{charge.statute}</td>
+                                                    <td className="date">{charge.date}</td>
+                                                    <td className="grade">{charge.grade}</td>
+                                                    <td className="description">{charge.description}</td>
+                                                    <td className="disposition">{charge.disposition}</td>
                                                 </tr>))}
                                         </tbody>
                                     </Table>
