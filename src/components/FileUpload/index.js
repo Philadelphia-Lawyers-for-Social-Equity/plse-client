@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table, ToggleButton } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table, ButtonGroup, ToggleButton } from 'react-bootstrap';
 // thead, tbody, tr, td, th
 // import { useAuth } from '../../context/auth';
 
@@ -17,6 +17,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
 
     const [charges, setCharges] = useState({});
+    const [checked, setChecked] = useState(true);
 
     const [fullName, setFullName] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -527,14 +528,17 @@ export default function FileUpload() {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <ButtonGroup toggle>
                                                 {charges.map((charge, index) => (<tr>
-                                                    <td><ToggleButton key={index} type="checkbox" checked="true" /></td>
+                                                    <td><ToggleButton key={index} type="checkbox" checked={checked} onChange={e => {
+                                                        setChecked(e.target.checked);}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
                                                     <td className="description">{charge.description}</td>
                                                     <td className="disposition">{charge.disposition}</td>
                                                 </tr>))}
+                                            </ButtonGroup>
                                         </tbody>
                                     </Table>
                                 </Col>
