@@ -528,7 +528,7 @@ export default function FileUpload() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ButtonGroup toggle>
+                                          
                                                 {charges.map((charge, index) => (<tr>
                                                     <td><ToggleButton key={index} type="checkbox" checked={checked} onChange={e => {
                                                         setChecked(e.target.checked);}} /></td>
@@ -538,7 +538,7 @@ export default function FileUpload() {
                                                     <td className="description">{charge.description}</td>
                                                     <td className="disposition">{charge.disposition}</td>
                                                 </tr>))}
-                                            </ButtonGroup>
+                                        
                                         </tbody>
                                     </Table>
                                 </Col>
