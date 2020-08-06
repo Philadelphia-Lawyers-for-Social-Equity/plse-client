@@ -15,7 +15,7 @@ export default function LoginForm() {
   const { setAuthTokens } = useAuth();
 
   function onKeyUp(e) {
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
       postLogin();
     }
   }
