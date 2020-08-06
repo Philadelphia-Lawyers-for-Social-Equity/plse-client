@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./style.css";
 import axios from 'axios';
-import { Button, Modal, Col, Form, Row, Table, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Modal, Col, Form, Row, Table, ToggleButton } from 'react-bootstrap';
 // thead, tbody, tr, td, th
 // import { useAuth } from '../../context/auth';
 
@@ -20,10 +20,10 @@ export default function FileUpload() {
     const [checked, setChecked] = useState(true);
 
     const [fullName, setFullName] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [middleInitial, setMiddleInitial] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [suffix, setSuffix] = useState("");
+    // const [firstName, setFirstName] = useState("");
+    // const [middleInitial, setMiddleInitial] = useState("");
+    // const [lastName, setLastName] = useState("");
+    // const [suffix, setSuffix] = useState("");
     const [aliases, setAliases] = useState("");
     const [dob, setDOB] = useState("");
     const [street1, setStreet1] = useState("");
@@ -87,28 +87,28 @@ export default function FileUpload() {
                         setDocket(res.data.docket);
 
                         setFullName(res.data.petitioner.name);
-                        var fullName = res.data.petitioner.name;
-                        var nameArray = fullName.split(" ");
-                        if (nameArray.length === 4) {
-                            setFirstName(nameArray[0]);
-                            setMiddleInitial(nameArray[1][0]);
-                            setLastName(nameArray[2]);
-                            setSuffix(nameArray[3]);
-                        }
-                        else if (nameArray.length === 3 && nameArray[1][1] === "." || nameArray[1].length === 1) {
-                            setFirstName(nameArray[0]);
-                            setMiddleInitial(nameArray[1][0]);
-                            setLastName(nameArray[2]);
-                        }
-                        else if (nameArray.length === 3) {
-                            setFirstName(nameArray[0]);
-                            setLastName(nameArray[1]);
-                            setSuffix(nameArray[2]);
-                        }
-                        else if (nameArray.length === 2) {
-                            setFirstName(nameArray[0]);
-                            setLastName(nameArray[1]);
-                        }
+                        // var fullName = res.data.petitioner.name;
+                        // var nameArray = fullName.split(" ");
+                        // if (nameArray.length === 4) {
+                        //     setFirstName(nameArray[0]);
+                        //     setMiddleInitial(nameArray[1][0]);
+                        //     setLastName(nameArray[2]);
+                        //     setSuffix(nameArray[3]);
+                        // }
+                        // else if (nameArray.length === 3 && nameArray[1][1] === "." || nameArray[1].length === 1) {
+                        //     setFirstName(nameArray[0]);
+                        //     setMiddleInitial(nameArray[1][0]);
+                        //     setLastName(nameArray[2]);
+                        // }
+                        // else if (nameArray.length === 3) {
+                        //     setFirstName(nameArray[0]);
+                        //     setLastName(nameArray[1]);
+                        //     setSuffix(nameArray[2]);
+                        // }
+                        // else if (nameArray.length === 2) {
+                        //     setFirstName(nameArray[0]);
+                        //     setLastName(nameArray[1]);
+                        // }
 
                         setCharges(res.data.charges);
 
