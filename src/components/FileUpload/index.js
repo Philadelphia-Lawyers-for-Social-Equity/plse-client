@@ -528,7 +528,7 @@ export default function FileUpload() {
                                         </thead>
                                         <tbody>
                                                 {charges.map((charge, index) => (<tr>
-                                                    <td><ToggleButton type="checkbox" key={index} /></td>
+                                                    <td><ToggleButton key={index} type="radio" name="radio" checked="checked" /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
