@@ -530,13 +530,13 @@ export default function FileUpload() {
                                         <tbody>
                                           
                                                 {charges.map((charge, index) => (<tr>
-                                                    <td><ToggleButton key={index} type="checkbox" checked={checked} onChange={e => {
+                                                    <td><ToggleButton key={index} type="checkbox" value={checked} checked={checked} onChange={e => {
                                                         setChecked(e.target.checked);}} /></td>
-                                                    <td className="statute">{charge.statute}</td>
-                                                    <td className="date">{charge.date}</td>
-                                                    <td className="grade">{charge.grade}</td>
-                                                    <td className="description">{charge.description}</td>
-                                                    <td className="disposition">{charge.disposition}</td>
+                                                    <td className="statute" key={index}>{charge.statute}</td>
+                                                    <td className="date" key={index}>{charge.date}</td>
+                                                    <td className="grade" key={index}>{charge.grade}</td>
+                                                    <td className="description" key={index}>{charge.description}</td>
+                                                    <td className="disposition" key={index}>{charge.disposition}</td>
                                                 </tr>))}
                                         
                                         </tbody>
