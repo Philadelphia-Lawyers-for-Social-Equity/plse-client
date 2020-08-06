@@ -518,6 +518,7 @@ export default function FileUpload() {
                                     <Table>
                                         <thead>
                                             <tr>
+                                                <th> </th>
                                                 <th>Statute</th>
                                                 <th>Date</th>
                                                 <th>Grade</th>
