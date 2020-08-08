@@ -247,28 +247,15 @@ export default function FileUpload() {
             // console.log("Posted");
             let blob = new Blob([res.data], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }),
               downloadUrl = window.URL.createObjectURL(blob),
-              filename = "",
+              filename = "petition.docx",
               disposition = res.headers["content-disposition"];
-
-            // console.log(blob);
-            // console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
-
-            // Removed regex to rename file, just use default petition.docx as a name
-            // if (disposition && disposition.indexOf("attachment") !== -1) {
-            //   let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
-            //     matches = filenameRegex.exec(disposition);
-
-            //   if (matches != null && matches[1]) {
-            //     filename = matches[1].replace(/['"]/g, "");
-            //   }
-            // }
 
             let a = document.createElement("a");
             if (typeof a.download === "undefined") {
               window.location.href = downloadUrl;
             } else {
               a.href = downloadUrl;
-              a.download = "petition.docx";
+              a.download = filename;
               document.body.appendChild(a);
               a.click();
             }
@@ -532,7 +519,7 @@ export default function FileUpload() {
                                           
                                                 {charges.map((charge, index) => (<tr key={index}>
                                                     <td><ToggleButton type="checkbox" value={checked} checked={checked} onChange={e => {
-                                                        setChecked(e.target.checked);}} /></td>
+                                                        e.target.checked}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
