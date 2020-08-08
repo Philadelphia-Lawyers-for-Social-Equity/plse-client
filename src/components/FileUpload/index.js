@@ -520,7 +520,9 @@ export default function FileUpload() {
                                         <tbody>
                                           
                                                 {charges.map((charge, index) => (<tr key={index}>
-                                                    <td><ToggleButton type="checkbox" value={index} checked="checked" onChange={e => {setUnchecked(e.target.value);}} /></td>
+                                                    <td><ToggleButton type="checkbox" value={index} checked="true" onChange={e => 
+                                                        {setUnchecked(unchecked + "," + e.target.value);
+                                                        e.target.checked=!e.target.checked;}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
