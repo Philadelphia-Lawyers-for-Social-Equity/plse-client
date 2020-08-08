@@ -132,16 +132,9 @@ export default function FileUpload() {
     }
 
     function handleCheckbox(target) {
-        console.log("charges: ", charges);
-        
-        console.log("checked: ", target.checked);
-        console.log(target.name);
-        console.log(target.value);
 
         setCheckedItems({...checkedItems, [target.name] : target.checked});
         console.log(checkedItems);
-
-        //setCharges({...charges, [target.name] : target.checked });
 
         // if (!target.checked) {
         //     target.checked = true;
@@ -527,22 +520,22 @@ export default function FileUpload() {
                                     <Table>
                                         <thead>
                                             <tr>
-                                                <th> </th>
                                                 <th>Statute</th>
                                                 <th>Date</th>
                                                 <th>Grade</th>
                                                 <th>Description</th>
                                                 <th>Disposition</th>
+                                                <th>Remove Charge from Petition</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {charges.map((charge, index) => (<tr key={index}>
-                                                <td><ToggleButton type="checkbox" value={index} name={index} checked={checkedItems[index]} onChange={e => { handleCheckbox(e.target); }} /></td>
                                                 <td className="statute">{charge.statute}</td>
                                                 <td className="date">{charge.date}</td>
                                                 <td className="grade">{charge.grade}</td>
                                                 <td className="description">{charge.description}</td>
                                                 <td className="disposition">{charge.disposition}</td>
+                                                <td><ToggleButton type="checkbox" variant="danger" value={index} name={index} checked={checkedItems[index]} onChange={e => { handleCheckbox(e.target); }} /></td>
                                             </tr>))}
                                         </tbody>
                                     </Table>
