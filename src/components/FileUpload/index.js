@@ -253,14 +253,15 @@ export default function FileUpload() {
             // console.log(blob);
             // console.log(disposition); // disposition is 'attachment; filename="petition.docx"'
 
-            if (disposition && disposition.indexOf("attachment") !== -1) {
-              let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
-                matches = filenameRegex.exec(disposition);
+            // Removed regex to rename file, just use default petition.docx as a name
+            // if (disposition && disposition.indexOf("attachment") !== -1) {
+            //   let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+            //     matches = filenameRegex.exec(disposition);
 
-              if (matches != null && matches[1]) {
-                filename = matches[1].replace(/['"]/g, "");
-              }
-            }
+            //   if (matches != null && matches[1]) {
+            //     filename = matches[1].replace(/['"]/g, "");
+            //   }
+            // }
 
             let a = document.createElement("a");
             if (typeof a.download === "undefined") {
