@@ -137,7 +137,7 @@ export default function FileUpload() {
             target.checked = 'true';
         }
         else {
-            target.checked = 'false;
+            target.checked = 'false';
         };
     }
 
