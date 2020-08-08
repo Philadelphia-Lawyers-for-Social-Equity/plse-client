@@ -137,12 +137,7 @@ export default function FileUpload() {
         console.log(!target.checked);
         console.log(target.value);
 
-        if (target.checked == true) {
-            console.log('boolean');
-        } 
-        else if (target.checked === 'true') {
-            console.log('string');
-        }
+        target.checked = !target.checked;
 
         // if (!target.checked) {
         //     target.checked = true;
