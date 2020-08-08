@@ -132,6 +132,7 @@ export default function FileUpload() {
     }
 
     function handleCheckbox(target) {
+        console.log(target);
         console.log(target.checked);
         console.log(target.name);
         console.log(target.value);
@@ -540,7 +541,7 @@ export default function FileUpload() {
                                         <tbody>
                                           
                                                 {charges.map((charge, index) => (<tr key={index}>
-                                                    <td><ToggleButton type="checkbox" value={index} checked="true" onChange={e => 
+                                                    <td><ToggleButton type="checkbox" value={index} checked onChange={e => 
                                                         {handleCheckbox(e.target);}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
