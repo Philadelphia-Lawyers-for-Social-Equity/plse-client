@@ -267,7 +267,7 @@ export default function FileUpload() {
               window.location.href = downloadUrl;
             } else {
               a.href = downloadUrl;
-              a.download = filename;
+              a.download = "petition.docx";
               document.body.appendChild(a);
               a.click();
             }
