@@ -17,7 +17,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
 
     const [charges, setCharges] = useState({});
-    const [checked, setChecked] = useState(true);
+    const [unchecked, setUnchecked] = useState("");
 
     const [fullName, setFullName] = useState("");
     // const [firstName, setFirstName] = useState("");
@@ -131,8 +131,10 @@ export default function FileUpload() {
         }
     }
 
-     // On click to store the client information to local storage
+     // On click to check that the manual entry fields are entered before POST
   function checkInfo() {
+
+    console.log(unchecked);
 
     // No attorney chosen if blank
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
@@ -518,8 +520,7 @@ export default function FileUpload() {
                                         <tbody>
                                           
                                                 {charges.map((charge, index) => (<tr key={index}>
-                                                    <td><ToggleButton type="checkbox" value={checked} checked={checked} onChange={e => {
-                                                        e.target.checked}} /></td>
+                                                    <td><ToggleButton type="checkbox" value={index} checked="checked" onChange={e => {setUnchecked(e.target.value);}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
                                                     <td className="grade">{charge.grade}</td>
