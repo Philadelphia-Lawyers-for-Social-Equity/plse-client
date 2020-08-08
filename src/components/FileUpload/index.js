@@ -17,7 +17,7 @@ export default function FileUpload() {
     const [filePassed, setFilePassed] = useState(false);
 
     const [charges, setCharges] = useState({});
-    const [unchecked, setUnchecked] = useState("");
+    const [checkedItems, setCheckedItems] = useState({});
 
     const [fullName, setFullName] = useState("");
     // const [firstName, setFirstName] = useState("");
@@ -134,11 +134,12 @@ export default function FileUpload() {
     function handleCheckbox(target) {
         console.log("charges: ", charges);
         
-        console.log(target);
         console.log("checked: ", target.checked);
         console.log(target.name);
         console.log(target.value);
-        console.log(charges[target.value]);
+
+        setCheckedItems({...checkedItems, [target.name] : target.checked});
+        console.log(checkedItems);
 
         //setCharges({...charges, [target.name] : target.checked });
 
@@ -152,8 +153,6 @@ export default function FileUpload() {
 
      // On click to check that the manual entry fields are entered before POST
   function checkInfo() {
-
-    console.log(unchecked);
 
     // No attorney chosen if blank
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
@@ -538,7 +537,7 @@ export default function FileUpload() {
                                         </thead>
                                         <tbody>
                                             {charges.map((charge, index) => (<tr key={index}>
-                                                <td><ToggleButton type="checkbox" value={index} name={index} checked onChange={e => { handleCheckbox(e.target); }} /></td>
+                                                <td><ToggleButton type="checkbox" value={index} name={index} checked={checkedItems[index]} onChange={e => { handleCheckbox(e.target); }} /></td>
                                                 <td className="statute">{charge.statute}</td>
                                                 <td className="date">{charge.date}</td>
                                                 <td className="grade">{charge.grade}</td>
