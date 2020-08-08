@@ -134,10 +134,10 @@ export default function FileUpload() {
     function handleCheckbox(target) {
         console.log(target);
         console.log(target.checked);
-        console.log(target.name);
+        console.log(!target.checked);
         console.log(target.value);
 
-        if (target.checked === true) {
+        if (target.checked == true) {
             console.log('boolean');
         } 
         else if (target.checked === 'true') {
