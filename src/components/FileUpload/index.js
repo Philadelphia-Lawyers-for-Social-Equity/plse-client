@@ -132,10 +132,13 @@ export default function FileUpload() {
     }
 
     function handleCheckbox(target) {
-        console.log(target);
-        // console.log(unchecked);
-        // setUnchecked(unchecked + "," + e.target.value);
-        // console.log(unchecked);
+        console.log(target.checked);
+        if (target.checked == false) {
+            target.checked = true;
+        }
+        else {
+            target.checked = false;
+        };
     }
 
      // On click to check that the manual entry fields are entered before POST
@@ -527,7 +530,7 @@ export default function FileUpload() {
                                         <tbody>
                                           
                                                 {charges.map((charge, index) => (<tr key={index}>
-                                                    <td><ToggleButton type="checkbox" value={index} onChange={e => 
+                                                    <td><ToggleButton type="checkbox" value={index} checked="true" onChange={e => 
                                                         {handleCheckbox(e.target);}} /></td>
                                                     <td className="statute">{charge.statute}</td>
                                                     <td className="date">{charge.date}</td>
