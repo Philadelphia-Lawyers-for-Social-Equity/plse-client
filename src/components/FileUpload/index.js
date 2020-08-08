@@ -132,16 +132,7 @@ export default function FileUpload() {
     }
 
     function handleCheckbox(target) {
-
         setCheckedItems({...checkedItems, [target.name] : target.checked});
-        console.log(checkedItems);
-
-        // if (!target.checked) {
-        //     target.checked = true;
-        // }
-        // else {
-        //     target.checked = false;
-        // };
     }
 
      // On click to check that the manual entry fields are entered before POST
@@ -159,6 +150,7 @@ export default function FileUpload() {
 
   function getDocFile() {
 
+    console.log(charges.length);
     // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
     // var fullNameJoined = fullNameList.join(" ");
 
