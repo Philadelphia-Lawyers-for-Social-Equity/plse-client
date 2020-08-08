@@ -132,13 +132,14 @@ export default function FileUpload() {
     }
 
     function handleCheckbox(target) {
+        console.log("charges: ", charges);
+        
         console.log(target);
         console.log(target.checked);
         console.log(target.name);
         console.log(target.value);
 
-        setCharges({...charges, [target.name] : target.checked });
-        console.log("charges: ", charges);
+        //setCharges({...charges, [target.name] : target.checked });
 
         // if (!target.checked) {
         //     target.checked = true;
