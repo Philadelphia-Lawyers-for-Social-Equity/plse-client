@@ -133,12 +133,22 @@ export default function FileUpload() {
 
     function handleCheckbox(target) {
         console.log(target.checked);
-        if (!target.checked) {
-            target.checked = true;
+        console.log(target.name);
+        console.log(target.value);
+
+        if (target.checked === true) {
+            console.log('boolean');
+        } 
+        else if (target.checked === 'true') {
+            console.log('string');
         }
-        else {
-            target.checked = false;
-        };
+
+        // if (!target.checked) {
+        //     target.checked = true;
+        // }
+        // else {
+        //     target.checked = false;
+        // };
     }
 
      // On click to check that the manual entry fields are entered before POST
