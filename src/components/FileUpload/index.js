@@ -135,9 +135,10 @@ export default function FileUpload() {
         console.log("charges: ", charges);
         
         console.log(target);
-        console.log(target.checked);
+        console.log("checked: ", target.checked);
         console.log(target.name);
         console.log(target.value);
+        console.log(charges[target.value]);
 
         //setCharges({...charges, [target.name] : target.checked });
 
