@@ -134,10 +134,11 @@ export default function FileUpload() {
     function handleCheckbox(target) {
         console.log(target);
         console.log(target.checked);
-        console.log(!target.checked);
+        console.log(target.name);
         console.log(target.value);
 
-        target.checked = !target.checked;
+        setCharges({...charges, [target.name] : target.checked });
+        console.log("charges: ", charges);
 
         // if (!target.checked) {
         //     target.checked = true;
@@ -534,17 +535,14 @@ export default function FileUpload() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          
-                                                {charges.map((charge, index) => (<tr key={index}>
-                                                    <td><ToggleButton type="checkbox" value={index} checked onChange={e => 
-                                                        {handleCheckbox(e.target);}} /></td>
-                                                    <td className="statute">{charge.statute}</td>
-                                                    <td className="date">{charge.date}</td>
-                                                    <td className="grade">{charge.grade}</td>
-                                                    <td className="description">{charge.description}</td>
-                                                    <td className="disposition">{charge.disposition}</td>
-                                                </tr>))}
-                                        
+                                            {charges.map((charge, index) => (<tr key={index}>
+                                                <td><ToggleButton type="checkbox" value={index} name={index} checked onChange={e => { handleCheckbox(e.target); }} /></td>
+                                                <td className="statute">{charge.statute}</td>
+                                                <td className="date">{charge.date}</td>
+                                                <td className="grade">{charge.grade}</td>
+                                                <td className="description">{charge.description}</td>
+                                                <td className="disposition">{charge.disposition}</td>
+                                            </tr>))}
                                         </tbody>
                                     </Table>
                                 </Col>
@@ -552,15 +550,14 @@ export default function FileUpload() {
 
 
                         <Row>
-
-                        <Col sm={3}>
-                        </Col>
-                        <Col sm={6}>
-                            <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
-                            {isError2 && <div>Please enter client address and social security number</div>}
-                        </Col>
-                        <Col sm={3}>
-                        </Col>
+                            <Col sm={3}>
+                            </Col>
+                            <Col sm={6}>
+                                <Button id="ExpungeButton" onClick={checkInfo}>Expunge</Button>
+                                {isError2 && <div>Please enter client address and social security number</div>}
+                            </Col>
+                            <Col sm={3}>
+                            </Col>
                         </Row>
                     </Form>
 
