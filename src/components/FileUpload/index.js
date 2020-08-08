@@ -133,11 +133,11 @@ export default function FileUpload() {
 
     function handleCheckbox(target) {
         console.log(target.checked);
-        if (target.checked == 'false') {
-            target.checked = 'true';
+        if (!target.checked) {
+            target.checked = true;
         }
         else {
-            target.checked = 'false';
+            target.checked = false;
         };
     }
 
