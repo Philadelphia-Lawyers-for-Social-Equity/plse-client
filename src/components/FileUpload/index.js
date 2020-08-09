@@ -20,10 +20,6 @@ export default function FileUpload() {
     const [checkedItems, setCheckedItems] = useState({});
 
     const [fullName, setFullName] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [middleInitial, setMiddleInitial] = useState("");
-    // const [lastName, setLastName] = useState("");
-    // const [suffix, setSuffix] = useState("");
     const [aliases, setAliases] = useState("");
     const [dob, setDOB] = useState("");
     const [street1, setStreet1] = useState("");
@@ -62,12 +58,9 @@ export default function FileUpload() {
             setIsError(true);
         }
         else {
-
             let pdfdata = new FormData();
             pdfdata.append('name', 'docket_file');
             pdfdata.append('docket_file', fileName);
-
-            // console.log(pdfdata);
 
             // post to generate profile
             const url = process.env.REACT_APP_BACKEND_HOST + "/api/v0.2.0/petition/parse-docket/";
@@ -83,35 +76,9 @@ export default function FileUpload() {
                     if (res.status === 200) {
 
                         console.log(res.data);
-
                         setDocket(res.data.docket);
-
                         setFullName(res.data.petitioner.name);
-                        // var fullName = res.data.petitioner.name;
-                        // var nameArray = fullName.split(" ");
-                        // if (nameArray.length === 4) {
-                        //     setFirstName(nameArray[0]);
-                        //     setMiddleInitial(nameArray[1][0]);
-                        //     setLastName(nameArray[2]);
-                        //     setSuffix(nameArray[3]);
-                        // }
-                        // else if (nameArray.length === 3 && nameArray[1][1] === "." || nameArray[1].length === 1) {
-                        //     setFirstName(nameArray[0]);
-                        //     setMiddleInitial(nameArray[1][0]);
-                        //     setLastName(nameArray[2]);
-                        // }
-                        // else if (nameArray.length === 3) {
-                        //     setFirstName(nameArray[0]);
-                        //     setLastName(nameArray[1]);
-                        //     setSuffix(nameArray[2]);
-                        // }
-                        // else if (nameArray.length === 2) {
-                        //     setFirstName(nameArray[0]);
-                        //     setLastName(nameArray[1]);
-                        // }
-
                         setCharges(res.data.charges);
-
                         setAliases(res.data.petitioner.aliases);
                         setDOB(res.data.petitioner.dob);
                         setOTN(res.data.petition.otn);
@@ -120,7 +87,7 @@ export default function FileUpload() {
                         setArrestOfficer(res.data.petition.arrest_officer);
                         setJudge(res.data.petition.judge);
 
-                        //missing arrest date, DC number, restitution amounts (pending Pablo)
+                        //missing DC number, restitution amounts (pending Pablo)
 
                         setFilePassed(true);
                     }
@@ -131,12 +98,13 @@ export default function FileUpload() {
         }
     }
 
+    // checkboxes onchange for charges table
     function handleCheckbox(target) {
         setCheckedItems({...checkedItems, [target.name] : target.checked});
     }
 
      // On click to check that the manual entry fields are entered before POST
-  function checkInfo() {
+    function checkInfo() {
 
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
       setIsError2(true);
@@ -158,16 +126,6 @@ export default function FileUpload() {
     }
 
     console.log(newCharges);
-
-    // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
-    // var fullNameJoined = fullNameList.join(" ");
-
-    // // user changed the name, do we want to replace the name?
-    // if (fullName != fullNameJoined) {
-    //     console.log(fullName);
-    //     console.log(fullNameJoined);
-    //     //fullName = fullNameJoined;
-    // }
 
     // Current date
     var today = new Date();
@@ -209,38 +167,6 @@ export default function FileUpload() {
     }
 
     console.log(realData);
-    
-    // Mock data from Pablo that we know will work
-    // const mockData = {
-    //   "petitioner": {
-    //     "name": "Bob Bee",
-    //     "aliases": ["Total Gym"],
-    //     "dob": "2001-11-7",
-    //     "ssn": "224-44-5555",
-    //     "address": {
-    //       "street1": "1617 Jfk",
-    //       "street2": "Apt 1",
-    //       "city": "Philadelphia",
-    //       "state": "PA",
-    //       "zipcode": "21711"
-    //     }
-    //   },
-    //   "petition": {
-    //     "date": "2019-11-27",
-    //     "petition_type": "expungement",
-    //     "otn": "Offense Tracking Number",
-    //     "dc": "wat is this",
-    //     "arrest_date": "2017-04-16",
-    //     "arrest_officer": "Gerry Mander",
-    //     "disposition": "Dismissed",
-    //     "judge": "Jury And Executioner"
-    //   },
-    //   "docket": "MC-51-CR-1234135-2001",
-    //   "restitution": {
-    //     "total": 20000,
-    //     "paid": 36
-    //   }
-    // }
 
     // Make an axios POST call to api/v0.2.0/petition/generate/
     const bearer = "Bearer ";
