@@ -138,10 +138,15 @@ export default function FileUpload() {
      // On click to check that the manual entry fields are entered before POST
   function checkInfo() {
 
+var newCharges = [];
+
     for (var i = 0; i < charges.length; i++) {
-        console.log(i);
-        console.log(document.getElementById(i.toString()).children[0].checked);
+        if(!document.getElementById(i.toString()).children[0].checked) {
+            newCharges.push(charges[i]);
+        };
     }
+    console.log(newCharges);
+    console.log(charges);
 
     // No attorney chosen if blank
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
