@@ -138,18 +138,6 @@ export default function FileUpload() {
      // On click to check that the manual entry fields are entered before POST
   function checkInfo() {
 
-var newCharges = [];
-
-    for (var i = 0; i < charges.length; i++) {
-        if(!document.getElementById(i.toString()).children[0].checked) {
-            newCharges.push(charges[i]);
-        };
-    }
-    console.log(newCharges);
-    setCharges(newCharges);
-    console.log(charges);
-
-    // No attorney chosen if blank
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
       setIsError2(true);
     }
@@ -161,6 +149,15 @@ var newCharges = [];
 
   function getDocFile() {
 
+    var newCharges = [];
+
+    for (var i = 0; i < charges.length; i++) {
+        if(!document.getElementById(i.toString()).children[0].checked) {
+            newCharges.push(charges[i]);
+        };
+    }
+
+    console.log(newCharges);
 
     // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
     // var fullNameJoined = fullNameList.join(" ");
@@ -203,7 +200,7 @@ var newCharges = [];
         "arrest_officer": arrestOfficer,
         "judge": judge
       },
-      "charges" : charges,
+      "charges" : newCharges,
       "docket": docket,
       "restitution": {
         "total": parseFloat(restitutionTotal),
