@@ -138,6 +138,11 @@ export default function FileUpload() {
      // On click to check that the manual entry fields are entered before POST
   function checkInfo() {
 
+    for (var i = 0; i < charges.length; i++) {
+        console.log(i);
+        console.log(document.getElementById(i.toString()).children[0].checked);
+    }
+
     // No attorney chosen if blank
     if (street1 === "" || city === "" || twoLetterState === "" || zipcode === "" || ssn === "") {
       setIsError2(true);
@@ -150,8 +155,7 @@ export default function FileUpload() {
 
   function getDocFile() {
 
-    console.log(charges.length);
-    
+
     // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
     // var fullNameJoined = fullNameList.join(" ");
 
