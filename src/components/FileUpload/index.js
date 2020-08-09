@@ -146,6 +146,7 @@ var newCharges = [];
         };
     }
     console.log(newCharges);
+    setCharges(newCharges);
     console.log(charges);
 
     // No attorney chosen if blank
