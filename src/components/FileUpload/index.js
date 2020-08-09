@@ -151,6 +151,7 @@ export default function FileUpload() {
   function getDocFile() {
 
     console.log(charges.length);
+    
     // var fullNameList = [ firstName,  middleInitial, lastName, suffix ];
     // var fullNameJoined = fullNameList.join(" ");
 
@@ -527,7 +528,7 @@ export default function FileUpload() {
                                                 <td className="grade">{charge.grade}</td>
                                                 <td className="description">{charge.description}</td>
                                                 <td className="disposition">{charge.disposition}</td>
-                                                <td><ToggleButton type="checkbox" variant="danger" value={index} name={index} checked={checkedItems[index]} onChange={e => { handleCheckbox(e.target); }} /></td>
+                                                <td><ToggleButton type="checkbox" variant="dark" id={index} value={index} name={index} checked={checkedItems[index]} onChange={e => { handleCheckbox(e.target); }} /></td>
                                             </tr>))}
                                         </tbody>
                                     </Table>
